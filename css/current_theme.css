@@ -1,0 +1,15 @@
+:root {
+   --shelf-top-bg-color: #232323;
+   --shelf-top-bg-color-hover: #343434;
+   --shelf-top-bg-color-open: #454545;
+   --shelf-top-font-color: #dddddd;
+   --shelf-top-font-color-hover: #ffffff;
+   --shelf-bottom-bg-color: #555555;
+
+   --treeview-bg-color: #cccccc;
+   --treeview-font-color: #111111;
+   --treeview-bg-color-selected: #aaaaaa;
+   --treeview-font-color-selected: #000000;
+
+   --resizebar-bg-color: #ababab;
+}

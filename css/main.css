@@ -1,0 +1,96 @@
+/* Overview */
+body, html {
+   margin: 0px;
+   height: 100%;
+   width: 100%;
+   font-family: calibri;
+}
+
+body {
+   display: flex;
+   flex-flow: column;
+   overflow: hidden;
+}
+
+#lower_flex {
+   display: flex;
+   flex-direction: row;
+   flex: 1 1 auto;
+}
+
+#shelf_view {
+   height: 100px;
+   flex: 0 1 100px;
+
+   background-color: var(--shelf-top-bg-color);
+}
+
+#tree_view {
+   width: 198px;
+
+   top: 100px;
+   resize: horizontal;
+
+   background-color: var(--treeview-bg-color);
+}
+
+#resize_bar {
+   width: 2px;
+
+   left: 198px;
+   top: 100px;
+
+   background-color: var(--resizebar-bg-color);
+
+   cursor: ew-resize;
+}
+
+#content_view {
+   left: 200px;
+   top: 100px;
+}
+
+
+
+
+/* Shelf */
+.upper_shelf_btn {
+   /* Button on the upper shelf */
+   padding-left: 16px;
+   padding-right: 16px;
+   padding-top: 4px;
+   padding-bottom: 4px;
+   float: left;
+   text-align: center;
+   cursor: pointer;
+   color: var(--shelf-top-font-color);
+}
+
+#upper_shelf_btn_file:hover, #upper_shelf_btn_text:hover, #upper_shelf_btn_insert:hover,
+#upper_shelf_btn_share:hover, #upper_shelf_btn_templates:hover {
+   /* Hover effect for upper shelf buttons */
+   background-color: var(--shelf-top-bg-color-hover);
+   color: var(--shelf-top-font-color-hover);
+}
+
+#lower_shelf_viewport {
+   /* Lower shelf wrapper itself */
+   background-color: var(--shelf-bottom-bg-color);
+   top: 27px;
+   position: absolute;
+   height: 73px;
+   width: 100%;
+}
+
+.lower_shelf_iframe {
+   /* All lower shelf views */
+   height: 73px;
+   width: 100%;
+   padding: 0px;
+   margin: 0px;
+   border: none;
+}
+
+.lower_shelf_iframe body {
+   margin: 0px;
+}
