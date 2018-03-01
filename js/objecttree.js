@@ -1,7 +1,7 @@
 /* Each "page" in the application is tied to a Node object. This contains all data about
 the page. */
 class TreeNode {
-   constructor(name, type, associations, parent, children, data) {
+   constructor(name, type, associations, parent, children, data = null) {
       /***********************************************************************************
       * Publicly Accessible Properties                                                   *
       ***********************************************************************************/// Name of this node
@@ -25,7 +25,9 @@ class TreeNode {
       this.parent = parent;
 
       // Indices of this node's children, for navigation purposes.
-      this.children = children;
+      for (var i = 0; i < children.length; i++) {
+         this.AddChild(children[i]);
+      }
 
       // The raw data of this page, which begins as a template.
       this.data = data;
@@ -68,6 +70,20 @@ class TreeNode {
       }
 
       return false;
+   }
+
+
+   // Get the JSON representation of this node
+   ConvertToJSON() {
+      var jsondata = {};
+      jsondata['name'] = this.name;
+      jsondata['type'] = this.type;
+      jsondata['associations'] = this.associations;
+      jsondata['parent'] = this.parent;
+      jsondata['children'] = this.children;
+      jsondata['data'] = this.data;
+
+      return JSON.stringify(jsondata);
    }
 }
 

@@ -7,8 +7,23 @@
       <link rel="stylesheet" href="themes/default_dark.css">
       <link rel="stylesheet" href="css/main.css">
 
+      <script>
+         if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+         }
+      </script>
+
       <!-- Import jQuery -->
       <script src="js/jquery.js"></script>
+
+      <script>
+         if (window.module) module = window.module;
+      </script>
+
+      <!-- Import other javascript files -->
+      <script src="js/objecttree.js"></script>
+      <script src="js/pageload.js"></script>
 
       <!-- Home page javascript -->
       <script>
@@ -53,12 +68,11 @@
             Tree view of all nodes
          </div>
 
-         <div id="resize_bar">
-         </div>
+         <div id="resize_bar"></div>
 
          <div id="content_view">
             <!-- This displays all information about the node itself. -->
-            <div class="cv_title_wrap"></div>
+            <iframe id="content_view_iframe" src="pages/blank.html"></iframe>
          </div>
       </div>
    </body>

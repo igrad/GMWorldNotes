@@ -4,6 +4,8 @@ body, html {
    height: 100%;
    width: 100%;
    font-family: calibri;
+
+   user-select: none;
 }
 
 body {
@@ -26,7 +28,11 @@ body {
 }
 
 #tree_view {
-   width: 198px;
+   display: flex;
+   flex-direction: row;
+   flex: 0 1 198px;
+
+   min-width: 198px;
 
    top: 100px;
    resize: horizontal;
@@ -35,6 +41,10 @@ body {
 }
 
 #resize_bar {
+   display: flex;
+   flex-direction: row;
+   flex: 0 1 2px;
+
    width: 2px;
 
    left: 198px;
@@ -46,6 +56,10 @@ body {
 }
 
 #content_view {
+   display: flex;
+   flex-direction: row;
+   flex: 1 1 auto;
+
    left: 200px;
    top: 100px;
 }
@@ -62,6 +76,7 @@ body {
    padding-bottom: 4px;
    float: left;
    text-align: center;
+   user-select: none;
    cursor: pointer;
    color: var(--shelf-top-font-color);
 }
