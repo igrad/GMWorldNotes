@@ -24,6 +24,7 @@
       <!-- Import other javascript files -->
       <script src="js/objecttree.js"></script>
       <script src="js/pageload.js"></script>
+      <script src="js/index.js"></script>
 
       <!-- Home page javascript -->
       <script>
@@ -40,11 +41,11 @@
          <div id="upper_shelf">
             <!-- This area contains the upper portion of the shelf, including the
             buttons for each option on the shelf. -->
-            <div id="upper_shelf_btn_file" class="upper_shelf_btn">File</div>
-            <div id="upper_shelf_btn_text" class="upper_shelf_btn">Text</div>
-            <div id="upper_shelf_btn_insert" class="upper_shelf_btn">Insert</div>
-            <div id="upper_shelf_btn_share" class="upper_shelf_btn">Share</div>
-            <div id="upper_shelf_btn_templates" class="upper_shelf_btn">Templates</div>
+            <div id="upper_shelf_btn_file" class="upper_shelf_btn" onclick="ShelfSwitch(this)" frame="lower_shelf_file_view">File</div>
+            <div id="upper_shelf_btn_text" class="upper_shelf_btn"  onclick="ShelfSwitch(this)" frame="lower_shelf_text_view">Text</div>
+            <div id="upper_shelf_btn_insert" class="upper_shelf_btn"  onclick="ShelfSwitch(this)" frame="lower_shelf_insert_view">Insert</div>
+            <div id="upper_shelf_btn_share" class="upper_shelf_btn"  onclick="ShelfSwitch(this)" frame="lower_shelf_share_view">Share</div>
+            <div id="upper_shelf_btn_templates" class="upper_shelf_btn"  onclick="ShelfSwitch(this)" frame="lower_shelf_template_view">Templates</div>
          </div>
 
          <div id="lower_shelf_viewport">
