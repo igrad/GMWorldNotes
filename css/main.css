@@ -30,9 +30,9 @@ body {
 #tree_view {
    display: flex;
    flex-direction: row;
-   flex: 0 1 198px;
+   flex: 0 1 197px;
 
-   min-width: 198px;
+   min-width: 197px;
 
    top: 100px;
    resize: horizontal;
@@ -43,11 +43,11 @@ body {
 #resize_bar {
    display: flex;
    flex-direction: row;
-   flex: 0 1 2px;
+   flex: 0 1 3px;
 
-   width: 2px;
+   width: 3px;
 
-   left: 198px;
+   left: 197px;
    top: 100px;
 
    background-color: var(--resizebar-bg-color);
@@ -63,6 +63,7 @@ body {
    left: 200px;
    top: 100px;
 }
+
 
 
 
@@ -104,8 +105,16 @@ body {
    padding: 0px;
    margin: 0px;
    border: none;
+   display: none;
 }
 
-.lower_shelf_iframe body {
+
+
+
+/* Content View */
+#content_view_iframe {
+   width: 100%;
+   padding: 0px;
    margin: 0px;
+   border: none;
 }
