@@ -71,14 +71,16 @@ body {
 /* Shelf */
 .upper_shelf_btn {
    /* Button on the upper shelf */
-   padding-left: 16px;
-   padding-right: 16px;
-   padding-top: 4px;
-   padding-bottom: 4px;
+   padding-left : var(--shelf-top-side-padding);
+   padding-right: var(--shelf-top-side-padding);
+   padding-top: var(--shelf-top-vert-padding);
+   padding-bottom: var(--shelf-top-vert-padding);
+
    float: left;
    text-align: center;
    user-select: none;
    cursor: pointer;
+   
    color: var(--shelf-top-font-color);
 }
 
