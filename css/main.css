@@ -91,11 +91,13 @@ body {
 
 #lower_shelf_viewport {
    /* Lower shelf wrapper itself */
-   background-color: var(--shelf-bottom-bg-color);
-   top: 27px;
+   top: calc(var(--shelf-height) - var(--shelf-lower-height));
    position: absolute;
-   height: 73px;
    width: 100%;
+
+   background-color: var(--shelf-lower-bg-color);
+
+   flex: 0 1 var(--shelf-lower-height)
 }
 
 .lower_shelf_iframe {

@@ -4,7 +4,11 @@
    --shelf-top-bg-color-open: #454545;
    --shelf-top-font-color: #dddddd;
    --shelf-top-font-color-hover: #ffffff;
-   --shelf-bottom-bg-color: #555555;
+   --shelf-lower-bg-color: #555555;
+
+   --shelf-height: 100px;
+   --shelf-lower-height: 73px;
+
 
    --treeview-bg-color: #cccccc;
    --treeview-font-color: #111111;
