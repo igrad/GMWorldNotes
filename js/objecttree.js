@@ -1,10 +1,11 @@
-/* Each "page" in the application is tied to a Node object. This contains all data about
-the page. */
+/* Each "page" in the application is tied to a Node object. This contains all data
+about the page. */
 class TreeNode {
    constructor(name, type, associations, parent, children, data = null) {
-      /***********************************************************************************
-      * Publicly Accessible Properties                                                   *
-      ***********************************************************************************/// Name of this node
+      /********************************************************************************
+      * Publicly Accessible Properties                                                *
+      ********************************************************************************/
+      // Name of this node
       this.name = name;
 
       /* Type: Location, Item, Person, or Group
@@ -15,10 +16,10 @@ class TreeNode {
       this.type = type;
 
       /* Each page is, of course, linked to other pages, but it is not always in a
-      structured way. Just as a person can be tied to other people and to locations, those
-      other people can be tied to their own people and locations, and it's far too
-      difficult to track this in a single, structured tree. Thus, the links of a node
-      detail these connections in a way that can be tracked. */
+      structured way. Just as a person can be tied to other people and to locations,
+      those other people can be tied to their own people and locations, and it's far
+      too difficult to track this in a single, structured tree. Thus, the links of a
+      node detail these connections in a way that can be tracked. */
       this.associations = associations;
 
       // Index of this node's parent, for navigation purposes.

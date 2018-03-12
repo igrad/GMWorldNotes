@@ -80,15 +80,8 @@ body {
    text-align: center;
    user-select: none;
    cursor: pointer;
-   
-   color: var(--shelf-top-font-color);
-}
 
-#upper_shelf_btn_file:hover, #upper_shelf_btn_text:hover, #upper_shelf_btn_insert:hover,
-#upper_shelf_btn_share:hover, #upper_shelf_btn_templates:hover {
-   /* Hover effect for upper shelf buttons */
-   background-color: var(--shelf-top-bg-color-hover);
-   color: var(--shelf-top-font-color-hover);
+   color: var(--shelf-top-font-color);
 }
 
 #lower_shelf_viewport {

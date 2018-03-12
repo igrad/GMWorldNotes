@@ -24,15 +24,8 @@
 
       <!-- Import other javascript files -->
       <script src="js/objecttree.js"></script>
-      <script src="js/pageload.js"></script>
       <script src="js/index.js"></script>
-
-      <!-- Home page javascript -->
-      <script>
-         $(document).ready({ function () {
-
-         }});
-      </script>
+      <script src="js/load.js"></script>
    </head>
    <body>
       <div id="shelf_view">
@@ -42,20 +35,34 @@
          <div id="upper_shelf">
             <!-- This area contains the upper portion of the shelf, including the
             buttons for each option on the shelf. -->
-            <div id="upper_shelf_btn_file" class="upper_shelf_btn" onclick="ShelfSwitch(this)" frame="lower_shelf_file_view">File</div>
-            <div id="upper_shelf_btn_text" class="upper_shelf_btn"  onclick="ShelfSwitch(this)" frame="lower_shelf_text_view">Text</div>
-            <div id="upper_shelf_btn_insert" class="upper_shelf_btn"  onclick="ShelfSwitch(this)" frame="lower_shelf_insert_view">Insert</div>
-            <div id="upper_shelf_btn_share" class="upper_shelf_btn"  onclick="ShelfSwitch(this)" frame="lower_shelf_share_view">Share</div>
-            <div id="upper_shelf_btn_templates" class="upper_shelf_btn"  onclick="ShelfSwitch(this)" frame="lower_shelf_template_view">Templates</div>
+            <div id="upper_shelf_btn_file" class="upper_shelf_btn"
+            onmouseover="ShelfHover(this)" onmouseout="ShelfLeaveHover(this)"
+            onclick="ShelfSwitch(this)" frame="lower_shelf_file_view">File</div>
+            <div id="upper_shelf_btn_text" class="upper_shelf_btn"
+            onmouseover="ShelfHover(this)" onmouseout="ShelfLeaveHover(this)"
+            onclick="ShelfSwitch(this)" frame="lower_shelf_text_view">Text</div>
+            <div id="upper_shelf_btn_insert" class="upper_shelf_btn"
+            onmouseover="ShelfHover(this)" onmouseout="ShelfLeaveHover(this)"
+            onclick="ShelfSwitch(this)" frame="lower_shelf_insert_view">Insert</div>
+            <div id="upper_shelf_btn_share" class="upper_shelf_btn"
+            onmouseover="ShelfHover(this)" onmouseout="ShelfLeaveHover(this)"
+            onclick="ShelfSwitch(this)" frame="lower_shelf_share_view">Share</div>
+            <div id="upper_shelf_btn_templates" class="upper_shelf_btn"
+            onmouseover="ShelfHover(this)" onmouseout="ShelfLeaveHover(this)"
+            onclick="ShelfSwitch(this)"
+            frame="lower_shelf_template_view">Templates</div>
          </div>
 
          <div id="lower_shelf_viewport">
             <!-- Contains the options of the selected shelf option. -->
-            <iframe id="lower_shelf_file_view" class="lower_shelf_iframe"  src="menu_iframe/lower_shelf_file_view.html" style="display:block" ></iframe>
+            <iframe id="lower_shelf_file_view" class="lower_shelf_iframe"
+            src="menu_iframe/lower_shelf_file_view.html" style="display:block"></iframe>
 
-            <iframe id="lower_shelf_text_view" class="lower_shelf_iframe" src="menu_iframe/lower_shelf_text_view.html"></iframe>
+            <iframe id="lower_shelf_text_view" class="lower_shelf_iframe"
+            src="menu_iframe/lower_shelf_text_view.html"></iframe>
 
-            <iframe id="lower_shelf_insert_view" class="lower_shelf_iframe" src="menu_iframe/lower_shelf_insert_view.html"></iframe>
+            <iframe id="lower_shelf_insert_view" class="lower_shelf_iframe"
+            src="menu_iframe/lower_shelf_insert_view.html"></iframe>
 
             <iframe id="lower_shelf_share_view" class="lower_shelf_iframe" src="menu_iframe/lower_shelf_share_view.html"></iframe>
 
