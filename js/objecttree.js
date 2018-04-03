@@ -8,13 +8,6 @@ class TreeNode {
       // Name of this node
       this.name = name;
 
-      /* Type: Location, Item, Person, or Group
-         - Person: A player character, NPC, villain, etc
-         - Group: An amalgamation of Person nodes
-         - Location: A point of interest or an entire city within the world
-         - Item: An article or object of importance */
-      this.type = type;
-
       /* Each page is, of course, linked to other pages, but it is not always in a
       structured way. Just as a person can be tied to other people and to locations,
       those other people can be tied to their own people and locations, and it's far

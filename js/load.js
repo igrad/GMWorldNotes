@@ -28,6 +28,43 @@ function LoadSession() {
 }
 
 
+function LoadNotebookToScreen() {
+
+   // TODO: Wrap all of this in a try-catch
+
+   // Order of events
+   // 1. Load the theme of the notebook onto screen
+   // 2. Load the nodes into tree view
+
+
+   // Load the theme of the notebook onto screen
+   // Get the currently-loaded theme's outer HTML string
+   var linkTheme = $("#link_theme")[0];
+   var linkThemeText = linkTheme.outerHTML;
+
+   // Isolate just the file name of the current theme
+   var currentTheme = linkThemeText.substring((linkThemeText.indexOf("/") + 1), (linkThemeText.indexOf(".css")));
+
+   // Replace the current theme with the new theme of notebook being loaded
+   linkTheme.outerHTML = linkThemeText.replace(currentTheme, notebookData.theme);
+
+
+   // Load the nodes into the tree view
+   // Get the tree view object
+   var treeView = $("#tree_view");
+
+   // Load up this node tree as an actual linked list in memory
+   
+
+   // Clear out the existing contents
+
+   // Traverse the linked list/binary tree in order and build each node in memory
+   // While doing this, also add each label into the content view
+
+   // Make sure that there's a setting for how far each tab is indented. This should be included in the global style settings as well as in the theme, because the tree view font may be different for different notebooks, and people might want to adjust that tab distance.
+}
+
+
 
 function LoadPageToScreen(pathtopage) {
    console.log("Loading page");
@@ -39,4 +76,5 @@ function LoadPageToScreen(pathtopage) {
 
 LoadSession();
 notebookData = new Notebook(lastOpenNotebook);
+LoadNotebookToScreen()
 LoadPageToScreen(lastOpenPage);
