@@ -5,7 +5,6 @@
 // initTime (string): The time and date that this notebook was created
 // theme (string): Theme used for this notebook
 // nodeCount (int): The number of folders and pages contained within this notebook
-// rootNode (object): JSON representation of the root node of this notebook
 // nodes (array): JSON representation of all nodes contained within this notebook,
 //    excluding the raw HTML data that is stored in another file. This JSON data only
 //    holds strings that point to the HTML file names.
@@ -15,7 +14,6 @@ let defaultNotebook = {
    initTime: (new Date).toDateString(),
    theme: "default_dark",
    nodeCount: 0,
-   rootNode: root.ConvertToJSON(),
    nodesJSON: {}
 }
 
@@ -29,14 +27,12 @@ class Notebook {
          this.initTime = dat.get("initTime");
          this.theme = dat.get("theme");
          this.nodeCount = dat.get("nodeCount");
-         this.rootNodeJSON = dat.get("rootNode");
          this.nodes = dat.get("nodesJSON");
       } else {
          this.name = defaultNotebook.name;
          this.initTime = defaultNotebook.initTime;
          this.theme = defaultNotebook.theme;
          this.nodeCount = defaultNotebook.nodeCount;
-         this.rootNode = defaultNotebook.rootNode;
          this.nodesJSON = defaultNotebook.nodesJSON;
 
          this.nodes = []
