@@ -1,6 +1,6 @@
 {
   "name": "GMWorldNotes",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "main": "main.js",
   "dependencies": {
     "electron-json-storage": "^4.0.2"

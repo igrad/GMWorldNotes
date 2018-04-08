@@ -1,3 +1,6 @@
+// App version needs to be set here and in package.json
+const appVersion = '0.0.1';
+
 let sessionData
 let notebookData
 
@@ -7,10 +10,10 @@ let lastOpenNotebook = null;
 let lastOpenPage = null;
 
 let defaultSession = {
-   LastRunTime: 'never',
-   LastRunVersion: '0.0.1',
-   LastOpenNotebook: '',
-   LastOpenPage: ''
+   LastRunTime: null,
+   LastRunVersion: appVersion,
+   LastOpenNotebook: null,
+   LastOpenPage: null
 }
 
 
@@ -18,7 +21,7 @@ let defaultSession = {
 function LoadSession() {
    sessionData = new DataStore('session', 'session', defaultSession);
 
-   sessionData.set("LastRunTime", "never");
+   sessionData.set("LastRunTime", Date.now());
 
 
    lastRunTime = sessionData.get("LastRunTime");
@@ -53,8 +56,6 @@ function LoadNotebookToScreen() {
    // Get the tree view object
    var treeView = $("#tree_view");
 
-   // Load up this node tree as an actual linked list in memory
-   
 
    // Clear out the existing contents
 
@@ -76,5 +77,9 @@ function LoadPageToScreen(pathtopage) {
 
 LoadSession();
 notebookData = new Notebook(lastOpenNotebook);
+
+// Load up this node tree as an actual linked list in memory
+
+
 LoadNotebookToScreen()
 LoadPageToScreen(lastOpenPage);
