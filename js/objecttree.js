@@ -97,7 +97,7 @@ class Tree {
    constructor (data) {
       nodeTree = new Array();
 
-      if (data.length == 0) {
+      if ((data.length == 0) || (data == null)) {
          var node = TreeNode();
          nodeTree.push(node);
       } else {
@@ -108,7 +108,11 @@ class Tree {
       }
    }
 
-   AddNodeToTree(newnode) {
+   AddNodeToTree (newnode) {
+
+   }
+
+   GetNode (id) {
 
    }
 }

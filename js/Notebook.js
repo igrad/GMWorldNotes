@@ -28,9 +28,9 @@ class Notebook {
          this.initTime = dat.get("initTime");
          this.theme = dat.get("theme");
          this.nodeCount = dat.get("nodeCount");
-         this.nodes = dat.get("nodesJSON");
+         this.nodesJSON = dat.get("nodesJSON");
 
-         new Tree(this.nodes);
+         this.nodeTree = new Tree(this.nodes);
       } else {
          console.log("Creating new notebook");
 
@@ -41,7 +41,7 @@ class Notebook {
          this.nodeCount = defaultNotebook.nodeCount;
          this.nodesJSON = defaultNotebook.nodesJSON;
 
-         this.nodes = new Array();
+         this.nodeTree = new Tree(null);
       }
    }
 

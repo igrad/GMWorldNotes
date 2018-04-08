@@ -23,7 +23,6 @@ function LoadSession() {
 
    sessionData.set("LastRunTime", Date.now());
 
-
    lastRunTime = sessionData.get("LastRunTime");
    lastRunVersion = sessionData.get("LastRunVersion");
    lastOpenNotebook = sessionData.get("LastOpenNotebook");
@@ -38,7 +37,6 @@ function LoadNotebookToScreen() {
    // Order of events
    // 1. Load the theme of the notebook onto screen
    // 2. Load the nodes into tree view
-
 
    // Load the theme of the notebook onto screen
    // Get the currently-loaded theme's outer HTML string
@@ -77,9 +75,6 @@ function LoadPageToScreen(pathtopage) {
 
 LoadSession();
 notebookData = new Notebook(lastOpenNotebook);
-
-// Load up this node tree as an actual linked list in memory
-
 
 LoadNotebookToScreen()
 LoadPageToScreen(lastOpenPage);
