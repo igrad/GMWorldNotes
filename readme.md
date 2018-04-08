@@ -2,7 +2,7 @@
 A tool for GMs to efficiently keep note of their world, including its locations, denizens, items, and more.
 
 #### Technical:
-The user can choose between any number of notebooks to use, which they may create, edit, or delete. Within each notebook is a series of categorized pages that can be used to define a blueprint of the world that the GM chooses to use. Each notebook is structured as a tree, with each node having a single parent and one or more children.
+The user can choose between any number of notebooks to use, which they may create, edit, or delete. Within each notebook is a series of categorized pages that can be used to define a blueprint of the GM's world in its entirety. Each notebook is structured as a tree, with each node having a single parent and one or more children.
 
 Each time the application is launched, a file is created, called session.json. This file contains the following information about the last time it was used:
 - Last run time
@@ -10,7 +10,7 @@ Each time the application is launched, a file is created, called session.json. T
 - Last notebook that was open
 - Last page that was open
 
-Each notebook created by the user contains the structure of the notebook, including a list of nodes for each page in said notebook. Each page's links and high-level information is included here.
+Each notebook created by the user contains the structure of the notebook. Each page's links and high-level information is included here. Notebook ids are stored as a simple 4-digit decimal integer
 - Name of the notebook
 - The time that the notebook was created
 - The number of nodes included within this notebook
@@ -21,5 +21,4 @@ There are two types of nodes contained within a notebook's structure: containers
 - Identifier - this is the name of the HTML file that is used when referencing this page
 - Name of the page itself, which is how it is referred to by the user
     - The name is not used as the identifier because we want to allow multiple pages with the same name within a container
-- The parent node's identifier
-- All child node identifiers
+- All data of nodes within the node tree
