@@ -20,28 +20,28 @@ let defaultNotebook = {
 class Notebook {
    constructor (identifier) {
       if (identifier != null) {
-         console.log("Loading notebook from file");
+         console.log("Loading notebook from file")
 
          // Create DataStore to fetch data from file in notebook folder
          var dat = new DataStore('notebook', this.notebookID, defaultNotebook)
-         this.name = dat.get("Name");
-         this.initTime = dat.get("initTime");
-         this.theme = dat.get("theme");
-         this.nodeCount = dat.get("nodeCount");
-         this.nodesJSON = dat.get("nodesJSON");
+         this.name = dat.get("Name")
+         this.initTime = dat.get("initTime")
+         this.theme = dat.get("theme")
+         this.nodeCount = dat.get("nodeCount")
+         this.nodesJSON = dat.get("nodesJSON")
 
-         this.nodeTree = new Tree(this.nodes);
+         this.nodeTree = new Tree(this.nodes)
       } else {
-         console.log("Creating new notebook");
+         console.log("Creating new notebook")
 
          var dat = new DataStore('notebook', null, defaultNotebook)
-         this.name = defaultNotebook.name;
-         this.initTime = defaultNotebook.initTime;
-         this.theme = defaultNotebook.theme;
-         this.nodeCount = defaultNotebook.nodeCount;
-         this.nodesJSON = defaultNotebook.nodesJSON;
+         this.name = defaultNotebook.name
+         this.initTime = defaultNotebook.initTime
+         this.theme = defaultNotebook.theme
+         this.nodeCount = defaultNotebook.nodeCount
+         this.nodesJSON = defaultNotebook.nodesJSON
 
-         this.nodeTree = new Tree(null);
+         this.nodeTree = new Tree(null)
       }
    }
 

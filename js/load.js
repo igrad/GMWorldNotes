@@ -1,13 +1,13 @@
 // App version needs to be set here and in package.json
-const appVersion = '0.0.1';
+const appVersion = '0.0.1'
 
 let sessionData
 let notebookData
 
-let lastRunTime = null;
-let lastRunVersion = null;
-let lastOpenNotebook = null;
-let lastOpenPage = null;
+let lastRunTime = null
+let lastRunVersion = null
+let lastOpenNotebook = null
+let lastOpenPage = null
 
 let defaultSession = {
    LastRunTime: null,
@@ -19,14 +19,14 @@ let defaultSession = {
 
 
 function LoadSession() {
-   sessionData = new DataStore('session', 'session', defaultSession);
+   sessionData = new DataStore('session', 'session', defaultSession)
 
-   sessionData.set("LastRunTime", Date.now());
+   sessionData.set("LastRunTime", Date.now())
 
-   lastRunTime = sessionData.get("LastRunTime");
-   lastRunVersion = sessionData.get("LastRunVersion");
-   lastOpenNotebook = sessionData.get("LastOpenNotebook");
-   lastOpenPage = sessionData.get("LastOpenPage");
+   lastRunTime = sessionData.get("LastRunTime")
+   lastRunVersion = sessionData.get("LastRunVersion")
+   lastOpenNotebook = sessionData.get("LastOpenNotebook")
+   lastOpenPage = sessionData.get("LastOpenPage")
 }
 
 
@@ -40,19 +40,19 @@ function LoadNotebookToScreen() {
 
    // Load the theme of the notebook onto screen
    // Get the currently-loaded theme's outer HTML string
-   var linkTheme = $("#link_theme")[0];
-   var linkThemeText = linkTheme.outerHTML;
+   var linkTheme = $("#link_theme")[0]
+   var linkThemeText = linkTheme.outerHTML
 
    // Isolate just the file name of the current theme
-   var currentTheme = linkThemeText.substring((linkThemeText.indexOf("/") + 1), (linkThemeText.indexOf(".css")));
+   var currentTheme = linkThemeText.substring((linkThemeText.indexOf("/") + 1), (linkThemeText.indexOf(".css")))
 
    // Replace the current theme with the new theme of notebook being loaded
-   linkTheme.outerHTML = linkThemeText.replace(currentTheme, notebookData.theme);
+   linkTheme.outerHTML = linkThemeText.replace(currentTheme, notebookData.theme)
 
 
    // Load the nodes into the tree view
    // Get the tree view object
-   var treeView = $("#tree_view");
+   var treeView = $("#tree_view")
 
 
    // Clear out the existing contents
@@ -66,15 +66,15 @@ function LoadNotebookToScreen() {
 
 
 function LoadPageToScreen(pathtopage) {
-   console.log("Loading page");
-   $("#content_view_iframe").attr("src", pathtopage);
-   currentPage = pathtopage;
+   console.log("Loading page")
+   $("#content_view_iframe").attr("src", pathtopage)
+   currentPage = pathtopage
 }
 
 
 
-LoadSession();
-notebookData = new Notebook(lastOpenNotebook);
+LoadSession()
+notebookData = new Notebook(lastOpenNotebook)
 
 LoadNotebookToScreen()
-LoadPageToScreen(lastOpenPage);
+LoadPageToScreen(lastOpenPage)
