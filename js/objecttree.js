@@ -1,19 +1,37 @@
 let nodeTree = new Array()
-let defaultNode = {
+let rootNode = {
    id: "0-0",
-   name: "node",
+   name: "ROOT",
    associations: null,
    parent: null,
-   children: null,
+   children: [],
+   data: "blank"
+}
+let defaultPage = {
+   id: "1-0",
+   name: "New Page",
+   associations: null,
+   parent: "0-0",
+   children: [],
+   data: "blank"
+}
+let defaultFolder = {defaultPage = {
+   id: "1-0",
+   name: "New Folder",
+   associations: null,
+   parent: "0-0",
+   children: [],
    data: null
 }
+
+
 
 
 /* Each "page" in the application is tied to a Node object. This contains all data
 about the page. */
 class TreeNode {
    constructor(jsonData) {
-      if (jsonData == null) { jsonData = defaultNode }
+      if (jsonData == null) { jsonData = rootNode }
 
       // Identifier of this node, used to be referenced by other nodes
       // The format of the identifier is "DEPTH-NUM", where depth is, obviously
@@ -95,10 +113,10 @@ class TreeNode {
 
 class Tree {
    constructor (data) {
-      nodeTree = new Array()
+      let nodeTree = new Array()
 
       if ((data.length == 0) || (data == null)) {
-         var node = TreeNode()
+         var node = new TreeNode()
          nodeTree.push(node)
       } else {
          for (var i = 0; i < data.length; i++) {
@@ -108,8 +126,19 @@ class Tree {
       }
    }
 
-   AddNodeToTree (newnode) {
+   AddNewNode (type) {
+      var node = null
+      if (type == "page") {
+         node = new TreeNode(defaultPage)
+      }
+      else if (type == "folder") {
+         node = new TreeNode(defaultFolder)
+      }
+      notebookData.AddNode(node)
+   }
 
+   AddNode (newnode) {
+      nodeTree.push(newnode)
    }
 
    GetNode (id) {

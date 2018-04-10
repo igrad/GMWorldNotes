@@ -36,14 +36,14 @@ var treeViewRCMopts = {
 }
 
 const treeViewRCM = new Menu()
-for (var i = 0; i < 6; i++) {
-   treeViewRCM.append( new MenuItem(treeViewRCMopts[i]) )
+for (var item in treeViewRCMopts) {
+   treeViewRCM.append( new MenuItem(treeViewRCMopts[item]) )
 }
 
 
 // Set up RCM for content pane
 var contentPaneRCM = {
-
+   
 }
 
 
