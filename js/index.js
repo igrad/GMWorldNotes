@@ -1,7 +1,3 @@
-$(document).ready(function() {
-
-});
-
 function ShelfHover(caller) {
    if($(caller).attr("isOpen") == "false") {
       $(caller).css({"background-color": "var(--shelf-top-bg-color-hover)",
