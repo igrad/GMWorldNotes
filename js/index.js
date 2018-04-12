@@ -34,6 +34,22 @@ $(document).ready(function() {
    // Set HTML final touches
    $(".upper_shelf_btn").attr("isOpen", "false")
 
+   // Set up context menus
+   $("#tree_view").contextmenu(function(e) {
+      e.preventDefault()
+      treeViewRCM.popup(remote.getCurrentWindow())
+   })
+
+   $("#tree_view_item").contextmenu(function(e) {
+      e.preventDefault()
+      treeViewItemRCM.popup(remote.getCurrentWindow())
+   })
+
+   $("#content_view").contextmenu(function(e) {
+      e.preventDefault()
+      contentViewRCM.popup(remote.getCurrentWindow())
+   })
+
    // Load data
    console.log("Document is ready. Loading session.")
    LoadSession()
