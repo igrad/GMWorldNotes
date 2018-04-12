@@ -70,11 +70,3 @@ function LoadPageToScreen(pathtopage) {
    $("#content_view_iframe").attr("src", pathtopage)
    currentPage = pathtopage
 }
-
-
-
-LoadSession()
-notebookData = new Notebook(lastOpenNotebook)
-
-LoadNotebookToScreen()
-LoadPageToScreen(lastOpenPage)

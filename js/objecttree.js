@@ -15,7 +15,7 @@ let defaultPage = {
    children: [],
    data: "blank"
 }
-let defaultFolder = {defaultPage = {
+let defaultFolder = {
    id: "1-0",
    name: "New Folder",
    associations: null,
@@ -115,7 +115,7 @@ class Tree {
    constructor (data) {
       let nodeTree = new Array()
 
-      if ((data.length == 0) || (data == null)) {
+      if ((data == null) || (data.length == 0)) {
          var node = new TreeNode()
          nodeTree.push(node)
       } else {

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-   $(".upper_shelf_btn").attr("isOpen", "false")
+
 });
 
 function ShelfHover(caller) {
@@ -32,3 +32,17 @@ function ShelfSwitch(caller) {
    $(".lower_shelf_iframe").hide()
    $("#" + caller.attr("frame")).show()
 }
+
+
+$(document).ready(function() {
+   // Set HTML final touches
+   $(".upper_shelf_btn").attr("isOpen", "false")
+
+   // Load data
+   console.log("Document is ready. Loading session.")
+   LoadSession()
+   notebookData = new Notebook(lastOpenNotebook)
+
+   LoadNotebookToScreen()
+   LoadPageToScreen(lastOpenPage)
+})
