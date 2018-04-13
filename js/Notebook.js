@@ -23,8 +23,8 @@ class Notebook {
          console.log("Loading notebook from file")
 
          // Create DataStore to fetch data from file in notebook folder
-         var dat = new DataStore('notebook', this.notebookID, defaultNotebook)
-         this.name = dat.get("Name")
+         this.dat = new DataStore('notebook', this.notebookID, defaultNotebook)
+         this.name = dat.get("name")
          this.initTime = dat.get("initTime")
          this.theme = dat.get("theme")
          this.nodeCount = dat.get("nodeCount")
@@ -34,7 +34,7 @@ class Notebook {
       } else {
          console.log("Creating new notebook")
 
-         var dat = new DataStore('notebook', null, defaultNotebook)
+         this.dat = new DataStore('notebook', null, defaultNotebook)
          this.name = defaultNotebook.name
          this.initTime = defaultNotebook.initTime
          this.theme = defaultNotebook.theme
@@ -45,4 +45,18 @@ class Notebook {
       }
    }
 
+   GetNodeTreeJSON () {
+      this.nodesJSON = JSON.stringify(this.nodeTree)
+   }
+
+   UpdateDS () {
+      // Update JSON structure of tree nodes
+      this.GetNodeTreeJSON()
+
+      this.dat.set("name", this.name)
+      this.dat.set("initTime", this.initTime)
+      this.dat.set("theme", this.theme)
+      this.dat.set("nodeCount", this.nodeCount)
+      this.dat.set("nodesJSON", this.nodesJSON)
+   }
 }

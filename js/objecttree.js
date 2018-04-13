@@ -145,7 +145,7 @@ class Tree {
    }
 
    CreateID (depth) {
-      var hNeighbors = GetBreadth(depth)
+      var hNeighbors = this.GetBreadth(depth)
       var hNeighborPos = []
       for (var n in hNeighbors) {
          var pos = ParseInt(n.substring(n.indexOf("-") + 1))
@@ -160,6 +160,8 @@ class Tree {
 
    AddNode (newnode) {
       nodeTree[newnode.id] = newnode
+
+      notebookData.UpdateDS()
    }
 
    AddNewNode (type, depth) {
@@ -171,7 +173,9 @@ class Tree {
          node = new TreeNode(defaultFolder)
       }
 
-      node.id = CreateID(depth)
+      node.id = this.CreateID(depth)
       this.AddNode(node)
+
+      notebookData.UpdateDS()
    }
 }
