@@ -45,7 +45,7 @@ $(document).ready(function() {
       treeViewItemRCM.popup(remote.getCurrentWindow())
    })
 
-   $("#content_view").contextmenu(function(e) {
+   $("#content_view_iframe").contents().find("body").contextmenu(function(e) {
       e.preventDefault()
       contentViewRCM.popup(remote.getCurrentWindow())
    })
