@@ -8,11 +8,11 @@ const {Menu, MenuItem} = remote
 
 // Set up the RCM for when the user right-clicks on the tree view
 var treeViewRCMopts = {
-   0: { role: 'cut' },
-   1: { role: 'copy' },
-   2: { role: 'paste' },
-   3: { type: 'separator' },
-   4: {
+   "Cut": { role: 'cut' },
+   "Copy": { role: 'copy' },
+   "Paste": { role: 'paste' },
+   "div1": { type: 'separator' },
+   "New": {
       label: 'New',
       submenu: [ {
             label: 'New Page',
@@ -36,36 +36,36 @@ for (var item in treeViewRCMopts) {
 
 // Set up the RCM for when the user right-clicks on an item in the tree view
 var treeViewItemRCMopts = {
-   0: { role: 'cut' },
-   1: { role: 'copy' },
-   2: { role: 'paste' },
-   3: { type: 'separator' },
-   4: {
+   "Cut": { role: 'cut' },
+   "Copy": { role: 'copy' },
+   "Paste": { role: 'paste' },
+   "div1": { type: 'separator' },
+   "Rename": {
       label: "Rename",
       click() {
          // Open prompt to rename this node
       }
    },
-   5: {
+   "Move": {
       label: "Move",
       click() {
          // Let the user select where they want to move this item to
       }
    },
-   6: {
+   "Assoc": {
       label: "Edit Associations",
       click() {
          // Open up the associations editor
       }
    },
-   7: {
+   "Delete": {
       label: "Delete",
       click() {
          // Open up prompt to confirm deletion
       }
    },
-   8: { type: 'separator' },
-   9: {
+   "div2": { type: 'separator' },
+   "New": {
       label: "New",
       submenu: [ {
             label: 'New Page',
@@ -92,11 +92,11 @@ for (var item in treeViewItemRCMopts) {
 // Items to add:
 // Edit Associations
 // Insert: reference, image, link
-var contentViewRCM = {
-   0: { role: 'cut' },
-   1: { role: 'copy' },
-   2: { role: 'paste' },
-   3: { type: 'separator' }
+var contentViewRCMopts = {
+   "Cut": { role: 'cut' },
+   "Copy": { role: 'copy' },
+   "Paste": { role: 'paste' },
+   "div1": { type: 'separator' }
 }
 
 const contentViewRCM = new Menu()
