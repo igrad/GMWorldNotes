@@ -113,20 +113,56 @@ class TreeNode {
 
 class Tree {
    constructor (data) {
-      let nodeTree = new Array()
+      let nodeTree = {}
 
       if ((data == null) || (data.length == 0)) {
-         var node = new TreeNode()
-         nodeTree.push(node)
+         nodeTree["0-0"] = new TreeNode()
       } else {
          for (var i = 0; i < data.length; i++) {
             var node = TreeNode(data[i])
-            nodeTree.push(node)
+            nodeTree[node.id] = node
          }
       }
    }
 
-   AddNewNode (type) {
+   GetNode (id) {
+      return nodeTree[id]
+   }
+
+   GetBreadth (depth) {
+      depth = depth.toString()
+      var keys = Object.keys(nodeTree)
+      var depthKeys = []
+
+      for (var key in keys) {
+         var keyDepth = key.substring(0, key.indexOf("-"))
+         if (keyDepth == depth) {
+            depthKeys.append(key)
+         }
+      }
+
+      return depthKeys
+   }
+
+   CreateID (depth) {
+      var hNeighbors = GetBreadth(depth)
+      var hNeighborPos = []
+      for (var n in hNeighbors) {
+         var pos = ParseInt(n.substring(n.indexOf("-") + 1))
+
+         hNeighborPos.append(pos)
+      }
+
+      hNeighborPos.sort()
+      var newPos = hNeighborPos[hNeighborPos.length - 1] + 1
+      return depth + "-" + newPos
+   }
+
+   AddNode (newnode) {
+      nodeTree[newnode.id] = newnode
+   }
+
+   AddNewNode (type, depth) {
       var node = null
       if (type == "page") {
          node = new TreeNode(defaultPage)
@@ -134,14 +170,8 @@ class Tree {
       else if (type == "folder") {
          node = new TreeNode(defaultFolder)
       }
-      notebookData.AddNode(node)
-   }
 
-   AddNode (newnode) {
-      nodeTree.push(newnode)
-   }
-
-   GetNode (id) {
-
+      node.id = CreateID(depth)
+      this.AddNode(node)
    }
 }

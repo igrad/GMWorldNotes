@@ -17,12 +17,16 @@ var treeViewRCMopts = {
       submenu: [ {
             label: 'New Page',
             click() {
+               // If this has been called, it means that the user didn't click on an
+               // existing item, and this should be added to the first layer under root
                // Create a new page in the notebook
+               notebookData.nodeTree.AddNewNode("page", 1)
             }
          }, {
             label: 'New Folder',
             click() {
                // Create a new folder in the notebook
+               notebookData.nodeTree.AddNewNode("folder", 1)
             }
          }
       ]
