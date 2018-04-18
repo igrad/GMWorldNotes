@@ -31,8 +31,6 @@ let defaultFolder = {
 about the page. */
 class TreeNode {
    constructor(jsonData) {
-      if (jsonData == null) { jsonData = rootNode }
-
       // Identifier of this node, used to be referenced by other nodes
       // The format of the identifier is "DEPTH-NUM", where depth is, obviously
       // the depth of the object within the tree, and the num is just a number
@@ -113,26 +111,26 @@ class TreeNode {
 
 class Tree {
    constructor (data) {
-      let nodeTree = {}
+      this.nodeTree = {}
 
       if ((data == null) || (data.length == 0)) {
-         nodeTree["0-0"] = new TreeNode()
+         this.nodeTree["0-0"] = new TreeNode(rootNode)
       } else {
          for (var i = 0; i < data.length; i++) {
             var node = TreeNode(data[i])
-            nodeTree[node.id] = node
+            this.nodeTree[node.id] = node
          }
       }
    }
 
    GetNode (id) {
-      return nodeTree[id]
+      return this.nodeTree[id]
    }
 
    GetBreadth (depth) {
       depth = depth.toString()
-      var keys = Object.keys(nodeTree)
-      var depthKeys = []
+      var keys = Object.keys(this.nodeTree)
+      var depthKeys = new Array()
 
       for (var key in keys) {
          var keyDepth = key.substring(0, key.indexOf("-"))
@@ -140,6 +138,8 @@ class Tree {
             depthKeys.append(key)
          }
       }
+
+      console.log("nodetree is " + this.nodeTree + ", depth is " + depth + ", keys is " + keys + ", breadth is " + depthKeys)
 
       return depthKeys
    }
@@ -154,12 +154,20 @@ class Tree {
       }
 
       hNeighborPos.sort()
-      var newPos = hNeighborPos[hNeighborPos.length - 1] + 1
+      console.log("hNeighborPos is " + hNeighborPos + ", len " + hNeighborPos.length)
+      var newPos = 0
+      if ((hNeighborPos != null) && (hNeighborPos.length >= 1)) {
+         newPos = hNeighborPos[hNeighborPos.length - 1] + 1
+         console.log("Edited newPos is " + newPos)
+      }
+      console.log("newPos is " + newPos)
       return depth + "-" + newPos
    }
 
    AddNode (newnode) {
-      nodeTree[newnode.id] = newnode
+      this.nodeTree[newnode.id] = newnode
+
+      console.log("Adding new node: " + newnode.toString())
 
       notebookData.UpdateDS()
    }
@@ -173,7 +181,9 @@ class Tree {
          node = new TreeNode(defaultFolder)
       }
 
-      node.id = this.CreateID(depth)
+      var newID = this.CreateID(depth)
+      node.id = newID
+      this.GetNode(node.parent).AddChild(newID)
       this.AddNode(node)
 
       notebookData.UpdateDS()

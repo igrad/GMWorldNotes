@@ -52,6 +52,7 @@ class Notebook {
    UpdateDS () {
       // Update JSON structure of tree nodes
       this.GetNodeTreeJSON()
+      this.nodeCount = this.nodesJSON.length
 
       this.dat.set("name", this.name)
       this.dat.set("initTime", this.initTime)
