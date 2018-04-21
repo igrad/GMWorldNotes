@@ -1,0 +1,27 @@
+:root {
+   --shelf-height: 100px;
+   --shelf-top-font-size: medium;
+   --shelf-top-side-padding: 16px;
+   --shelf-top-vert-padding: 4px;
+
+   --shelf-top-bg-color: #cdcdcd;
+   --shelf-top-bg-color-hover: #ededed;
+   --shelf-top-bg-color-open: #fefefe;
+   --shelf-top-font-color: #222222;
+   --shelf-top-font-color-hover: #222222;
+   --shelf-top-font-color-open: #000000;
+
+
+   --shelf-lower-height: 73px;
+
+   --shelf-lower-bg-color: #dddddd;
+
+
+
+   --treeview-bg-color: #eeeeee;
+   --treeview-font-color: #333333;
+   --treeview-bg-color-selected: #ffffff;
+   --treeview-font-color-selected: #444444;
+
+   --resizebar-bg-color: #cccccc;
+}
