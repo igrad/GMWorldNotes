@@ -134,8 +134,9 @@ $(document).ready(function() {
    // Load data
    console.log("Document is ready. Loading session.")
    LoadSession()
-   notebookData = new Notebook(lastOpenNotebook)
 
+   notebookData = new Notebook(lastOpenNotebook)
    LoadNotebookToScreen()
+   
    LoadPageToScreen(lastOpenPage)
 })

@@ -108,32 +108,41 @@ class TreeNode {
 }
 
 
-
 class Tree {
    constructor (data) {
-      this.nodeTree = {}
+      this.nodes = {}
 
-      if ((data == null) || (data.length == 0)) {
-         this.nodeTree["0-0"] = new TreeNode(rootNode)
-      } else {
-         for (var i = 0; i < data.length; i++) {
-            var node = TreeNode(data[i])
-            this.nodeTree[node.id] = node
+      console.log("Data going into new tree is " + data)
+
+      try {
+         var nodeIDs = Object.keys(data.nodes)
+
+         for (var i = 0; i < nodeIDs.length; i++) {
+            var nodeJSON = data.nodes[nodeIDs[i]]
+            var nodeObject = new TreeNode(data.nodes[nodeIDs[i]])
+
+            this.nodes[nodeIDs[i]] = nodeObject
          }
+      } catch (error) {
+         this.nodes["0-0"] = new TreeNode(rootNode)
       }
    }
 
    GetNodeObject (id) {
+      for (var i = 0; i < this.nodes.length; i++) {
+         console.log(this.nodes[i])
+      }
+
       if (typeof(id) == "string") {
-         return this.nodeTree[id]
+         return this.nodes[id]
       } else if (typeof(id) == "object") {
-         return this.nodeTree[id.id]
+         return this.nodes[id.id]
       }
    }
 
    GetBreadth (depth) {
       depth = depth.toString()
-      var keys = Object.keys(this.nodeTree)
+      var keys = Object.keys(this.nodes)
       var depthKeys = []
 
       console.log("keys is of type " + typeof(keys))
@@ -153,7 +162,7 @@ class Tree {
          }
       }
 
-      console.log("nodetree is " + this.nodeTree + ", depth is " + depth + ", keys is " + keys + ", breadth is " + depthKeys)
+      console.log("nodes is " + this.nodes + ", depth is " + depth + ", keys is " + keys + ", breadth is " + depthKeys)
 
       return depthKeys
    }
@@ -179,7 +188,7 @@ class Tree {
    }
 
    AddNode (newnode) {
-      this.nodeTree[newnode.id] = newnode
+      this.nodes[newnode.id] = newnode
 
       console.log("Adding new node: " + newnode.toString())
 

@@ -5,21 +5,31 @@ const fs = require('fs');
 function CreateNewNotebookID() {
    var nbPath = path.join((electron.app || electron.remote.app).getPath('userData'), "notebooks")
 
-   fs.readdir(nbPath, (err, dir) => {
-      try {
-         dir.sort()
-         dir.reverse()
+   var result = ""
+   try {
+      fs.mkdirSync(nbPath)
+   } catch (error) {
+      // Folder already exists
+   }
 
-         // Find the largest number and add one to it, then return it as a string
-         var largestNum = parseInt(dir[0].substring(0, 4))
-         return (largestNum += 1).toString().padStart(4, 0)
-      } catch (error) {
-         fs.mkdir(nbPath, function(dir) {
-            console.log("Created notebook directory: " + nbPath)
-         });
-         return "0000"
-      }
-   });
+   var dir = fs.readdirSync(nbPath)
+
+   if (dir.length == 0) {
+      result = "0000"
+   } else {
+      dir.sort()
+      dir.reverse()
+
+      // Find the largest number and add one to it, then return it as a string
+      var largestNum = parseInt(dir[0].substring(0, 4))
+      var newNum = (largestNum += 1).toString().padStart(4, 0)
+
+      console.log("Found existing notebook " + largestNum + ", creating " + newNum)
+
+      result = newNum
+   }
+
+   return result
 }
 
 function GetFilePath(type, identifier) {
@@ -31,9 +41,9 @@ function GetFilePath(type, identifier) {
       case 'notebook': {
          // If no identifier is provided, it means that it's a new notebook
          // Find a suitable id for this new notebook
-         if (identifier == null) { identifier = CreateNewNotebookID(); }
+         if (identifier == null) { identifier = CreateNewNotebookID() }
 
-         console.log("Fetching notebook " + identifier)
+         console.log("Notebook identifier: " + identifier)
 
          return path.join((electron.app || electron.remote.app).getPath('userData'),
          "notebooks/" + identifier + ".json")
@@ -48,6 +58,7 @@ function ParseDataFile(filePath, defaults) {
 
 class DataStore {
    constructor(type, identifier, defaults) {
+      console.log("Building " + type)
       this.path = GetFilePath(type, identifier)
       console.log(type + " path " + this.path)
 
