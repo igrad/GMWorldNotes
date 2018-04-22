@@ -34,6 +34,19 @@ function ShelfSwitch(caller) {
 }
 
 
+function AddTreeNodeToScreen(id, depth) {
+   var node = notebookData.GetNode(id)
+   var treeView = $("#tree_view")[0]
+
+   var indent = (parseInt($("body").css('--treeview-depth-indent')) * (depth - 1)) + "px"
+
+   treeView.innerHTML += "<div class=\"tree_node_item\" id=\"" + node + "\""
+   treeView.innerHTML += "style=\"left: " + indent + "\"" + "></div>"
+
+   console.log("Adding child node to screen: " + treeView.innerHTML)
+}
+
+
 
 function LoadNotebookToScreen() {
 
@@ -57,13 +70,29 @@ function LoadNotebookToScreen() {
 
    // Load the nodes into the tree view
    // Get the tree view object
-   var treeView = $("#tree_view")
+   var treeView = $("#tree_view")[0]
 
 
    // Clear out the existing contents
+   treeView.innerHTML = ""
 
    // Traverse the linked list/binary tree in order and build each node in memory
    // While doing this, also add each label into the content view
+   var key = "0-0"
+   var depth = 0
+   var rootnode = notebookData.GetNode("0-0")
+   var children = rootnode.children
+
+   if (children.length == 0) {
+      // Add a new node to the tree, then push it to the screen
+   } else {
+      for (var child in children) {
+         AddTreeNodeToScreen(child.id, 1)
+      }
+   }
+
+
+   // Publish the results to the screen
 
    // Make sure that there's a setting for how far each tab is indented. This should be included in the global style settings as well as in the theme, because the tree view font may be different for different notebooks, and people might want to adjust that tab distance.
 }

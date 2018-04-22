@@ -74,12 +74,12 @@ class TreeNode {
       return false
    }
 
-   AddChild(otherNode) {
-      if (this.children.includes(otherNode.id)) {
+   AddChild(otherNodeID) {
+      if (this.children.includes(otherNodeID)) {
          return false
       }
 
-      this.children.push(otherNode.id)
+      this.children.push(otherNodeID)
       return true
    }
 
@@ -123,19 +123,33 @@ class Tree {
       }
    }
 
-   GetNode (id) {
-      return this.nodeTree[id]
+   GetNodeObject (id) {
+      if (typeof(id) == "string") {
+         return this.nodeTree[id]
+      } else if (typeof(id) == "object") {
+         return this.nodeTree[id.id]
+      }
    }
 
    GetBreadth (depth) {
       depth = depth.toString()
       var keys = Object.keys(this.nodeTree)
-      var depthKeys = new Array()
+      var depthKeys = []
 
-      for (var key in keys) {
+      console.log("keys is of type " + typeof(keys))
+
+      for (var i = 0; i < keys.length; i++) {
+         console.log(i + ": " + keys[i])
+      }
+
+      for (var i = 0; i < keys.length; i++) {
+         var key = keys[i]
          var keyDepth = key.substring(0, key.indexOf("-"))
+         console.log("key is " + key)
+         console.log("keydepth is " + keyDepth)
          if (keyDepth == depth) {
-            depthKeys.append(key)
+            depthKeys.push(key)
+            console.log("Key appended")
          }
       }
 
@@ -148,9 +162,9 @@ class Tree {
       var hNeighbors = this.GetBreadth(depth)
       var hNeighborPos = []
       for (var n in hNeighbors) {
-         var pos = ParseInt(n.substring(n.indexOf("-") + 1))
+         var pos = parseInt(n.substring(n.indexOf("-") + 1))
 
-         hNeighborPos.append(pos)
+         hNeighborPos.push(pos)
       }
 
       hNeighborPos.sort()
@@ -183,7 +197,7 @@ class Tree {
 
       var newID = this.CreateID(depth)
       node.id = newID
-      this.GetNode(node.parent).AddChild(newID)
+      this.GetNodeObject(node.parent).AddChild(newID)
       this.AddNode(node)
 
       notebookData.UpdateDS()

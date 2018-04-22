@@ -23,5 +23,9 @@
    --treeview-bg-color-selected: #aaaaaa;
    --treeview-font-color-selected: #000000;
 
+   --treeview-depth-indent: 4px;
+
    --resizebar-bg-color: #ababab;
+
+
 }
