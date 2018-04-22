@@ -62,7 +62,6 @@ class Notebook {
    }
 
    GetNode (id) {
-      console.log("calling notebook.GetNode")
       return this.nodeTree.GetNodeObject(id)
    }
 }

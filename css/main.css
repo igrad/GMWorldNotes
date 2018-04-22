@@ -28,10 +28,6 @@ body {
 }
 
 #tree_view {
-   display: flex;
-   flex-direction: row;
-   flex: 0 1 197px;
-
    min-width: 197px;
 
    top: 100px;
@@ -103,6 +99,16 @@ body {
    margin: 0px;
    border: none;
    display: none;
+}
+
+
+
+/* Items in the tree node */
+.tree_view_item {
+   width: 100%;
+   height: var(--treeview-item-height);
+   position: relative;
+   padding: 2px;
 }
 
 

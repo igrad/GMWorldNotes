@@ -35,15 +35,23 @@ function ShelfSwitch(caller) {
 
 
 function AddTreeNodeToScreen(id, depth) {
+   console.log("AddTreeNodeToScreen id is " + id + " depth is " + depth)
    var node = notebookData.GetNode(id)
    var treeView = $("#tree_view")[0]
 
+   // Add the node itself to the screen
    var indent = (parseInt($("body").css('--treeview-depth-indent')) * (depth - 1)) + "px"
 
-   treeView.innerHTML += "<div class=\"tree_node_item\" id=\"" + node + "\""
-   treeView.innerHTML += "style=\"left: " + indent + "\"" + "></div>"
+   var insertHTML = "<div class=\"tree_view_item\" id=\"" + id + "\" "
+   insertHTML += "style=\"left: " + indent + "\">" + node.name + "</div>"
+   treeView.innerHTML += insertHTML
 
-   console.log("Adding child node to screen: " + treeView.innerHTML)
+   console.log("Adding child node to screen: " + insertHTML)
+
+   // Add the nodes children to the screen by recursively calling this function
+   for (var i = 0; i < node.children.length; i++) {
+      AddTreeNodeToScreen(node.children[i], depth + 1)
+   }
 }
 
 
@@ -86,15 +94,10 @@ function LoadNotebookToScreen() {
    if (children.length == 0) {
       // Add a new node to the tree, then push it to the screen
    } else {
-      for (var child in children) {
-         AddTreeNodeToScreen(child.id, 1)
+      for (var i = 0; i < children.length; i++) {
+         AddTreeNodeToScreen(children[i], 1)
       }
    }
-
-
-   // Publish the results to the screen
-
-   // Make sure that there's a setting for how far each tab is indented. This should be included in the global style settings as well as in the theme, because the tree view font may be different for different notebooks, and people might want to adjust that tab distance.
 }
 
 
@@ -109,6 +112,7 @@ function LoadPageToScreen(pathtopage) {
 
 $(document).ready(function() {
    // Set HTML final touches
+   $("#upper_shelf_btn_file").click()
    $(".upper_shelf_btn").attr("isOpen", "false")
 
    // Set up context menus

@@ -201,5 +201,7 @@ class Tree {
       this.AddNode(node)
 
       notebookData.UpdateDS()
+
+      LoadNotebookToScreen()
    }
 }
