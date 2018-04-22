@@ -35,7 +35,6 @@ function ShelfSwitch(caller) {
 
 
 function AddTreeNodeToScreen(id, depth) {
-   console.log("AddTreeNodeToScreen id is " + id + " depth is " + depth)
    var node = notebookData.GetNode(id)
    var treeView = $("#tree_view")[0]
 
@@ -45,8 +44,6 @@ function AddTreeNodeToScreen(id, depth) {
    var insertHTML = "<div class=\"tree_view_item\" id=\"" + id + "\" "
    insertHTML += "style=\"left: " + indent + "\">" + node.name + "</div>"
    treeView.innerHTML += insertHTML
-
-   console.log("Adding child node to screen: " + insertHTML)
 
    // Add the nodes children to the screen by recursively calling this function
    for (var i = 0; i < node.children.length; i++) {
@@ -137,6 +134,6 @@ $(document).ready(function() {
 
    notebookData = new Notebook(lastOpenNotebook)
    LoadNotebookToScreen()
-   
+
    LoadPageToScreen(lastOpenPage)
 })

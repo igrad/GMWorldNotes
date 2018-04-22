@@ -33,6 +33,6 @@ function SetLastOpenNoteBook (notebookID) {
    sessionData.set("lastOpenNotebook", notebookID)
 }
 
-function lastOpenPage (pageID) {
+function SetLastOpenPage (pageID) {
    sessionData.set("lastOpenPage", pageID)
 }

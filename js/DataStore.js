@@ -45,6 +45,10 @@ function GetFilePath(type, identifier) {
 
          console.log("Notebook identifier: " + identifier)
 
+         // Update the session data so that this notebook loads next time the app opens
+         lastOpenNotebook = identifier
+         SetLastOpenNoteBook(identifier)
+
          return path.join((electron.app || electron.remote.app).getPath('userData'),
          "notebooks/" + identifier + ".json")
       }
