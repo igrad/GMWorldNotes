@@ -112,8 +112,6 @@ class Tree {
    constructor (data) {
       this.nodes = {}
 
-      console.log("Data going into new tree is " + data)
-
       try {
          var nodeIDs = Object.keys(data.nodes)
 
@@ -129,10 +127,6 @@ class Tree {
    }
 
    GetNodeObject (id) {
-      for (var i = 0; i < this.nodes.length; i++) {
-         console.log(this.nodes[i])
-      }
-
       if (typeof(id) == "string") {
          return this.nodes[id]
       } else if (typeof(id) == "object") {
@@ -145,24 +139,13 @@ class Tree {
       var keys = Object.keys(this.nodes)
       var depthKeys = []
 
-      console.log("keys is of type " + typeof(keys))
-
-      for (var i = 0; i < keys.length; i++) {
-         console.log(i + ": " + keys[i])
-      }
-
       for (var i = 0; i < keys.length; i++) {
          var key = keys[i]
          var keyDepth = key.substring(0, key.indexOf("-"))
-         console.log("key is " + key)
-         console.log("keydepth is " + keyDepth)
          if (keyDepth == depth) {
             depthKeys.push(key)
-            console.log("Key appended")
          }
       }
-
-      console.log("nodes is " + this.nodes + ", depth is " + depth + ", keys is " + keys + ", breadth is " + depthKeys)
 
       return depthKeys
    }
@@ -177,20 +160,17 @@ class Tree {
       }
 
       hNeighborPos.sort()
-      console.log("hNeighborPos is " + hNeighborPos + ", len " + hNeighborPos.length)
+
       var newPos = 0
       if ((hNeighborPos != null) && (hNeighborPos.length >= 1)) {
          newPos = hNeighborPos[hNeighborPos.length - 1] + 1
-         console.log("Edited newPos is " + newPos)
       }
-      console.log("newPos is " + newPos)
+
       return depth + "-" + newPos
    }
 
    AddNode (newnode) {
       this.nodes[newnode.id] = newnode
-
-      console.log("Adding new node: " + newnode.toString())
 
       notebookData.UpdateDS()
    }
