@@ -28,3 +28,11 @@ function LoadSession() {
    lastOpenNotebook = sessionData.get("LastOpenNotebook")
    lastOpenPage = sessionData.get("LastOpenPage")
 }
+
+function SetLastOpenNoteBook (notebookID) {
+   sessionData.set("lastOpenNotebook", notebookID)
+}
+
+function lastOpenPage (pageID) {
+   sessionData.set("lastOpenPage", pageID)
+}
