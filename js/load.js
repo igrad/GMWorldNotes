@@ -13,7 +13,7 @@ let defaultSession = {
    LastRunTime: null,
    LastRunVersion: appVersion,
    LastOpenNotebook: null,
-   LastOpenPage: null
+   LastOpenPage: "blank"
 }
 
 

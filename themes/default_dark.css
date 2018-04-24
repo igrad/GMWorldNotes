@@ -22,9 +22,17 @@
    --treeview-font-color: #111111;
    --treeview-bg-color-selected: #aaaaaa;
    --treeview-font-color-selected: #000000;
+   --treeview-item-bg-color: #cccccc;
+   --treeview-item-font-color: #111111;
+   --treeview-item-bg-color-hover: #dedede;
+   --treeview-item-font-color-hover: #121212;
+   --treeview-item-bg-color-active: #fefefe;
+   --treeview-item-font-color-active: #212121;
 
    --treeview-depth-indent: 4px;
    --treeview-item-height: 24px;
+
+
 
    --resizebar-bg-color: #ababab;
 

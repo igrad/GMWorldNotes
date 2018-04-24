@@ -6,14 +6,12 @@ function ShelfHover(caller) {
 }
 
 
-
 function ShelfLeaveHover(caller) {
    if($(caller).attr("isOpen") == "false") {
       $(caller).css({"background-color": "var(--shelf-top-bg-color)",
          "color": "var(--shelf-top-font-color)"})
    }
 }
-
 
 
 function ShelfSwitch(caller) {
@@ -34,6 +32,43 @@ function ShelfSwitch(caller) {
 }
 
 
+
+function TreeViewHover(caller) {
+   if($(caller).attr("isOpen") == "false") {
+      $(caller).css({"background-color": "var(--treeview-item-bg-color-hover)",
+         "color": "var(--treeview-item-font-color-hover)"})
+   }
+}
+
+
+function TreeViewLeaveHover(caller) {
+   if($(caller).attr("isOpen") == "false") {
+      $(caller).css({"background-color": "var(--treeview-item-bg-color)",
+         "color": "var(--treeview-item-font-color)"})
+   }
+}
+
+
+function TreeViewSwitch(caller) {
+   var caller = $(caller)
+
+   $(".tree_view_item").attr("isOpen", "false")
+
+   $(caller).attr("isOpen", "true")
+
+   $(".tree_view_item").css("background-color", "var(--treeview-item-bg-color)")
+   $(".tree_view_item").css("color", "var(--treeview-item-font-color)")
+
+   $(caller).css("background-color", "var(--treeview-item-bg-color-active)")
+   $(caller).css("color", "var(--treeview-item-font-color-active)")
+
+   // Call up the node that has been selected from the tree view
+   console.log("node id = " + caller.attr("id"))
+   LoadPageToScreen(caller.attr("id"))
+}
+
+
+
 function AddTreeNodeToScreen(id, depth) {
    var node = notebookData.GetNode(id)
    var treeView = $("#tree_view")[0]
@@ -42,6 +77,9 @@ function AddTreeNodeToScreen(id, depth) {
    var indent = (parseInt($("body").css('--treeview-depth-indent')) * (depth - 1)) + "px"
 
    var insertHTML = "<div class=\"tree_view_item\" id=\"" + id + "\" "
+   insertHTML += "onmouseover=\"TreeViewHover(this)\" "
+   insertHTML += "onmouseout=\"TreeViewLeaveHover(this)\" "
+   insertHTML += "onclick=\"TreeViewSwitch(this)\" "
    insertHTML += "style=\"left: " + indent + "\">" + node.name + "</div>"
    treeView.innerHTML += insertHTML
 
@@ -99,8 +137,12 @@ function LoadNotebookToScreen() {
 
 
 
-function LoadPageToScreen(pathtopage) {
-   console.log("Loading page")
+function LoadPageToScreen(id) {
+   console.log("Loading page " + id)
+
+   var node = notebookData.GetNode(id)
+   var pathtopage = "./pages/" + node.data + ".html"
+
    $("#content_view_iframe").attr("src", pathtopage)
    currentPage = pathtopage
 }
@@ -108,10 +150,6 @@ function LoadPageToScreen(pathtopage) {
 
 
 $(document).ready(function() {
-   // Set HTML final touches
-   $("#upper_shelf_btn_file").click()
-   $(".upper_shelf_btn").attr("isOpen", "false")
-
    // Set up context menus
    $("#tree_view").contextmenu(function(e) {
       e.preventDefault()
@@ -136,4 +174,10 @@ $(document).ready(function() {
    LoadNotebookToScreen()
 
    LoadPageToScreen(lastOpenPage)
+
+   // Set HTML final touches
+   $("#upper_shelf_btn_file").click()
+   $(".upper_shelf_btn").attr("isOpen", "false")
+
+   $(".list_view_item").attr("isOpen", "false")
 })

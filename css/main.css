@@ -43,7 +43,7 @@ body {
 
    width: 3px;
 
-   left: 197px;
+   left: 198px;
    top: 100px;
 
    background-color: var(--resizebar-bg-color);
@@ -56,7 +56,7 @@ body {
    flex-direction: row;
    flex: 1 1 auto;
 
-   left: 200px;
+   left: 201px;
    top: 100px;
 }
 
@@ -107,11 +107,23 @@ body {
 .tree_view_item {
    width: 100%;
    height: var(--treeview-item-height);
-   position: relative;
    padding: 2px;
+
+   cursor: pointer;
+
+   background-color: var(--treeview-item-bg-color);
+   color: var(--treeview-item-font-color);
 }
 
+.tree_view_item:hover {
+   background-color: var(--treeview-item-bg-color-hover);
+   color: var(--treeview-item-font-color-hover);
+}
 
+.tree_view_item:active {
+   background-color: var(--treeview-item-bg-color-active);
+   color: var(--treeview-item-font-color-active);
+}
 
 
 /* Content View */

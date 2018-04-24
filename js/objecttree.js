@@ -127,11 +127,7 @@ class Tree {
    }
 
    GetNodeObject (id) {
-      if (typeof(id) == "string") {
-         return this.nodes[id]
-      } else if (typeof(id) == "object") {
-         return this.nodes[id.id]
-      }
+      return this.nodes[id]
    }
 
    GetBreadth (depth) {
