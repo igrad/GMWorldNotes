@@ -29,6 +29,7 @@ body {
 
 #tree_view {
    min-width: 197px;
+   overflow: auto;
 
    top: 100px;
    resize: horizontal;

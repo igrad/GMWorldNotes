@@ -53,12 +53,10 @@ function TreeViewSwitch(caller) {
    var caller = $(caller)
 
    $(".tree_view_item").attr("isOpen", "false")
-
-   $(caller).attr("isOpen", "true")
-
    $(".tree_view_item").css("background-color", "var(--treeview-item-bg-color)")
    $(".tree_view_item").css("color", "var(--treeview-item-font-color)")
 
+   $(caller).attr("isOpen", "true")
    $(caller).css("background-color", "var(--treeview-item-bg-color-active)")
    $(caller).css("color", "var(--treeview-item-font-color-active)")
 
@@ -144,7 +142,7 @@ function LoadPageToScreen(id) {
    var pathtopage = "./pages/" + node.data + ".html"
 
    $("#content_view_iframe").attr("src", pathtopage)
-   currentPage = pathtopage
+   lastOpenPage = pathtopage
 }
 
 
@@ -173,7 +171,10 @@ $(document).ready(function() {
    notebookData = new Notebook(lastOpenNotebook)
    LoadNotebookToScreen()
 
-   LoadPageToScreen(lastOpenPage)
+   //TODO: Verify that this works. The click behavior has already been set in
+   // LoadNotebookToScreen, so this should do the trick in loading the page and changing
+   // CSS of all of the tree_view_item elements
+   $("#" + lastOpenPage).click()
 
    // Set HTML final touches
    $("#upper_shelf_btn_file").click()
