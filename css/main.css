@@ -28,13 +28,13 @@ body {
 }
 
 #tree_view {
-   min-width: 197px;
+   min-width: 196px;
    top: 100px;
 
    overflow: auto;
    resize: horizontal;
 
-   
+
 
    background-color: var(--treeview-bg-color);
 }
@@ -108,7 +108,7 @@ body {
 
 /* Items in the tree node */
 .tree_view_item {
-   width: 100%;
+   width: calc((100%) - (4px));
    height: var(--treeview-item-height);
    padding: 2px;
 
