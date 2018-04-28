@@ -89,7 +89,7 @@ function AddTreeNodeToScreen(id, depth) {
 
 
 
-function LoadNotebookToScreen() {
+function LoadNotebookToScreen(id) {
 
    // TODO: Wrap all of this in a try-catch
 
@@ -131,6 +131,9 @@ function LoadNotebookToScreen() {
          AddTreeNodeToScreen(children[i], 1)
       }
    }
+
+   console.log("Load notebook to screen")
+   SetLastOpenNoteBook(id)
 }
 
 
@@ -141,8 +144,9 @@ function LoadPageToScreen(id) {
    var node = notebookData.GetNode(id)
    var pathtopage = "./pages/" + node.data + ".html"
 
+   SetLastOpenPage(id)
+
    $("#content_view_iframe").attr("src", pathtopage)
-   lastOpenPage = pathtopage
 }
 
 
@@ -169,7 +173,8 @@ $(document).ready(function() {
    LoadSession()
 
    notebookData = new Notebook(lastOpenNotebook)
-   LoadNotebookToScreen()
+   notebookData.UpdateDS()
+   LoadNotebookToScreen(lastOpenNotebook)
 
    //TODO: Verify that this works. The click behavior has already been set in
    // LoadNotebookToScreen, so this should do the trick in loading the page and changing

@@ -10,10 +10,10 @@ let lastOpenNotebook = null
 let lastOpenPage = null
 
 let defaultSession = {
-   LastRunTime: null,
-   LastRunVersion: appVersion,
-   LastOpenNotebook: null,
-   LastOpenPage: "blank"
+   LASTRUNTIME: null,
+   LASTRUNVERSION: appVersion,
+   LASTOPENNOTEBOOK: null,
+   LASTOPENPAGE: "blank"
 }
 
 
@@ -21,18 +21,26 @@ let defaultSession = {
 function LoadSession() {
    sessionData = new DataStore('session', 'session', defaultSession)
 
-   sessionData.set("LastRunTime", Date.now())
+   sessionData.set("LASTRUNTIME", Date.now())
 
-   lastRunTime = sessionData.get("LastRunTime")
-   lastRunVersion = sessionData.get("LastRunVersion")
-   lastOpenNotebook = sessionData.get("LastOpenNotebook")
-   lastOpenPage = sessionData.get("LastOpenPage")
+   lastRunTime = sessionData.get("LASTRUNTIME")
+   lastRunVersion = sessionData.get("LASTRUNVERSION")
+   lastOpenNotebook = sessionData.get("LASTOPENNOTEBOOK")
+   lastOpenPage = sessionData.get("LASTOPENPAGE")
+
+   console.log("=====SESSION DATA=====")
+   console.log("Last run time: " + lastRunTime)
+   console.log("Last run version: " + lastRunVersion)
+   console.log("Last open notebook: " + lastOpenNotebook)
+   console.log("Last open page: " + lastOpenPage)
+   console.log("======================")
 }
 
 function SetLastOpenNoteBook (notebookID) {
-   sessionData.set("lastOpenNotebook", notebookID)
+   sessionData.set("LASTOPENNOTEBOOK", notebookID)
 }
 
 function SetLastOpenPage (pageID) {
-   sessionData.set("lastOpenPage", pageID)
+   lastOpenPage = pageID
+   sessionData.set("LASTOPENPAGE", pageID)
 }

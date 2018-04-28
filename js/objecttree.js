@@ -107,17 +107,20 @@ class TreeNode {
    }
 }
 
-
+let qwerty = {}
 class Tree {
    constructor (data) {
       this.nodes = {}
 
+      qwerty = data
+
       try {
-         var nodeIDs = Object.keys(data.nodes)
+         var rawJSON = JSON.parse(data)
+         var nodeIDs = Object.keys(rawJSON.nodes)
 
          for (var i = 0; i < nodeIDs.length; i++) {
-            var nodeJSON = data.nodes[nodeIDs[i]]
-            var nodeObject = new TreeNode(data.nodes[nodeIDs[i]])
+            var nodeJSON = rawJSON.nodes[nodeIDs[i]]
+            var nodeObject = new TreeNode(rawJSON.nodes[nodeIDs[i]])
 
             this.nodes[nodeIDs[i]] = nodeObject
          }
@@ -187,6 +190,6 @@ class Tree {
 
       notebookData.UpdateDS()
 
-      LoadNotebookToScreen()
+      LoadNotebookToScreen(notebookData.id)
    }
 }

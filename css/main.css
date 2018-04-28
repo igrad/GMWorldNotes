@@ -29,10 +29,12 @@ body {
 
 #tree_view {
    min-width: 197px;
-   overflow: auto;
-
    top: 100px;
+
+   overflow: auto;
    resize: horizontal;
+
+   
 
    background-color: var(--treeview-bg-color);
 }

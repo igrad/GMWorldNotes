@@ -10,6 +10,7 @@
 //    holds strings that point to the HTML file names.
 
 let defaultNotebook = {
+   id: "0000",
    name: "Default Notebook",
    initTime: (new Date).toDateString(),
    theme: "default_dark",
@@ -23,13 +24,14 @@ class Notebook {
 
       // Create DataStore to fetch data from file in notebook folder
       this.dat = new DataStore('notebook', identifier, defaultNotebook)
+      this.id = this.dat.get("id")
       this.name = this.dat.get("name")
       this.initTime = this.dat.get("initTime")
       this.theme = this.dat.get("theme")
       this.nodeCount = this.dat.get("nodeCount")
       this.nodesJSON = this.dat.get("nodesJSON")
 
-      this.nodeTree = new Tree(JSON.parse(this.nodesJSON))
+      this.nodeTree = new Tree(this.nodesJSON)
    }
 
    GetNodeTreeJSONString () {
@@ -42,6 +44,7 @@ class Notebook {
       this.GetNodeTreeJSONString()
       this.nodeCount = (Object.keys(this.nodeTree)).length
 
+      this.dat.set("id", this.id)
       this.dat.set("name", this.name)
       this.dat.set("initTime", this.initTime)
       this.dat.set("theme", this.theme)
