@@ -44,3 +44,14 @@ function SetLastOpenPage (pageID) {
    lastOpenPage = pageID
    sessionData.set("LASTOPENPAGE", pageID)
 }
+
+function LoadFileData (filepath) {
+   const fs = require('fs')
+
+   try {
+      var dat = fs.readFileSync(filepath)
+      return dat.toString()
+   } catch(error) {
+      console.log("Could not load file " + filepath)
+   }
+}

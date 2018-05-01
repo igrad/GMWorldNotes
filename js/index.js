@@ -146,7 +146,9 @@ function LoadPageToScreen(id) {
 
    SetLastOpenPage(id)
 
-   $("#content_view_iframe").attr("src", pathtopage)
+   var pageData = LoadFileData(pathtopage)
+
+   $("#content_view_iframe")[0].innerHTML = pageData
 }
 
 
