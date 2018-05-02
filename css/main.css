@@ -54,7 +54,7 @@ body {
    cursor: ew-resize;
 }
 
-#content_view {
+#content_view_wrap {
    display: flex;
    flex-direction: row;
    flex: 1 1 auto;
@@ -130,9 +130,12 @@ body {
 
 
 /* Content View */
-#content_view_iframe {
-   width: 100%;
-   padding: 0px;
-   margin: 0px;
-   border: none;
+#content_view {
+   width: calc(100% - 8px);
+   height: calc(100% - 8px);
+   padding: 4px;
+}
+
+#content_view:focus {
+   outline: 0px solid transparent;
 }
