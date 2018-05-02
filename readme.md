@@ -22,3 +22,6 @@ There are two types of nodes contained within a notebook's structure: containers
 - Name of the page itself, which is how it is referred to by the user
     - The name is not used as the identifier because we want to allow multiple pages with the same name within a container
 - All data of nodes within the node tree
+
+#### Dependencies:
+- [electron-spellchecker](https://www.npmjs.com/package/electron-spellchecker "Electron-Spellchecker")
