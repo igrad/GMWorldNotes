@@ -1,6 +1,6 @@
-const electron = require('electron');
-const path = require('path');
-const fs = require('fs');
+const electron = require('electron')
+const path = require('path')
+const fs = require('fs')
 
 function CreateNewNotebookID() {
    var nbPath = path.join((electron.app || electron.remote.app).getPath('userData'), "notebooks")
