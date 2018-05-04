@@ -145,13 +145,18 @@ function LoadNotebookToScreen(id) {
 
    console.log("Load notebook to screen")
    SetLastOpenNoteBook(id)
+
+   $(".tree_view_item").contextmenu(function(e) {
+      e.preventDefault()
+      treeViewItemRCM.popup(remote.getCurrentWindow())
+   })
 }
 
 
 
 function LoadPageToScreen(id) {
    console.log("Loading page " + id)
-   
+
    var pathtopage = "./pages/" + id + ".html"
 
    SetLastOpenPage(id)

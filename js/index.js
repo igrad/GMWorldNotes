@@ -68,10 +68,20 @@ function TreeViewSwitch(caller) {
 
 
 // Helper function for ContentEdited function
-function sleep (ms) {
+async function sleep (ms) {
    return new Promise(resolve => setTimeout(resolve, ms))
 }
 
+
+
+async function ShowSaveNotification() {
+   var savenote = $("#save_notification")
+   savenote.fadeOut(0)
+   savenote.fadeIn(200)
+
+   await sleep(1200)
+   savenote.fadeOut(200)
+}
 
 
 async function ContentEdited() {
@@ -83,28 +93,13 @@ async function ContentEdited() {
    // then this edit was the last edit made before the user paused. Save data to file.
    if (lastEditTime == tEdit) {
       SavePageToFile(lastOpenPage)
+      ShowSaveNotification()
    }
 }
 
 
 
 $(document).ready(function() {
-   // Set up context menus
-   $("#tree_view").contextmenu(function(e) {
-      e.preventDefault()
-      treeViewRCM.popup(remote.getCurrentWindow())
-   })
-
-   $("#tree_view_item").contextmenu(function(e) {
-      e.preventDefault()
-      treeViewItemRCM.popup(remote.getCurrentWindow())
-   })
-
-   $("#content_view_iframe").contents().find("body").contextmenu(function(e) {
-      e.preventDefault()
-      contentViewRCM.popup(remote.getCurrentWindow())
-   })
-
    // Load data
    console.log("Document is ready. Loading session.")
    LoadSession()
@@ -123,4 +118,18 @@ $(document).ready(function() {
    $(".upper_shelf_btn").attr("isOpen", "false")
 
    $(".list_view_item").attr("isOpen", "false")
+
+   // Set up context menus
+   $("#tree_view").contextmenu(function(e) {
+      // Prevent the tree_view context menu from opening when a context menu for a
+      // tree_view_item is supposed to be displayed
+      if (e.currentTarget != e.target) { return }
+      e.preventDefault()
+      treeViewRCM.popup(remote.getCurrentWindow())
+   })
+
+   $("#content_view").contextmenu(function(e) {
+      e.preventDefault()
+      contentViewRCM.popup(remote.getCurrentWindow())
+   })
 })

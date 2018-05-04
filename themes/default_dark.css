@@ -29,12 +29,14 @@
    --treeview-item-bg-color-active: #fefefe;
    --treeview-item-font-color-active: #212121;
 
+
    --treeview-depth-indent: 4px;
    --treeview-item-height: 24px;
-
 
 
    --resizebar-bg-color: #ababab;
 
 
+   --save-notification-bg-color: #dddddd;
+   --save-notification-font-color: #777777;
 }

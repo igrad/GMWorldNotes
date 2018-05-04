@@ -130,6 +130,20 @@ body {
 
 
 /* Content View */
+#save_notification {
+   width: 60px;
+   height: 20px;
+   left: calc(100% - 60px);
+
+   position: absolute;
+   padding: 4px;
+
+   display: none;
+
+   background-color: var(--save-notification-bg-color);
+   color: var(--save-notification-font-color);
+}
+
 #content_view {
    width: calc(100% - 8px);
    height: calc(100% - 8px);
