@@ -99,7 +99,7 @@ function AddTreeNodeToScreen(id, depth) {
 }
 
 
-
+var evente = ""
 function LoadNotebookToScreen(id) {
 
    // TODO: Wrap all of this in a try-catch
@@ -148,6 +148,8 @@ function LoadNotebookToScreen(id) {
 
    $(".tree_view_item").contextmenu(function(e) {
       e.preventDefault()
+
+      treeViewItemRCM.callerID = e.target.id
       treeViewItemRCM.popup(remote.getCurrentWindow())
    })
 }

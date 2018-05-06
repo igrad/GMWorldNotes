@@ -20,13 +20,13 @@ var treeViewRCMopts = {
                // If this has been called, it means that the user didn't click on an
                // existing item, and this should be added to the first layer under root
                // Create a new page in the notebook
-               notebookData.nodeTree.AddNewNode("page", 1)
+               notebookData.nodeTree.AddNewNode("page", "0-0")
             }
          }, {
             label: 'New Folder',
             click() {
                // Create a new folder in the notebook
-               notebookData.nodeTree.AddNewNode("folder", 1)
+               notebookData.nodeTree.AddNewNode("folder", "0-0")
             }
          }
       ]
@@ -37,6 +37,8 @@ const treeViewRCM = new Menu()
 for (var item in treeViewRCMopts) {
    treeViewRCM.append( new MenuItem(treeViewRCMopts[item]) )
 }
+
+var callerID = ""
 
 // Set up the RCM for when the user right-clicks on an item in the tree view
 var treeViewItemRCMopts = {
@@ -75,11 +77,13 @@ var treeViewItemRCMopts = {
             label: 'New Page',
             click() {
                // Create a new page in the notebook
+               notebookData.nodeTree.AddNewNode("page", treeViewItemRCM.callerID)
             }
          }, {
             label: 'New Folder',
             click() {
                // Create a new folder in the notebook
+               notebookData.nodeTree.AddNewNode("folder", treeViewItemRCM.callerID)
             }
          }
       ]

@@ -26,6 +26,11 @@ let defaultFolder = {
 
 
 
+function GetDepthFromID (id) {
+   return parseInt(id.split('-')[0], 10)
+}
+
+
 
 /* Each "page" in the application is tied to a Node object. This contains all data
 about the page. */
@@ -174,7 +179,7 @@ class Tree {
       notebookData.UpdateDS()
    }
 
-   AddNewNode (type, depth) {
+   AddNewNode (type, parent) {
       var node = null
       if (type == "page") {
          node = new TreeNode(defaultPage)
@@ -183,7 +188,8 @@ class Tree {
          node = new TreeNode(defaultFolder)
       }
 
-      var newID = this.CreateID(depth)
+      var newID = this.CreateID(GetDepthFromID(parent))
+      node.parent = parent
       node.id = newID
       this.GetNodeObject(node.parent).AddChild(newID)
       this.AddNode(node)
