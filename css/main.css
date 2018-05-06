@@ -18,6 +18,8 @@ body {
    display: flex;
    flex-direction: row;
    flex: 1 1 auto;
+
+   height: calc(100% - var(--shelf-height));
 }
 
 #shelf_view {
@@ -148,6 +150,8 @@ body {
    width: calc(100% - 8px);
    height: calc(100% - 8px);
    padding: 4px;
+
+   overflow: auto;
 }
 
 #content_view:focus {
