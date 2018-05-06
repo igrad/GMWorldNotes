@@ -89,7 +89,7 @@ function AddTreeNodeToScreen(id, depth) {
    insertHTML += "onmouseover=\"TreeViewHover(this)\" "
    insertHTML += "onmouseout=\"TreeViewLeaveHover(this)\" "
    insertHTML += "onclick=\"TreeViewSwitch(this)\" "
-   insertHTML += "style=\"left: " + indent + "\">" + node.name + "</div>"
+   insertHTML += "style=\"left: " + indent + ";width=calc(100% - " + indent + "\")>" + node.name + "</div>"
    treeView.innerHTML += insertHTML
 
    // Add the nodes children to the screen by recursively calling this function
@@ -139,7 +139,7 @@ function LoadNotebookToScreen(id) {
       // Add a new node to the tree, then push it to the screen
    } else {
       for (var i = 0; i < children.length; i++) {
-         AddTreeNodeToScreen(children[i], 1)
+         AddTreeNodeToScreen(children[i], GetDepthFromID(children[i]))
       }
    }
 

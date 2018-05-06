@@ -30,6 +30,10 @@ function GetDepthFromID (id) {
    return parseInt(id.split('-')[0], 10)
 }
 
+function GetPositionFromID (id) {
+   return parseInt(id.split('-')[1], 10)
+}
+
 
 
 /* Each "page" in the application is tied to a Node object. This contains all data
@@ -145,7 +149,7 @@ class Tree {
 
       for (var i = 0; i < keys.length; i++) {
          var key = keys[i]
-         var keyDepth = key.substring(0, key.indexOf("-"))
+         var keyDepth = GetDepthFromID(key)
          if (keyDepth == depth) {
             depthKeys.push(key)
          }
@@ -157,17 +161,18 @@ class Tree {
    CreateID (depth) {
       var hNeighbors = this.GetBreadth(depth)
       var hNeighborPos = []
-      for (var n in hNeighbors) {
-         var pos = parseInt(n.substring(n.indexOf("-") + 1))
-
-         hNeighborPos.push(pos)
+      for (var i = 0; i < hNeighbors.length; i++) {
+         hNeighborPos.push(GetPositionFromID(hNeighbors[i]))
       }
 
       hNeighborPos.sort()
 
       var newPos = 0
       if ((hNeighborPos != null) && (hNeighborPos.length >= 1)) {
-         newPos = hNeighborPos[hNeighborPos.length - 1] + 1
+         while(1) {
+            newPos += 1
+            if (!(hNeighborPos.includes(newPos))) { break }
+         }
       }
 
       return depth + "-" + newPos
@@ -188,7 +193,7 @@ class Tree {
          node = new TreeNode(defaultFolder)
       }
 
-      var newID = this.CreateID(GetDepthFromID(parent))
+      var newID = this.CreateID(GetDepthFromID(parent) + 1)
       node.parent = parent
       node.id = newID
       this.GetNodeObject(node.parent).AddChild(newID)
