@@ -130,6 +130,13 @@ body {
    color: var(--treeview-item-font-color-active);
 }
 
+.tree_view_item_inner {
+   position: relative;
+   display: inline-block;
+
+   cursor:pointer;
+}
+
 
 /* Content View */
 #save_notification {

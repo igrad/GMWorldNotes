@@ -1,27 +1,10 @@
-let nodeTree = new Array()
-let rootNode = {
+const rootNode = {
    id: "0-0",
    name: "ROOT",
    associations: null,
    parent: null,
    children: [],
    data: "blank"
-}
-let defaultPage = {
-   id: "1-0",
-   name: "New Page",
-   associations: null,
-   parent: "0-0",
-   children: [],
-   data: "blank"
-}
-let defaultFolder = {
-   id: "1-0",
-   name: "New Folder",
-   associations: null,
-   parent: "0-0",
-   children: [],
-   data: null
 }
 
 
@@ -40,30 +23,46 @@ function GetPositionFromID (id) {
 about the page. */
 class TreeNode {
    constructor(jsonData) {
-      // Identifier of this node, used to be referenced by other nodes
-      // The format of the identifier is "DEPTH-NUM", where depth is, obviously
-      // the depth of the object within the tree, and the num is just a number
-      // assigned to the node.
-      this.id = jsonData.id
+      if (jsonData == 'page') {
+         this.id = "1-0"
+         this.name = "New Page"
+         this.associations = null
+         this.parent = "0-0"
+         this.children = []
+         this.data = "blank"
+      } else if (jsonData == 'folder') {
+         this.id = "1-0"
+         this.name = "New Folder"
+         this.associations = null
+         this.parent = "0-0"
+         this.children = []
+         this.data = null
+      } else {
+         // Identifier of this node, used to be referenced by other nodes
+         // The format of the identifier is "DEPTH-NUM", where depth is, obviously
+         // the depth of the object within the tree, and the num is just a number
+         // assigned to the node.
+         this.id = jsonData.id
 
-      // Name of this node
-      this.name = jsonData.name
+         // Name of this node
+         this.name = jsonData.name
 
-      /* Each page is, of course, linked to other pages, but it is not always in a
-      structured way. Just as a person can be tied to other people and to locations,
-      those other people can be tied to their own people and locations, and it's far
-      too difficult to track this in a single, structured tree. Thus, the links of a
-      node detail these connections in a way that can be tracked. */
-      this.associations = jsonData.associations
+         /* Each page is, of course, linked to other pages, but it is not always in a
+         structured way. Just as a person can be tied to other people and to locations,
+         those other people can be tied to their own people and locations, and it's far
+         too difficult to track this in a single, structured tree. Thus, the links of a
+         node detail these connections in a way that can be tracked. */
+         this.associations = jsonData.associations
 
-      // Index of this node's parent, for navigation purposes.
-      this.parent = jsonData.parent
+         // Index of this node's parent, for navigation purposes.
+         this.parent = jsonData.parent
 
-      // Indices of this node's children, for navigation purposes.
-      this.children = jsonData.children
+         // Indices of this node's children, for navigation purposes.
+         this.children = jsonData.children
 
-      // The raw data of this page, which begins as a template.
-      this.data = jsonData.data
+         // The raw data of this page, which begins as a template.
+         this.data = jsonData.data
+      }
    }
 
    AddLink(otherNode) {
@@ -92,9 +91,9 @@ class TreeNode {
       return true
    }
 
-   RemoveChild(otherNode) {
-      if (this.children.includes(otherNode.id)) {
-         this.children.remove(otherNode.id)
+   RemoveChild(otherNodeID) {
+      if (this.children.includes(otherNodeID)) {
+         this.children.remove(otherNodeID)
          return true
       }
 
@@ -185,18 +184,13 @@ class Tree {
    }
 
    AddNewNode (type, parent) {
-      var node = null
-      if (type == "page") {
-         node = new TreeNode(defaultPage)
-      }
-      else if (type == "folder") {
-         node = new TreeNode(defaultFolder)
-      }
+      var node = new TreeNode(type)
 
       var newID = this.CreateID(GetDepthFromID(parent) + 1)
       node.parent = parent
       node.id = newID
-      this.GetNodeObject(node.parent).AddChild(newID)
+
+      this.GetNodeObject(parent).AddChild(newID)
       this.AddNode(node)
 
       notebookData.UpdateDS()

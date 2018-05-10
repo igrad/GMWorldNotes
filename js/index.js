@@ -61,7 +61,6 @@ function TreeViewSwitch(caller) {
    $(caller).css("color", "var(--treeview-item-font-color-active)")
 
    // Call up the node that has been selected from the tree view
-   console.log("node id = " + caller.attr("id"))
    LoadPageToScreen(caller.attr("id"))
 }
 
@@ -100,12 +99,28 @@ async function ContentEdited() {
 
 
 $(document).ready(function() {
+   // Set up context menus
+   $("#tree_view").contextmenu(function(e) {
+      // Prevent the tree_view context menu from opening when a context menu for a
+      // tree_view_item is supposed to be displayed
+      if (e.currentTarget != e.target) { return }
+
+      e.preventDefault()
+      treeViewRCM.popup(remote.getCurrentWindow())
+   })
+
+   $("#content_view").contextmenu(function(e) {
+      e.preventDefault()
+      contentViewRCM.popup(remote.getCurrentWindow())
+   })
+
    // Load data
    console.log("Document is ready. Loading session.")
    LoadSession()
 
    notebookData = new Notebook(lastOpenNotebook)
    notebookData.UpdateDS()
+   LoadThemeToScreen()
    LoadNotebookToScreen(lastOpenNotebook)
 
    //TODO: Verify that this works. The click behavior has already been set in
@@ -118,18 +133,4 @@ $(document).ready(function() {
    $(".upper_shelf_btn").attr("isOpen", "false")
 
    $(".list_view_item").attr("isOpen", "false")
-
-   // Set up context menus
-   $("#tree_view").contextmenu(function(e) {
-      // Prevent the tree_view context menu from opening when a context menu for a
-      // tree_view_item is supposed to be displayed
-      if (e.currentTarget != e.target) { return }
-      e.preventDefault()
-      treeViewRCM.popup(remote.getCurrentWindow())
-   })
-
-   $("#content_view").contextmenu(function(e) {
-      e.preventDefault()
-      contentViewRCM.popup(remote.getCurrentWindow())
-   })
 })

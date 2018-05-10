@@ -78,36 +78,51 @@ function SaveFileData (filepath, data) {
 
 
 
-function AddTreeNodeToScreen(id, depth) {
+function CreateNewTreeViewItem(id, name) {
+   var depth = GetDepthFromID(id)
+
+   var indent = (parseInt($("body").css('--treeview-depth-indent')) * (depth - 1))
+
+   var html = "<div class=\"tree_view_item\" id=\"" + id + "\" "
+   html += "onmouseover=\"TreeViewHover(this)\" "
+   html += "onmouseout=\"TreeViewLeaveHover(this)\" "
+   html += "onclick=\"TreeViewSwitch(this)\">"
+   html += "<div class=\"tree_view_item_inner\" id=\"" + id + "\""
+   html += " style=\"left: " + indent + "px;width=calc(100% - " + indent
+   html += "px)\">" + name + "</div></div>"
+
+   return html
+}
+
+
+
+async function AddTreeNodeToScreen(id) {
    var node = notebookData.GetNode(id)
    var treeView = $("#tree_view")[0]
 
-   // Add the node itself to the screen
-   var indent = (parseInt($("body").css('--treeview-depth-indent')) * (depth - 1)) + "px"
+   var depth = GetDepthFromID(id)
 
-   var insertHTML = "<div class=\"tree_view_item\" id=\"" + id + "\" "
-   insertHTML += "onmouseover=\"TreeViewHover(this)\" "
-   insertHTML += "onmouseout=\"TreeViewLeaveHover(this)\" "
-   insertHTML += "onclick=\"TreeViewSwitch(this)\" "
-   insertHTML += "style=\"left: " + indent + ";width=calc(100% - " + indent + "\")>" + node.name + "</div>"
+   // Add the node itself to the screen
+   var insertHTML = CreateNewTreeViewItem(id, node.name)
+
    treeView.innerHTML += insertHTML
 
    // Add the nodes children to the screen by recursively calling this function
    for (var i = 0; i < node.children.length; i++) {
-      AddTreeNodeToScreen(node.children[i], depth + 1)
+      await AddTreeNodeToScreen(node.children[i])
    }
+
+   $(".tree_view_item").contextmenu(function(e) {
+      e.preventDefault()
+
+      treeViewItemRCM.callerID = e.target.id
+      treeViewItemRCM.popup(remote.getCurrentWindow())
+   })
 }
 
 
-var evente = ""
-function LoadNotebookToScreen(id) {
 
-   // TODO: Wrap all of this in a try-catch
-
-   // Order of events
-   // 1. Load the theme of the notebook onto screen
-   // 2. Load the nodes into tree view
-
+function LoadThemeToScreen() {
    // Load the theme of the notebook onto screen
    // Get the currently-loaded theme's outer HTML string
    var linkTheme = $("#link_theme")[0]
@@ -118,12 +133,13 @@ function LoadNotebookToScreen(id) {
 
    // Replace the current theme with the new theme of notebook being loaded
    linkTheme.outerHTML = linkThemeText.replace(currentTheme, notebookData.theme)
+}
 
 
+function LoadNotebookToScreen(id) {
    // Load the nodes into the tree view
    // Get the tree view object
    var treeView = $("#tree_view")[0]
-
 
    // Clear out the existing contents
    treeView.innerHTML = ""
@@ -135,23 +151,17 @@ function LoadNotebookToScreen(id) {
    var rootnode = notebookData.GetNode("0-0")
    var children = rootnode.children
 
+   console.log("Loaded root")
    if (children.length == 0) {
       // Add a new node to the tree, then push it to the screen
    } else {
       for (var i = 0; i < children.length; i++) {
-         AddTreeNodeToScreen(children[i], GetDepthFromID(children[i]))
+         AddTreeNodeToScreen(children[i])
       }
    }
 
-   console.log("Load notebook to screen")
+   console.log("Loaded notebook to screen")
    SetLastOpenNoteBook(id)
-
-   $(".tree_view_item").contextmenu(function(e) {
-      e.preventDefault()
-
-      treeViewItemRCM.callerID = e.target.id
-      treeViewItemRCM.popup(remote.getCurrentWindow())
-   })
 }
 
 
@@ -164,8 +174,6 @@ function LoadPageToScreen(id) {
    SetLastOpenPage(id)
 
    var pageData = LoadFileData(pathtopage)
-
-   console.log("Loading page from " + pathtopage)
 
    $("#content_view")[0].innerHTML = pageData
 }
