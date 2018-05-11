@@ -103,21 +103,16 @@ async function AddTreeNodeToScreen(id) {
    var depth = GetDepthFromID(id)
 
    // Add the node itself to the screen
-   var insertHTML = CreateNewTreeViewItem(id, node.name)
+   if (depth != 0) {
+      var insertHTML = CreateNewTreeViewItem(id, node.name)
 
-   treeView.innerHTML += insertHTML
+      treeView.innerHTML += insertHTML
+   }
 
    // Add the nodes children to the screen by recursively calling this function
    for (var i = 0; i < node.children.length; i++) {
       await AddTreeNodeToScreen(node.children[i])
    }
-
-   $(".tree_view_item").contextmenu(function(e) {
-      e.preventDefault()
-
-      treeViewItemRCM.callerID = e.target.id
-      treeViewItemRCM.popup(remote.getCurrentWindow())
-   })
 }
 
 
@@ -136,6 +131,7 @@ function LoadThemeToScreen() {
 }
 
 
+
 function LoadNotebookToScreen(id) {
    // Load the nodes into the tree view
    // Get the tree view object
@@ -146,22 +142,20 @@ function LoadNotebookToScreen(id) {
 
    // Traverse the linked list/binary tree in order and build each node in memory
    // While doing this, also add each label into the content view
-   var key = "0-0"
-   var depth = 0
-   var rootnode = notebookData.GetNode("0-0")
-   var children = rootnode.children
+   console.log("Loading tree")
 
-   console.log("Loaded root")
-   if (children.length == 0) {
-      // Add a new node to the tree, then push it to the screen
-   } else {
-      for (var i = 0; i < children.length; i++) {
-         AddTreeNodeToScreen(children[i])
-      }
-   }
+   AddTreeNodeToScreen("0-0").then(function (result) {
+      $(".tree_view_item").contextmenu(function(e) {
+         e.preventDefault()
+         console.log(e.target.id)
 
-   console.log("Loaded notebook to screen")
+         treeViewItemRCM.callerID = e.target.id
+         treeViewItemRCM.popup(remote.getCurrentWindow())
+      })
+   })
+
    SetLastOpenNoteBook(id)
+   console.log("Loaded notebook to screen")
 }
 
 
