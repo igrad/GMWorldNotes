@@ -36,19 +36,16 @@ body {
    overflow: auto;
    resize: horizontal;
 
-
-
    background-color: var(--treeview-bg-color);
 }
 
 #resize_bar {
-   display: flex;
-   flex-direction: row;
-   flex: 0 1 3px;
+   position: absolute;
 
    width: 3px;
+   height: 100%;
 
-   left: 198px;
+   left: 196px;
    top: 100px;
 
    background-color: var(--resizebar-bg-color);
@@ -57,12 +54,10 @@ body {
 }
 
 #content_view_wrap {
-   display: flex;
-   flex-direction: row;
-   flex: 1 1 auto;
-
    left: 201px;
    top: 100px;
+
+   overflow: auto;
 }
 
 

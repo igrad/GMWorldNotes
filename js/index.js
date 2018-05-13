@@ -97,6 +97,48 @@ async function ContentEdited() {
 }
 
 
+let resizing = false
+function StartResizingTreeView (e) {
+   // Allow the other resize functions to operate
+   resizing = true
+
+   // Set the content_view to disallow edits so that resizing the tree_view
+   // too quickly doesn't accidentally highlight the content
+   $("#content_view").attr("contenteditable", false)
+
+   // Set the global cursor to the resize cursor so that resizing too quickly
+   // doesn't make the cursor flip between different styles rapidly
+   $("body").css("cursor", "ew-resize")
+}
+
+
+
+function DoneResizingTreeView () {
+   if (resizing) {
+      // Revert everything set in StartResizingTreeView
+      resizing = false
+
+      $("#content_view").attr("contenteditable", true)
+      $("body").css("cursor", "default")
+   }
+}
+
+
+
+function ResizingTreeView (e) {
+   if (resizing) {
+      // Get the current X position of the mouse and assign it to the width of
+      // the tree view
+      $("#content_view_wrap").css("width", (parseInt($("body").css("width")) - e.clientX) + "px")
+      $("#tree_view").css("width", e.clientX + "px")
+
+      // Copy-paste the width of tree_view to the X position of the resize_bar
+      // so that we don't have to do any math for the tree_view's min and max
+      // boundaries - they will address themselves during the above operation
+      $("#resize_bar").css("left", $("#tree_view").css("width"))
+   }
+}
+
 
 $(document).ready(function() {
    // Set up context menus

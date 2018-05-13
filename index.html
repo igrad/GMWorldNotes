@@ -30,7 +30,7 @@
       <script src="js/Notebook.js"></script>
       <script src="js/load.js"></script>
    </head>
-   <body>
+   <body onmousemove="ResizingTreeView(event)" onmouseup="DoneResizingTreeView(event)">
       <div id="shelf_view">
          <!-- This contains the binder's header, offering a bit of information to the
          user -->
@@ -79,7 +79,7 @@
             <!-- This contains the tree view of all nodes in this binder. -->
          </div>
 
-         <div id="resize_bar"></div>
+         <div id="resize_bar" onmousedown="StartResizingTreeView(event)"></div>
 
          <div id="content_view_wrap">
             <div id="save_notification">Saving...</div>
