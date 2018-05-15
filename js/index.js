@@ -6,12 +6,14 @@ function ShelfHover(caller) {
 }
 
 
+
 function ShelfLeaveHover(caller) {
    if($(caller).attr("isOpen") == "false") {
       $(caller).css({"background-color": "var(--shelf-top-bg-color)",
          "color": "var(--shelf-top-font-color)"})
    }
 }
+
 
 
 function ShelfSwitch(caller) {
@@ -27,7 +29,7 @@ function ShelfSwitch(caller) {
    $(caller).css("background-color", "var(--shelf-top-bg-color-open)")
    $(caller).css("color", "var(--shelf-top-font-color-hover)")
 
-   $(".lower_shelf_iframe").hide()
+   $(".lower_shelf_menu").hide()
    $("#" + caller.attr("frame")).show()
 }
 
@@ -41,12 +43,14 @@ function TreeViewHover(caller) {
 }
 
 
+
 function TreeViewLeaveHover(caller) {
    if($(caller).attr("isOpen") == "false") {
       $(caller).css({"background-color": "var(--treeview-item-bg-color)",
          "color": "var(--treeview-item-font-color)"})
    }
 }
+
 
 
 function TreeViewSwitch(caller) {
@@ -83,6 +87,7 @@ async function ShowSaveNotification() {
 }
 
 
+
 async function ContentEdited() {
    var tEdit = Date.now()
    lastEditTime  = tEdit
@@ -95,6 +100,7 @@ async function ContentEdited() {
       ShowSaveNotification()
    }
 }
+
 
 
 let resizing = false
@@ -140,7 +146,8 @@ function ResizingTreeView (e) {
 }
 
 
-$(document).ready(function() {
+
+$(window).on('load', function() {
    // Set up context menus
    $("#tree_view").contextmenu(function(e) {
       // Prevent the tree_view context menu from opening when a context menu for a

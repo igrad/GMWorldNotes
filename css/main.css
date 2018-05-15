@@ -83,22 +83,13 @@ body {
 #lower_shelf_viewport {
    /* Lower shelf wrapper itself */
    top: calc(var(--shelf-height) - var(--shelf-lower-height));
+   height: var(--shelf-lower-height);
    position: absolute;
    width: 100%;
 
    background-color: var(--shelf-lower-bg-color);
 
    flex: 0 1 var(--shelf-lower-height)
-}
-
-.lower_shelf_iframe {
-   /* All lower shelf views */
-   height: 73px;
-   width: 100%;
-   padding: 0px;
-   margin: 0px;
-   border: none;
-   display: none;
 }
 
 

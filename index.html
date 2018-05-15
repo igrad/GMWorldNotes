@@ -4,9 +4,9 @@
       <meta charset="UTF-8">
       <title>GM World Notes</title>
 
-      <!-- TODO: Change this to javascript to load the theme based on the user's saved preferences -->
       <link id="link_theme" rel="stylesheet" href="themes/default_dark.css">
       <link rel="stylesheet" href="css/main.css">
+      <link rel="stylesheet" href="css/lower_shelf.css">
 
       <script>
          if (typeof module === 'object') {
@@ -40,37 +40,39 @@
             buttons for each option on the shelf. -->
             <div id="upper_shelf_btn_file" class="upper_shelf_btn"
             onmouseover="ShelfHover(this)" onmouseout="ShelfLeaveHover(this)"
-            onclick="ShelfSwitch(this)" frame="lower_shelf_file_view">File</div>
+            onclick="ShelfSwitch(this)" frame="menu_file">File</div>
             <div id="upper_shelf_btn_text" class="upper_shelf_btn"
             onmouseover="ShelfHover(this)" onmouseout="ShelfLeaveHover(this)"
-            onclick="ShelfSwitch(this)" frame="lower_shelf_text_view">Text</div>
+            onclick="ShelfSwitch(this)" frame="menu_text">Text</div>
             <div id="upper_shelf_btn_insert" class="upper_shelf_btn"
             onmouseover="ShelfHover(this)" onmouseout="ShelfLeaveHover(this)"
-            onclick="ShelfSwitch(this)" frame="lower_shelf_insert_view">Insert</div>
+            onclick="ShelfSwitch(this)" frame="menu_insert">Insert</div>
             <div id="upper_shelf_btn_share" class="upper_shelf_btn"
             onmouseover="ShelfHover(this)" onmouseout="ShelfLeaveHover(this)"
-            onclick="ShelfSwitch(this)" frame="lower_shelf_share_view">Share</div>
+            onclick="ShelfSwitch(this)" frame="menu_share">Share</div>
             <div id="upper_shelf_btn_templates" class="upper_shelf_btn"
             onmouseover="ShelfHover(this)" onmouseout="ShelfLeaveHover(this)"
-            onclick="ShelfSwitch(this)"
-            frame="lower_shelf_template_view">Templates</div>
+            onclick="ShelfSwitch(this)" frame="menu_templates">Templates</div>
          </div>
 
          <div id="lower_shelf_viewport">
             <!-- Contains the options of the selected shelf option. -->
-            <iframe id="lower_shelf_file_view" class="lower_shelf_iframe"
-            src="menu_iframe/lower_shelf_file_view.html" style="display:block"></iframe>
-
-            <iframe id="lower_shelf_text_view" class="lower_shelf_iframe"
-            src="menu_iframe/lower_shelf_text_view.html"></iframe>
-
-            <iframe id="lower_shelf_insert_view" class="lower_shelf_iframe"
-            src="menu_iframe/lower_shelf_insert_view.html"></iframe>
-
-            <iframe id="lower_shelf_share_view" class="lower_shelf_iframe" src="menu_iframe/lower_shelf_share_view.html"></iframe>
-
-            <iframe id="lower_shelf_template_view" class="lower_shelf_iframe" src="menu_iframe/lower_shelf_template_view.html"></iframe>
+            <div class="lower_shelf_menu" id="menu_file">
+               FILE
             </div>
+            <div class="lower_shelf_menu" id="menu_text">
+               TEXT
+            </div>
+            <div class="lower_shelf_menu" id="menu_insert">
+               INSERT
+            </div>
+            <div class="lower_shelf_menu" id="menu_share">
+               SHARE
+            </div>
+            <div class="lower_shelf_menu" id="menu_templates">
+               TEMPLATES
+            </div>
+
          </div>
       </div>
 
