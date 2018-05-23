@@ -32,9 +32,6 @@
    </head>
    <body onmousemove="ResizingTreeView(event)" onmouseup="DoneResizingTreeView(event)">
       <div id="shelf_view">
-         <!-- This contains the binder's header, offering a bit of information to the
-         user -->
-
          <div id="upper_shelf">
             <!-- This area contains the upper portion of the shelf, including the
             buttons for each option on the shelf. -->
@@ -55,31 +52,138 @@
             onclick="ShelfSwitch(this)" frame="menu_templates">Templates</div>
          </div>
 
+
+
          <div id="lower_shelf_viewport">
             <!-- Contains the options of the selected shelf option. -->
             <div class="lower_shelf_menu" id="menu_file">
                FILE
             </div>
+
+
             <div class="lower_shelf_menu" id="menu_text">
-               TEXT
+               <!-- Button template
+               <button type="button" class="button_light" id="menu_text_XXXXX_btn">
+                  <div style="display:inline-block">XXXX</div>
+               </button> -->
+               <div id="menu_text_1">
+                  <button type="button" class="button_light text_left bgb_top" id="menu_text_cut_btn">
+                     <div style="display:inline-block">Cut</div>
+                  </button>
+                  <button type="button" class="button_light text_left bgb_midv" id="menu_text_copy_btn">
+                     <div style="display:inline-block">Copy</div>
+                  </button>
+                  <button type="button" class="button_light text_left bgb_bottom" id="menu_text_paste_btn">
+                     <div style="display:inline-block">Paste</div>
+                  </button>
+               </div>
+
+               <div id="menu_text_2">
+                  <button type="button" class="button_light bgb_left" id="menu_text_bold_btn">
+                     <div style="display:inline-block;font-weight:bold">
+                        B
+                     </div>
+                  </button>
+                  <button type="button" class="button_light bgb_midh" id="menu_text_italic_btn">
+                     <div style="display:inline-block;font-style:italic">
+                        I
+                     </div>
+                  </button>
+                  <button type="button" class="button_light bgb_midh" id="menu_text_uline_btn">
+                     <div style="display:inline-block;text-decoration:underline">
+                        U
+                     </div>
+                  </button>
+                  <button type="button" class="button_light half_width bgb_right" id="menu_text_font_style_btn">
+                     <div style="display:inline-block">▿</div>
+                  </button>
+                  <button type="button" class="button_light" id="menu_text_d1_btn">
+                     <div style="display:inline-block">d</div>
+                  </button>
+                  <button type="button" class="button_light" id="menu_text_d1_btn">
+                     <div style="display:inline-block">d</div>
+                  </button>
+                  <button type="button" class="button_light" id="menu_text_d1_btn">
+                     <div style="display:inline-block">d</div>
+                  </button>
+                  <button type="button" class="button_light" id="menu_text_d1_btn">
+                     <div style="display:inline-block">d</div>
+                  </button>
+                  <button type="button" class="button_light" id="menu_text_d1_btn">
+                     <div style="display:inline-block">d</div>
+                  </button>
+                  <button type="button" class="button_light" id="menu_text_d1_btn">
+                     <div style="display:inline-block">d</div>
+                  </button>
+                  <button type="button" class="button_light" id="menu_text_d1_btn">
+                     <div style="display:inline-block">d</div>
+                  </button>
+                  <button type="button" class="button_light" id="menu_text_d1_btn">
+                     <div style="display:inline-block">d</div>
+                  </button>
+                  <button type="button" class="button_light" id="menu_text_d1_btn">
+                     <div style="display:inline-block">d</div>
+                  </button>
+                  <button type="button" class="button_light" id="menu_text_d1_btn">
+                     <div style="display:inline-block">d</div>
+                  </button>
+                  <button type="button" class="button_light" id="menu_text_d1_btn">
+                     <div style="display:inline-block">d</div>
+                  </button>
+                  <button type="button" class="button_light" id="menu_text_d1_btn">
+                     <div style="display:inline-block">d</div>
+                  </button>
+                  <button type="button" class="button_light" id="menu_text_d1_btn">
+                     <div style="display:inline-block">d</div>
+                  </button>
+                  <button type="button" class="button_light" id="menu_text_d1_btn">
+                     <div style="display:inline-block">d</div>
+                  </button>
+                  <button type="button" class="button_light" id="menu_text_d1_btn">
+                     <div style="display:inline-block">d</div>
+                  </button>
+                  <button type="button" class="button_light" id="menu_text_d1_btn">
+                     <div style="display:inline-block">d</div>
+                  </button>
+                  <button type="button" class="button_light" id="menu_text_d1_btn">
+                     <div style="display:inline-block">d</div>
+                  </button>
+                  <button type="button" class="button_light" id="menu_text_d1_btn">
+                     <div style="display:inline-block">d</div>
+                  </button>
+                  <button type="button" class="button_light" id="menu_text_d1_btn">
+                     <div style="display:inline-block">d</div>
+                  </button>
+                  <button type="button" class="button_light" id="menu_text_d1_btn">
+                     <div style="display:inline-block">d</div>
+                  </button>
+               </div>
+               <div id="menu_text_3">
+
+               </div>
             </div>
+
+
             <div class="lower_shelf_menu" id="menu_insert">
                INSERT
             </div>
+
+
             <div class="lower_shelf_menu" id="menu_share">
                SHARE
             </div>
+
+
             <div class="lower_shelf_menu" id="menu_templates">
                TEMPLATES
             </div>
-
          </div>
       </div>
 
+
+
       <div id="lower_flex">
-         <div id="tree_view">
-            <!-- This contains the tree view of all nodes in this binder. -->
-         </div>
+         <div id="tree_view"></div>
 
          <div id="resize_bar" onmousedown="StartResizingTreeView(event)"></div>
 

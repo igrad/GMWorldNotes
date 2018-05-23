@@ -3,3 +3,169 @@
    height: 100%;
    width: 100%;
 }
+
+.button_light {
+   color: #eeeeee;
+   background-color: rgba(255, 255, 255, 0.10);
+
+   cursor: pointer;
+}
+
+.button_light:hover {
+   color: #ffffff;
+   background-color: rgba(255, 255, 255, 0.15);
+}
+
+.half_width {
+   width: 50%;
+   overflow: hidden;
+   margin-right: auto;
+   padding-left: 0px;
+   padding-right: 0px;
+}
+
+.bgb_left {
+   border-top-width: var(--button-group-border-width);
+   border-top-style: var(--button-group-border-style);
+   border-top-color: var(--button-group-border-color);
+   border-bottom-width: var(--button-group-border-width);
+   border-bottom-style: var(--button-group-border-style);
+   border-bottom-color: var(--button-group-border-color);
+   border-left-width: var(--button-group-border-width);
+   border-left-style: var(--button-group-border-style);
+   border-left-color: var(--button-group-border-color);
+   border-right-width: var(--button-group-separator-width);
+   border-right-style: var(--button-group-separator-style);
+   border-right-color: var(--button-group-separator-color);
+
+   border-top-left-radius: var(--button-group-rounding);
+   border-bottom-left-radius: var(--button-group-rounding);
+}
+
+.bgb_top {
+   border-top-width: var(--button-group-border-width);
+   border-top-style: var(--button-group-border-style);
+   border-top-color: var(--button-group-border-color);
+   border-bottom-width: var(--button-group-separator-width);
+   border-bottom-style: var(--button-group-separator-style);
+   border-bottom-color: var(--button-group-separator-color);
+   border-left-width: var(--button-group-border-width);
+   border-left-style: var(--button-group-border-style);
+   border-left-color: var(--button-group-border-color);
+   border-right-width: var(--button-group-border-width);
+   border-right-style: var(--button-group-border-style);
+   border-right-color: var(--button-group-border-color);
+
+   border-top-left-radius: var(--button-group-rounding);
+   border-top-right-radius: var(--button-group-rounding);
+}
+
+.bgb_midv {
+   border-top-width: var(--button-group-separator-width);
+   border-top-style: var(--button-group-separator-style);
+   border-top-color: var(--button-group-separator-color);
+   border-bottom-width: var(--button-group-separator-width);
+   border-bottom-style: var(--button-group-separator-style);
+   border-bottom-color: var(--button-group-separator-color);
+   border-left-width: var(--button-group-border-width);
+   border-left-style: var(--button-group-border-style);
+   border-left-color: var(--button-group-border-color);
+   border-right-width: var(--button-group-border-width);
+   border-right-style: var(--button-group-border-style);
+   border-right-color: var(--button-group-border-color);
+}
+
+.bgb_midh {
+   border-top-width: var(--button-group-border-width);
+   border-top-style: var(--button-group-border-style);
+   border-top-color: var(--button-group-border-color);
+   border-bottom-width: var(--button-group-border-width);
+   border-bottom-style: var(--button-group-border-style);
+   border-bottom-color: var(--button-group-border-color);
+   border-left-width: var(--button-group-separator-width);
+   border-left-style: var(--button-group-separator-style);
+   border-left-color: var(--button-group-separator-color);
+   border-right-width: var(--button-group-separator-width);
+   border-right-style: var(--button-group-separator-style);
+   border-right-color: var(--button-group-separator-color);
+}
+
+.bgb_right {
+   border-top-width: var(--button-group-border-width);
+   border-top-style: var(--button-group-border-style);
+   border-top-color: var(--button-group-border-color);
+   border-bottom-width: var(--button-group-border-width);
+   border-bottom-style: var(--button-group-border-style);
+   border-bottom-color: var(--button-group-border-color);
+   border-left-width: var(--button-group-separator-width);
+   border-left-style: var(--button-group-separator-style);
+   border-left-color: var(--button-group-separator-color);
+   border-right-width: var(--button-group-border-width);
+   border-right-style: var(--button-group-border-style);
+   border-right-color: var(--button-group-border-color);
+
+   border-top-right-radius: var(--button-group-rounding);
+   border-bottom-right-radius: var(--button-group-rounding);
+}
+
+.bgb_bottom {
+   border-top-width: var(--button-group-separator-width);
+   border-top-style: var(--button-group-separator-style);
+   border-top-color: var(--button-group-separator-color);
+   border-bottom-width: var(--button-group-border-width);
+   border-bottom-style: var(--button-group-border-style);
+   border-bottom-color: var(--button-group-border-color);
+   border-left-width: var(--button-group-border-width);
+   border-left-style: var(--button-group-border-style);
+   border-left-color: var(--button-group-border-color);
+   border-right-width: var(--button-group-border-width);
+   border-right-style: var(--button-group-border-style);
+   border-right-color: var(--button-group-border-color);
+
+   border-bottom-left-radius: var(--button-group-rounding);
+   border-bottom-right-radius: var(--button-group-rounding);
+}
+
+.btn_solo {
+   border-top-width: var(--button-group-border-width);
+   border-top-style: var(--button-group-border-style);
+   border-top-color: var(--button-group-border-color);
+   border-bottom-width: var(--button-group-border-width);
+   border-bottom-style: var(--button-group-border-style);
+   border-bottom-color: var(--button-group-border-color);
+   border-left-width: var(--button-group-border-width);
+   border-left-style: var(--button-group-border-style);
+   border-left-color: var(--button-group-border-color);
+   border-right-width: var(--button-group-border-width);
+   border-right-style: var(--button-group-border-style);
+   border-right-color: var(--button-group-border-color);
+
+   border-radius: var(--button-group-rounding);
+}
+
+/* FILE MENU */
+
+
+/* TEXT MENU */
+#menu_text {
+   display: inline-grid;
+   grid-template-columns: min-content min-content auto;
+}
+
+#menu_text_1 {
+   /* 1 column 3 rows */
+   height: calc(100% - 8px);
+   padding: 4px;
+
+   display: inline-grid;
+}
+
+#menu_text_2 {
+   /* 10 columns and 2 rows */
+   height: 100%;
+
+   display: inline-grid;
+   padding: 4px;
+   grid-template-columns: repeat(12, auto);
+   grid-template-rows: auto auto auto;
+}

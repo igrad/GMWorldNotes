@@ -1,3 +1,11 @@
+/* Single-styles */
+.text_left {
+   text-align: left;
+}
+
+
+
+
 /* Overview */
 body, html {
    margin: 0px;
@@ -72,8 +80,7 @@ body {
    padding-top: var(--shelf-top-vert-padding);
    padding-bottom: var(--shelf-top-vert-padding);
 
-   float: left;
-   text-align: center;
+   display: inline-block;
    user-select: none;
    cursor: pointer;
 

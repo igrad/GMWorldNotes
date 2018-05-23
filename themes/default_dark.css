@@ -16,6 +16,14 @@
 
    --shelf-lower-bg-color: #555555;
 
+   --button-group-border-width: 1px;
+   --button-group-border-style: solid;
+   --button-group-border-color: #434343;
+   --button-group-separator-width: 1px;
+   --button-group-separator-style: solid;
+   --button-group-separator-color: #525252;
+   --button-group-rounding: 3px;
+
 
 
    --treeview-bg-color: #cccccc;
