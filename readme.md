@@ -24,4 +24,4 @@ There are two types of nodes contained within a notebook's structure: containers
 - All data of nodes within the node tree
 
 #### Dependencies:
-- [electron-spellchecker](https://www.npmjs.com/package/electron-spellchecker "Electron-Spellchecker")
+- [IcoMoon-Free by Keyamoon](https://icomoon.io/#icons "IcoMoon-Free by Keyamoon")
