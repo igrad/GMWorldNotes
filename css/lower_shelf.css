@@ -6,14 +6,23 @@
 
 .button_light {
    color: #eeeeee;
-   background-color: rgba(255, 255, 255, 0.10);
+   background-color: rgba(255, 255, 255, 0.15);
 
    cursor: pointer;
 }
 
 .button_light:hover {
    color: #ffffff;
-   background-color: rgba(255, 255, 255, 0.15);
+   background-color: rgba(255, 255, 255, 0.30);
+}
+
+.button_light:focus {
+   outline: 0px solid transparent;
+}
+
+.isActive {
+   color: #ffffff;
+   background-color: rgba(255, 255, 255, 0.25);
 }
 
 .half_width {

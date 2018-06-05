@@ -29,6 +29,7 @@
       <script src="js/DataStore.js"></script>
       <script src="js/Notebook.js"></script>
       <script src="js/load.js"></script>
+      <script src="js/text-manip.js"></script>
    </head>
    <body onmousemove="ResizingTreeView(event)" onmouseup="DoneResizingTreeView(event)">
       <div id="shelf_view">
@@ -80,21 +81,25 @@
 
                <div id="menu_text_2">
                   <!-- Font styling -->
-                  <button type="button" class="button_light bgb_left" id="menu_text_bold_btn">
+                  <!-- BOLD -->
+                  <button type="button" class="button_light bgb_left" id="menu_text_bold_btn" onclick="ApplyFontStyle(this)">
                      <div style="display:inline-block;font-weight:bold">
                         B
                      </div>
                   </button>
-                  <button type="button" class="button_light bgb_midh" id="menu_text_italic_btn">
+                  <!-- ITALIC -->
+                  <button type="button" class="button_light bgb_midh" id="menu_text_italic_btn" onclick="ApplyFontStyle(this)">
                      <div style="display:inline-block;font-style:italic">
                         I
                      </div>
                   </button>
-                  <button type="button" class="button_light bgb_midh" id="menu_text_uline_btn">
+                  <!-- UNDERLINE -->
+                  <button type="button" class="button_light bgb_midh" id="menu_text_uline_btn" onclick="ApplyFontStyle(this)">
                      <div style="display:inline-block;text-decoration:underline">
                         U
                      </div>
                   </button>
+                  <!-- DROPDOWN -->
                   <button type="button" class="button_light half_width bgb_right" id="menu_text_font_style_btn">
                      <div style="display:inline-block">▿</div>
                   </button>

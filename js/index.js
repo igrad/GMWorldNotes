@@ -182,4 +182,6 @@ $(window).on('load', function() {
    $(".upper_shelf_btn").attr("isOpen", "false")
 
    $(".list_view_item").attr("isOpen", "false")
+
+   $("#lower_shelf_viewport button").attr("isOpen", "false")
 })
