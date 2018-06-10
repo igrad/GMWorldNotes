@@ -1,19 +1,33 @@
-var currentStyles = []
+function SetTextColorButtonUnderlineColor (newColor) {
+   if (!newColor) newColor = "var(--contentview-font-color)"
 
-function ToggleTagAtSelection (tag) {
-   document.execCommand(tag)
+   var button = $("#menu_text_fcolor_btn #text_color")
+
+   button.css("box-shadow", "inset 0 -2px 0 " + newColor)
+   button.attr("setColor", newColor)
 }
 
 
 
-function GetActiveTagsAtAnchor () {
-   // Get the parent node of the anchor's (start of the selection) position
-   var pnode = getSelection().anchorNode.parentNode
-   var styles = []
+function SetHighlightColorButtonUnderlineColor (newColor) {
+   if (!newColor) newColor = "var(--contentview-bg-color)"
 
-   while (pnode.id != "content_view") {
-      styles.push(pnode.tagName)
-      pnode = pnode.parentNode
+   var button = $("#menu_text_bcolor_btn #highlight_color")
+   button.css("background-color", newColor)
+   button.attr("setColor", newColor)
+}
+
+
+
+function GetActiveStylesAtAnchor () {
+   // Get the parent node of the anchor's (start of the selection) position
+   var allStyles = getSelection().anchorNode.parentNode.style
+   var styles = {}
+
+   for (var i = 0; i < allStyles.length; i++) {
+      var style = allStyles[i]
+      if (style) styles[style] = allStyles[style]
+      else break
    }
 
    return styles
@@ -21,54 +35,45 @@ function GetActiveTagsAtAnchor () {
 
 
 
+function SetStyleButtonState (buttonID, newStatus) {
+   var button = $("#" + buttonID)
+   if ((button.attr("isOpen")) && (!newStatus)) {
+      button[0].classList.remove("isActive")
+      button.attr("isOpen", "false")
+   }
+   if ((!button.attr("isOpen")) && (newStatus)) {
+      button[0].classList.add("isActive")
+      button.attr("isOpen", "true")
+   }
+}
+
+
+
 function CheckStyleAtAnchor () {
    // This is what sets the "active" state of all text styling buttons when the cursor is moved to a new position. If the new position of the anchor is in a field with bold and italics applied, then only those buttons need to be active in the shelf.
 
-   // Get the tags that need to be applied at the new anchor position
-   var styles = GetActiveTagsAtAnchor()
+   // Get the CSS styles that need to be shown for the new anchor position
+   var styles = GetActiveStylesAtAnchor()
 
-   // Go through the list of styles to be applied and see which ones are already set or need to be set
-   for (var i = 0; i < styles.length; i++) {
-      var style = styles[i]
-
-      if (! currentStyles.includes(style)) {
-         // If the currently-applied styles do not include the styles that need to be applied, then that style needs to be activated
-         switch (style) {
-            case "B":
-               ApplyFontStyle($("#menu_text_bold_btn")[0], false)
-               break
-            case "I":
-               ApplyFontStyle($("#menu_text_italic_btn")[0], false)
-               break
-            case "U":
-               ApplyFontStyle($("#menu_text_uline_btn")[0], false)
-               break
-         }
-      }
+   // Go through the list of toggled styles and see which ones are active
+   var triggers = {
+      "font-style": ["italic", "menu_text_italic_btn"],
+      "font-weight": ["bold", "menu_text_bold_btn"],
+      "text-decoration-line": ["underline", "menu_text_uline_btn"]
    }
 
-   // Go through the list of currentStyles and see which ones need to be removed if they don't already exist in the new styles list
-   for (var i = 0; i < currentStyles.length; i++) {
-      var style = currentStyles[i]
+   for (trigger in triggers) {
+      var style = styles[trigger]
+      var active = trigger[0]
+      var button = trigger[1]
 
-      if (! styles.includes(style)) {
-         // If the currently-applied styles do not include the styles that need to be applied, then that style needs to be activated
-         switch (style) {
-            case "B":
-               ApplyFontStyle($("#menu_text_bold_btn")[0], false)
-               break
-            case "I":
-               ApplyFontStyle($("#menu_text_italic_btn")[0], false)
-               break
-            case "U":
-               ApplyFontStyle($("#menu_text_uline_btn")[0], false)
-               break
-         }
-      }
+      if (style == active) SetStyleButtonState(button, true)
+      else SetStyleButtonState(button, false)
    }
 
-   // Find a way to check font style and size and color at anchor cursor, check those
-   // here along with simple font styles
+   // Check the non-toggled font styles and apply them every time
+   SetTextColorButtonUnderlineColor(styles["color"])
+   SetHighlightColorButtonUnderlineColor(styles["background-color"])
 
 
    // Apply this at the end
@@ -77,26 +82,33 @@ function CheckStyleAtAnchor () {
 
 
 
-function ApplyFontStyle (caller, makeEdit = true) {
-   if ($(caller).attr("isOpen") == "true") {
-      caller.classList.remove("isActive")
-      $(caller).attr("isOpen", "false")
-   } else {
-      caller.classList.add("isActive")
-      $(caller).attr("isOpen", "true")
+function ApplyFontStyleToText (callerID) {
+   switch (callerID) {
+      case "menu_text_bold_btn":
+         document.execCommand('bold')
+         break
+      case "menu_text_italic_btn":
+         document.execCommand('italic')
+         break
+      case "menu_text_uline_btn":
+         document.execCommand('underline')
+         break
+      case "menu_text_fcolor_btn":
+         document.execCommand("styleWithCSS", false, true)
+         document.execCommand("foreColor", false, $("#" + callerID).attr("setColor"))
+         break
+      case "menu_text_bcolor_btn":
+         document.execCommand("styleWithCSS", false, true)
+         document.execCommand("backColor", false, $("#" + callerID).attr("setColor"))
+         break
    }
+}
 
-   if (makeEdit) {
-      switch ($(caller)[0].innerText) {
-         case "B":
-            ToggleTagAtSelection('bold')
-            break
-         case "I":
-            ToggleTagAtSelection('italic')
-            break
-         case "U":
-            ToggleTagAtSelection('underline')
-            break
-      }
-   }
+
+
+function ChangeStyle (caller) {
+   if (caller.isOpen) SetShelfStyleButtonStatus(caller.id, false)
+   else SetShelfStyleButtonStatus(caller.id, true)
+
+   ApplyFontStyleToText(caller.id)
 }

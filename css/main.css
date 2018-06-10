@@ -64,8 +64,6 @@ body {
 #content_view_wrap {
    left: 201px;
    top: 100px;
-
-   overflow: auto;
 }
 
 
@@ -150,8 +148,13 @@ body {
    width: calc(100% - 8px);
    height: calc(100% - 8px);
    padding: 4px;
+   display: inline-block;
+   white-space: pre-wrap;
 
    overflow: auto;
+
+   color: var(--content-view-font-color);
+   background-color: var(--content-view-bg-color);
 }
 
 #content_view:focus {

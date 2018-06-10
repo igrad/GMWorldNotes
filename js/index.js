@@ -172,9 +172,7 @@ $(window).on('load', function() {
    LoadThemeToScreen()
    LoadNotebookToScreen(lastOpenNotebook)
 
-   //TODO: Verify that this works. The click behavior has already been set in
-   // LoadNotebookToScreen, so this should do the trick in loading the page and changing
-   // CSS of all of the tree_view_item elements
+   // Select the page that was open last time this notebook was closed
    $("#" + lastOpenPage).click()
 
    // Set HTML final touches
@@ -184,4 +182,18 @@ $(window).on('load', function() {
    $(".list_view_item").attr("isOpen", "false")
 
    $("#lower_shelf_viewport button").attr("isOpen", "false")
+})
+
+
+
+$(document).ready(function () {
+   // Set the text shelf menu to be opened by default instead of file
+   $("#upper_shelf_btn_text").click()
+
+   // Make all document style edits using CSS instead of HTML tags
+   document.execCommand("styleWithCSS", false, true)
+
+   // Set the default colors for the font and background in text shelf menu
+   SetTextColorButtonUnderlineColor(null)
+   SetHighlightColorButtonUnderlineColor(null)
 })
