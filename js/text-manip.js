@@ -74,10 +74,6 @@ function CheckStyleAtAnchor () {
    // Check the non-toggled font styles and apply them every time
    SetTextColorButtonUnderlineColor(styles["color"])
    SetHighlightColorButtonUnderlineColor(styles["background-color"])
-
-
-   // Apply this at the end
-   currentStyles = styles
 }
 
 
@@ -93,12 +89,13 @@ function ApplyFontStyleToText (callerID) {
       case "menu_text_uline_btn":
          document.execCommand('underline')
          break
+      case "menu_text_strike_btn":
+         document.execCommand('strikeThrough')
+         break
       case "menu_text_fcolor_btn":
-         document.execCommand("styleWithCSS", false, true)
          document.execCommand("foreColor", false, $("#" + callerID).attr("setColor"))
          break
       case "menu_text_bcolor_btn":
-         document.execCommand("styleWithCSS", false, true)
          document.execCommand("backColor", false, $("#" + callerID).attr("setColor"))
          break
    }
@@ -107,8 +104,8 @@ function ApplyFontStyleToText (callerID) {
 
 
 function ChangeStyle (caller) {
-   if (caller.isOpen) SetShelfStyleButtonStatus(caller.id, false)
-   else SetShelfStyleButtonStatus(caller.id, true)
+   if (caller.isOpen) SetStyleButtonState(caller.id, false)
+   else SetStyleButtonState(caller.id, true)
 
    ApplyFontStyleToText(caller.id)
 }

@@ -173,7 +173,7 @@
 
    display: inline-grid;
    padding: 4px;
-   grid-template-columns: repeat(12, 1fr);
+   grid-template-columns: repeat(13, 1fr);
    grid-template-rows: 1fr 0fr 1fr;
 }
 
@@ -187,7 +187,7 @@
 }
 
 #menu_text_fontfamily_btn {
-   grid-column: 1 / 4;
+   grid-column: 1 / 5;
    overflow: hidden;
    white-space: nowrap;
 }
