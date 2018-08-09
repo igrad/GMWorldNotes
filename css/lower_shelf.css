@@ -150,6 +150,15 @@
    border-radius: var(--button-group-rounding);
 }
 
+.drop_down {
+   position: absolute;
+   display: none;
+
+   color: #eeeeee;
+   background-color: rgba(255, 255, 255, 0.15);
+}
+
+
 /* FILE MENU */
 
 

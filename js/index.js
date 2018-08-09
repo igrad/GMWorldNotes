@@ -197,3 +197,11 @@ $(document).ready(function () {
    SetTextColorButtonUnderlineColor(null)
    SetHighlightColorButtonUnderlineColor(null)
 })
+
+
+
+// Call some data initialization functions
+const SystemFonts = require('system-font-families').default
+const sysFonts = new SystemFonts()
+CreateFontFamilyOptions()
+CreateFontSizeOptions()
