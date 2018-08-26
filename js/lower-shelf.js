@@ -12,7 +12,11 @@ async function CreateFontFamilyOptions() {
 
    // Use @font-face in addition with local() function for each named font family
    // List each of the created fonts in the generated-fonts sheet
-   var sheet = document.styleSheets[3]
+   var sheets = document.styleSheets
+   var sheet = null
+   for (var i = 0; i < sheets.length; i++) {
+      if (sheets[i].href.includes("generated-fonts.css")) { sheet = sheets[i] }
+   }
 
    for (var i = 0; i < fontList.length; i++) {
       var fontName = fontList[i]
@@ -27,6 +31,9 @@ async function CreateFontFamilyOptions() {
          fontList.splice(index, 1)
       }
    }
+
+
+
 }
 
 
