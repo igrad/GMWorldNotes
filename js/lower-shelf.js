@@ -32,8 +32,12 @@ async function CreateFontFamilyOptions() {
       }
    }
 
-
-
+   // Go through each font and add it to the font list drop-down menu
+   for (var i = 0; i < fontList.length; i++) {
+      var fontName = fontList[i]
+      var html = "<div id='ffb-" + i + "' class='menu_text_fontfamily_dd_btn' fontfamily='" + fontName + "'>"
+      html += ""
+   }
 }
 
 
