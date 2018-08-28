@@ -109,3 +109,25 @@ function ChangeStyle (caller) {
 
    ApplyFontStyleToText(caller.id)
 }
+
+
+
+function ToggleFontFamilyDD (caller) {
+   var dropBtn = $("#menu_text_fontfamily_btn")
+   var dropMenu = $("#dd_font_fam")
+
+   if (dropMenu.attr("isOpen") == "true") {
+      dropMenu.css("display", "none")
+      dropMenu.attr("isOpen", "false")
+   } else {
+      dropMenu.css("display", "block")
+      dropMenu.css("position", "absolute")
+      dropMenu.css("height", "200px")
+      dropMenu.css("width", "200px")
+      dropMenu.css("background-color", "red")
+      dropMenu.css("z-index", "1")
+      dropMenu.css("top", dropBtn.position().top + dropBtn.outerHeight())
+      dropMenu.css("left", dropBtn.position().left)
+      dropMenu.attr("isOpen", "true")
+   }
+}

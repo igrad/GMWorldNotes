@@ -152,7 +152,7 @@
                   <div class="grid_spacer_h"></div>
 
                   <!-- Font family drop-down -->
-                  <button type="button" class="button_light bgb_left" id="menu_text_fontfamily_btn">
+                  <button type="button" class="button_light bgb_left" id="menu_text_fontfamily_btn" onclick="ToggleFontFamilyDD(this)">
                      <div style="display: inline-block; word-wrap: none; padding-left: 6px; text-align: left;">font family</div>
                   </button>
                   <button type="button" class="button_light half_width bgb_right" id="menu_text_fontfamily_drop_btn">
@@ -196,6 +196,34 @@
                <div id="menu_text_3">
 
                </div>
+
+               <!-- DROP DOWN MENUS -->
+               <div id="dd_style" class="drop_down">
+                  <div id="dd_style_super" class="button_light">
+                     <svg width="16" height="16" viewBox="0 0 16 16">
+                     <path fill="#000000" d="M12
+                     3.219v0.781h2v1h-3v-2.281l2-0.938v-0.781h-2v-1h3v2.281zM10.563 4h-2.125l-2.938 2.938-2.938-2.938h-2.125l4 4-4 4h2.125l2.938-2.938 2.938 2.938h2.125l-4-4z"></path>
+                     </svg>
+                  </div>
+
+                  <div id="dd_stype_sub" class="button_light">
+                     <svg width="16" height="16" viewBox="0 0 16 16">
+                     <path fill="#000000" d="M12 14.219v0.781h2v1h-3v-2.281l2-0.938v-0.781h-2v-1h3v2.281zM10.563 4h-2.125l-2.938 2.938-2.938-2.938h-2.125l4 4-4 4h2.125l2.938-2.938 2.938 2.938h2.125l-4-4z"></path>
+                     </svg>
+                  </div>
+               </div>
+
+
+               <div id="dd_font_fam" class="drop_down" isOpen="false">
+               </div>
+
+
+               <div id="dd_font_size" class="drop_down">
+               </div>
+
+
+               <div id="dd_list" class="drop_down">
+               </div>
             </div>
 
 
@@ -228,36 +256,6 @@
                <!-- This displays all information about the node itself. -->
             </div>
          </div>
-      </div>
-
-
-
-      <!-- DROP DOWN MENUS -->
-      <div id="dd_style" class="drop_down">
-         <div id="dd_style_super" class="button_light">
-            <svg width="16" height="16" viewBox="0 0 16 16">
-            <path fill="#000000" d="M12
-            3.219v0.781h2v1h-3v-2.281l2-0.938v-0.781h-2v-1h3v2.281zM10.563 4h-2.125l-2.938 2.938-2.938-2.938h-2.125l4 4-4 4h2.125l2.938-2.938 2.938 2.938h2.125l-4-4z"></path>
-            </svg>
-         </div>
-
-         <div id="dd_stype_sub" class="button_light">
-            <svg width="16" height="16" viewBox="0 0 16 16">
-            <path fill="#000000" d="M12 14.219v0.781h2v1h-3v-2.281l2-0.938v-0.781h-2v-1h3v2.281zM10.563 4h-2.125l-2.938 2.938-2.938-2.938h-2.125l4 4-4 4h2.125l2.938-2.938 2.938 2.938h2.125l-4-4z"></path>
-            </svg>
-         </div>
-      </div>
-
-
-      <div id="dd_font_fam" class="drop_down">
-      </div>
-
-
-      <div id="dd_font_size" class="drop_down">
-      </div>
-
-
-      <div id="dd_list" class="drop_down">
       </div>
    </body>
 </html>
