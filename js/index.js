@@ -114,6 +114,8 @@ function StartResizingTreeView (e) {
 
    // Set the global cursor to the resize cursor so that resizing too quickly
    // doesn't make the cursor flip between different styles rapidly
+   $("#tree_view").css("pointer-events", "none")
+   $("#shelf_view").css("pointer-events", "none")
    $("body").css("cursor", "ew-resize")
 }
 
@@ -125,7 +127,10 @@ function DoneResizingTreeView () {
       resizing = false
 
       $("#content_view").attr("contenteditable", true)
-      $("body").css("cursor", "default")
+
+      $("body").css("cursor", "inherit")
+      $("#tree_view").css("pointer-events", "all")
+      $("#shelf_view").css("pointer-events", "all")
    }
 }
 
