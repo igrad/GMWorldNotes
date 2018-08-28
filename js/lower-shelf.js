@@ -1,4 +1,4 @@
-async function CreateFontFamilyOptions() {
+async function CreateFontFamilyOptions(var showPlainTextFontNames = false) {
    var fontList = await sysFonts.getFonts().then(
       function(res) {
          console.log("Loaded " + res.length + " fonts.")
@@ -33,11 +33,19 @@ async function CreateFontFamilyOptions() {
    }
 
    // Go through each font and add it to the font list drop-down menu
+   var innerHTML = ""
    for (var i = 0; i < fontList.length; i++) {
-      var fontName = fontList[i]
-      var html = "<div id='ffb-" + i + "' class='menu_text_fontfamily_dd_btn' fontfamily='" + fontName + "'>"
-      html += ""
+      let fontName = fontList[i]
+      let html = "<div id='ffb-" + i + "' class='menu_text_fontfamily_dd_opt_btn'>"
+      html += "<div id='ffb-ex-" + i + "' class='menu_text_fontfamily_dd_opt_ex' style='font-family:" + fontName + "; font-size: 1em;'>" + fontName + "</div>"
+      if (showPlainTextFontNames) {
+         html += "<br/><div id='ffb-st-" + i + "' class='menu_text_fontfamily_dd_opt_st'>" + fontName + "</div>"
+      }
+      html += "</div>"
+
+      innerHTML += html
    }
+   $("#dd_font_fam")[0].innerHTML = innerHTML
 }
 
 

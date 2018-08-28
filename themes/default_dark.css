@@ -26,6 +26,13 @@
 
 
 
+   --font-preview-menu-bg-color: #343434;
+   --font-preview-opt-bg-color: #ffffff;
+   --font-preview-opt-example-text-color: #000000;
+   --font-preview-opt-standard-text-color: rgba(0, 0, 0, 0.75);
+
+
+
    --treeview-bg-color: #cccccc;
    --treeview-font-color: #111111;
    --treeview-bg-color-selected: #aaaaaa;
