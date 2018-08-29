@@ -212,6 +212,8 @@
    overflow-y: auto;
    overflow-x: hidden;
 
+   cursor: pointer;
+
    min-height: 100px;
    height: 400px;
 
@@ -232,7 +234,13 @@
    background-color: var(--font-preview-opt-bg-color);
 
    padding: 2px;
-   margin-top: 1px;
+   margin-bottom: 1px;
+
+   cursor: pointer;
+}
+
+.menu_text_fontfamily_dd_opt_btn:hover {
+   background-color: var(--font-preview-opt-bg-hovor-color);
 }
 
 .menu_text_fontfamily_dd_opt_ex {

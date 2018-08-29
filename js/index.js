@@ -210,3 +210,21 @@ const SystemFonts = require('system-font-families').default
 const sysFonts = new SystemFonts()
 CreateFontFamilyOptions()
 CreateFontSizeOptions()
+
+
+// Keep track of open drop-down menus so that there aren't multiple open
+// at a time. Also use this to close out opened drop-downs when the screen shifts
+// away from them (switching tabs).
+// When changing between two DDs, be sure to set the openDD value before calling on
+// the currently-opened DD to close.
+var openDD = null
+
+function SetOpenDD(newDDName) {
+   var newDD = $("#" + newDDName)
+
+   if (!openDD) {
+      openDD = newDD
+   } else {
+      
+   }
+}

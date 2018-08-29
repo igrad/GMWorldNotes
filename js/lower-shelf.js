@@ -1,4 +1,4 @@
-async function CreateFontFamilyOptions(var showPlainTextFontNames = false) {
+async function CreateFontFamilyOptions(showPlainTextFontNames = false) {
    var fontList = await sysFonts.getFonts().then(
       function(res) {
          console.log("Loaded " + res.length + " fonts.")

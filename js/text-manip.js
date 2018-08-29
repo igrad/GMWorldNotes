@@ -121,7 +121,6 @@ function ToggleFontFamilyDD (caller) {
       dropMenu.attr("isOpen", "false")
    } else {
       dropMenu.css("display", "inline-block")
-      dropMenu.css("z-index", "1")
       dropMenu.css("top", dropBtn.position().top + dropBtn.outerHeight())
       dropMenu.css("left", dropBtn.position().left)
       dropMenu.attr("isOpen", "true")
