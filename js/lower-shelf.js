@@ -34,7 +34,9 @@ async function CreateFontFamilyOptions(showPlainTextFontNames = false) {
 
    // Go through each font and add it to the font list drop-down menu
    var innerHTML = ""
-   fontList.push("Arial", "Helvetica", "Tahoma", "Verdana")
+   for (var iter in ["Arial", "Helvetica", "Tahoma", "Verdana"]) {
+      if (!fontList.includes(iter)) fontList.push(iter)
+   }
    fontList.sort()
 
    for (var i = 0; i < fontList.length; i++) {
