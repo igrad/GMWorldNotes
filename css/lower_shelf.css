@@ -259,3 +259,7 @@
 
    padding-left: 0px;
 }
+
+.isActive_dark {
+   background-color: var(--font-preview-opt-bg-active-color);
+}

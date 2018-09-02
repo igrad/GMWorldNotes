@@ -34,10 +34,15 @@ async function CreateFontFamilyOptions(showPlainTextFontNames = false) {
 
    // Go through each font and add it to the font list drop-down menu
    var innerHTML = ""
+   fontList.push("Arial", "Helvetica", "Tahoma", "Verdana")
+   fontList.sort()
+
    for (var i = 0; i < fontList.length; i++) {
-      let fontName = fontList[i]
-      let html = "<div id='ffb-" + i + "' class='menu_text_fontfamily_dd_opt_btn'>"
+      var fontName = fontList[i]
+      var html = "<div id='ffb-" + i + "' class='menu_text_fontfamily_dd_opt_btn' "
+      html += "onClick='SetActiveFont(this)' fontName='" + fontName + "'>"
       html += "<div id='ffb-ex-" + i + "' class='menu_text_fontfamily_dd_opt_ex' style='font-family:" + fontName + "; font-size: 1em;'>" + fontName + "</div>"
+
       if (showPlainTextFontNames) {
          html += "<br/><div id='ffb-st-" + i + "' class='menu_text_fontfamily_dd_opt_st'>" + fontName + "</div>"
       }
@@ -51,5 +56,53 @@ async function CreateFontFamilyOptions(showPlainTextFontNames = false) {
 
 
 function CreateFontSizeOptions() {
-   console.log("Loaded font data!")
+   var range = [8, 9, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72]
+
+   var innerHTML = ""
+   for (var i = 0; i < range.length; i++) {
+      let fontSize = range[i]
+      var html = "<div id='fsb-" + i + "' class='menu_text_fontsize_dd_opt_btn' "
+      html += "onClick='SetActiveFontSize(this)' fontSize='" + fontSize + "'>"
+      html += "<div id='fsb-ex-" + i + "' class='menu_text_fontsize_dd_opt_ex' "
+      html += "style='font-size: " + fontSize + ";'>" + fontSize + "</div>"
+
+      innerHTML += html
+   }
+   innerHTML += "</div>"
+
+   $("#dd_font_size")[0].innerHTML = innerHTML
+}
+
+
+
+function ToggleFontFamilyDD(caller) {
+   var dropBtn = $("#menu_text_fontfamily_btn")
+   var dropMenu = $("#dd_font_fam")
+
+   if (dropMenu.attr("isOpen") == "true") {
+      dropMenu.css("display", "none")
+      dropMenu.attr("isOpen", "false")
+   } else {
+      dropMenu.css("display", "inline-block")
+      dropMenu.css("top", dropBtn.position().top + dropBtn.outerHeight())
+      dropMenu.css("left", dropBtn.position().left)
+      dropMenu.attr("isOpen", "true")
+   }
+}
+
+
+
+function ToggleFontSizeDD(caller) {
+   var dropBtn = $("#menu_text_fontsize_btn")
+   var dropMenu = $("#dd_font_size")
+
+   if (dropMenu.attr("isOpen") == "true") {
+      dropMenu.css("display", "none")
+      dropMenu.attr("isOpen", "false")
+   } else {
+      dropMenu.css("display", "inline-block")
+      dropMenu.css("top", dropBtn.position().top + dropBtn.outerHeight())
+      dropMenu.css("left", dropBtn.position().left)
+      dropMenu.attr("isOpen", "true")
+   }
 }

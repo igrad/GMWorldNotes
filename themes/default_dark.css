@@ -28,7 +28,8 @@
 
    --font-preview-menu-bg-color: #343434;
    --font-preview-opt-bg-color: #ffffff;
-   --font-preview-opt-bg-hovor-color: #dedede;
+   --font-preview-opt-bg-hovor-color: #eeeeee;
+   --font-preview-opt-bg-active-color: #dddddd;
    --font-preview-opt-example-text-color: #000000;
    --font-preview-opt-standard-text-color: rgba(0, 0, 0, 0.75);
 

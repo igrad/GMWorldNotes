@@ -112,17 +112,19 @@ function ChangeStyle (caller) {
 
 
 
-function ToggleFontFamilyDD (caller) {
-   var dropBtn = $("#menu_text_fontfamily_btn")
-   var dropMenu = $("#dd_font_fam")
-
-   if (dropMenu.attr("isOpen") == "true") {
-      dropMenu.css("display", "none")
-      dropMenu.attr("isOpen", "false")
-   } else {
-      dropMenu.css("display", "inline-block")
-      dropMenu.css("top", dropBtn.position().top + dropBtn.outerHeight())
-      dropMenu.css("left", dropBtn.position().left)
-      dropMenu.attr("isOpen", "true")
+function SetActiveFont(caller) {
+   // Set background color to show selection
+   var button = $("#" + caller.id)
+   if (button.attr("isOpen") == "true") {
+      button[0].classList.remove("isActive_dark")
+      button.attr("isOpen", "false")
    }
+   else if (button.attr("isOpen") != "true") {
+      button[0].classList.add("isActive_dark")
+      button.attr("isOpen", "true")
+      ToggleFontFamilyDD(caller)
+   }
+
+   // Apply font family to selected text
+   document.execCommand("fontName", button.attr("fontName"))
 }
