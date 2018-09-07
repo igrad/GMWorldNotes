@@ -62,10 +62,7 @@ async function CreateFontFamilyOptions(showPlainTextFontNames = false) {
 
 
 
-function ToggleFontFamilyDD(caller) {
-   var dropBtn = $("#menu_text_fontfamily_btn")
-   var dropMenu = $("#dd_font_fam")
-
+function ToggleDD(dropBtn, dropMenu) {
    if (dropMenu.attr("isOpen") == "true") {
       dropMenu.css("display", "none")
       dropMenu.attr("isOpen", "false")
@@ -82,22 +79,18 @@ function ToggleFontFamilyDD(caller) {
 }
 
 
+function ToggleFontFamilyDD(caller) {
+   ToggleDD($("#menu_text_fontfamily_btn"), $("#dd_font_fam"))
+}
+
+
 
 function ToggleFontSizeDD(caller) {
-   var dropBtn = $("#menu_text_size_btn")
-   var dropMenu = $("#dd_font_size")
+   ToggleDD($("#menu_text_size_btn"), $("#dd_font_size"))
+}
 
-   if (dropMenu.attr("isOpen") == "true") {
-      dropMenu.css("display", "none")
-      dropMenu.attr("isOpen", "false")
-      dropBtn[0].classList.remove("isActive")
-   } else {
-      CloseDropDowns()
 
-      dropMenu.css("display", "inline-block")
-      dropMenu.css("top", dropBtn.position().top + dropBtn.outerHeight())
-      dropMenu.css("left", dropBtn.position().left)
-      dropMenu.attr("isOpen", "true")
-      dropBtn[0].classList.add("isActive")
-   }
+
+function ToggleStyleDD(caller) {
+   ToggleDD($("#menu_text_style_btn"), $("#dd_style"))
 }

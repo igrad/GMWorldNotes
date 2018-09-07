@@ -1,3 +1,16 @@
+function ButtonIsOpen(button) {
+   return ($(button).attr("isOpen") == "true")
+}
+
+function ButtonSetClosed(button) {
+   $(button).attr("isOpen", "false")
+}
+
+function ButtonSetOpen(button) {
+   $(button).attr("isOpen", "true")
+}
+
+
 function SetTextColorButtonUnderlineColor (newColor) {
    if (!newColor) newColor = "var(--contentview-font-color)"
 
@@ -37,13 +50,13 @@ function GetActiveStylesAtAnchor () {
 
 function SetStyleButtonState (buttonID, newStatus) {
    var button = $("#" + buttonID)
-   if ((button.attr("isOpen")) && (!newStatus)) {
+   if (ButtonIsOpen(button) && (!newStatus)) {
       button[0].classList.remove("isActive")
-      button.attr("isOpen", "false")
+      ButtonSetClosed(button)
    }
-   if ((!button.attr("isOpen")) && (newStatus)) {
+   else if (!ButtonIsOpen(button) && (newStatus)) {
       button[0].classList.add("isActive")
-      button.attr("isOpen", "true")
+      ButtonSetOpen(button)
    }
 }
 
@@ -57,17 +70,19 @@ function CheckStyleAtAnchor () {
 
    // Go through the list of toggled styles and see which ones are active
    var triggers = {
-      "font-style": ["italic", "menu_text_italic_btn"],
-      "font-weight": ["bold", "menu_text_bold_btn"],
-      "text-decoration-line": ["underline", "menu_text_uline_btn"]
+      0: ["font-style", "italic", "menu_text_italic_btn"],
+      1: ["font-weight", "bold", "menu_text_bold_btn"],
+      2: ["text-decoration-line", "underline", "menu_text_uline_btn"],
+      3: ["text-decoration-line", "line-through", "menu_text_strike_btn"]
    }
 
-   for (trigger in triggers) {
+   for (index in triggers) {
+      var trigger = triggers[index][0]
       var style = styles[trigger]
-      var active = trigger[0]
-      var button = trigger[1]
+      var active = triggers[index][1]
+      var button = triggers[index][2]
 
-      if (style == active) SetStyleButtonState(button, true)
+      if (style && style.includes(active)) SetStyleButtonState(button, true)
       else SetStyleButtonState(button, false)
    }
 
@@ -98,13 +113,19 @@ function ApplyFontStyleToText (callerID) {
       case "menu_text_bcolor_btn":
          document.execCommand("backColor", false, $("#" + callerID).attr("setColor"))
          break
+      case "menu_text_super_btn":
+         document.execCommand("superscript")
+         break
+      case "menu_text_sub_btn":
+         document.execCommand("subscript")
+         break
    }
 }
 
 
 
 function ChangeStyle (caller) {
-   if (caller.isOpen) SetStyleButtonState(caller.id, false)
+   if (ButtonIsOpen(caller)) SetStyleButtonState(caller.id, false)
    else SetStyleButtonState(caller.id, true)
 
    ApplyFontStyleToText(caller.id)
@@ -114,7 +135,7 @@ function ChangeStyle (caller) {
 
 function SetActiveFont(caller) {
    // Set background color to show selection
-   var button = $("#" + caller.id)
+   var button = $(caller)
    var oldSelection = $("#" + $("#dd_font_fam").attr("selectedIndex"))[0]
    oldSelection.classList.remove("isActive_dd")
 
@@ -131,7 +152,7 @@ function SetActiveFont(caller) {
 
 function SetActiveFontSize(caller) {
    // Set background color to show selection
-   var button = $("#" + caller.id)
+   var button = $(caller)
    var oldSelection = $("#" + $("#dd_font_size").attr("selectedIndex"))[0]
    oldSelection.classList.remove("isActive_dd")
 

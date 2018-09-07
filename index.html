@@ -103,13 +103,13 @@
                      </div>
                   </button>
                   <!-- STRIKETHROUGH -->
-                  <button type="button" class="button_light bgb_right" id="menu_text_strike_btn">
+                  <button type="button" class="button_light bgb_right" id="menu_text_strike_btn" onclick="ChangeStyle(this)">
                      <div style="display:inline-block;text-decoration:line-through">
                         S
                      </div>
                   </button>
                   <!-- DROPDOWN -->
-                  <button type="button" class="button_light half_width bgb_right" id="menu_text_font_style_btn">
+                  <button type="button" class="button_light half_width bgb_right" id="menu_text_style_btn">
                      <div style="display:inline-block">▿</div>
                   </button>
 
@@ -251,7 +251,13 @@
                </div>
 
 
+               <div id="dd_style" class="drop_down" isOpen="false" selectedIndex="stb-0" owner="menu_text_style_btn">
+                  <!-- Superscript, subscript -->
+                  <div id="stb-0" class="menu_text_style_dd_opt_btn" onClick="ChangeStyle(this)"> </div>
+               </div>
+
                <div id="dd_list" class="drop_down">
+                  <div id=""></div>
                </div>
             </div>
 
