@@ -1,12 +1,11 @@
-/* Single-styles */
+/* Quick styles */
 .text_left {
    text-align: left;
 }
 
 
 
-
-/* Overview */
+/* Section structuring */
 body, html {
    margin: 0px;
    height: 100%;
@@ -68,8 +67,6 @@ body {
 
 
 
-
-
 /* Shelf */
 .upper_shelf_btn {
    /* Button on the upper shelf */
@@ -99,7 +96,7 @@ body {
 
 
 
-/* Items in the tree node */
+/* Items in the tree view */
 .tree_view_item {
    width: calc((100%) - (4px));
    height: var(--treeview-item-height);
@@ -129,6 +126,7 @@ body {
 }
 
 
+
 /* Content View */
 #save_notification {
    width: 60px;
@@ -153,8 +151,8 @@ body {
 
    overflow: auto;
 
-   color: var(--content-view-font-color);
-   background-color: var(--content-view-bg-color);
+   color: var(--contentview-font-color);
+   background-color: var(--contentview-bg-color);
 }
 
 #content_view:focus {

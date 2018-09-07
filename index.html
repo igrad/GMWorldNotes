@@ -120,7 +120,7 @@
                      <div id="text_color" style="display: inline-block; box-shadow: inset 0 -2px 0 black;" setColor="currentColor">A</div>
                   </button>
                   <button type="button" class="button_light bgb_right" id="menu_text_bcolor_btn" onclick="ChangeStyle(this)">
-                     <div id="highlight_color" style="display: inline-block; background-color: yellow; color: black; padding: 2px" setColor="currentColor">A</div>
+                     <div id="highlight_color" style="display: inline-block; padding: 2px" setColor="currentColor">A</div>
                   </button>
 
                   <div class="grid_spacer"></div>
@@ -153,19 +153,19 @@
 
                   <!-- Font family drop-down -->
                   <button type="button" class="button_light bgb_left" id="menu_text_fontfamily_btn" onclick="ToggleFontFamilyDD(this)">
-                     <div style="display: inline-block; word-wrap: none; padding-left: 6px; text-align: left;">font family</div>
+                     <div style="display: inline-block; word-wrap: none; padding-left: 6px; text-align: left;">Arial</div>
                   </button>
-                  <button type="button" class="button_light half_width bgb_right" id="menu_text_fontfamily_drop_btn">
+                  <button type="button" class="button_light half_width bgb_right" id="menu_text_fontfamily_drop_btn" onclick="ToggleFontFamilyDD(this)">
                      <div style="display:inline-block">▿</div>
                   </button>
 
                   <div class="grid_spacer"></div>
 
                   <!-- Font size -->
-                  <button type="button" class="button_light bgb_left" id="menu_text_size_btn">
-                     <div style="display:inline-block">12</div>
+                  <button type="button" class="button_light bgb_left" id="menu_text_size_btn" onclick="ToggleFontSizeDD(this)">
+                     <div style="display:inline-block">3</div>
                   </button>
-                  <button type="button" class="button_light half_width bgb_right" id="menu_text_size_drop_btn">
+                  <button type="button" class="button_light half_width bgb_right" id="menu_text_size_drop_btn" onclick="ToggleFontSizeDD(this)">
                      <div style="display:inline-block">▿</div>
                   </button>
 
@@ -214,37 +214,38 @@
                </div>
 
 
-               <div id="dd_font_fam" class="drop_down" isOpen="false" toggleOpen="ToggleFontFamilyDD(this)">
+               <div id="dd_font_fam" class="drop_down" isOpen="false" selectedIndex="ffb-0" owner="menu_text_fontfamily_btn">
                </div>
 
 
-               <div id="dd_font_size" class="drop_down" isOpen="false" toggleOpen="ToggleFontSizeDD(this)">
-                  <div id="fsb-1" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this' fontSize="1">
-                     <div id="fsb-ex-1" class="menu_text_fontsize_dd_opt_ex">Extra Small
+               <div id="dd_font_size" class="drop_down" isOpen="false" selectedIndex="fsb-4" owner="menu_text_size_btn">
+                  <div id="fsb-1" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this)' fontSize="1">
+                     <div id="fsb-ex-1" class="menu_text_fontsize_dd_opt_ex" style="font-size: xx-small;">Tiny
                      </div>
                   </div>
-                  <div id="fsb-2" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this' fontSize="2">
-                     <div id="fsb-ex-1" class="menu_text_fontsize_dd_opt_ex">Small
+                  <div id="fsb-2" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this)' fontSize="2">
+                     <div id="fsb-ex-2" class="menu_text_fontsize_dd_opt_ex"
+                     style="font-size: x-small;">Small
                      </div>
                   </div>
-                  <div id="fsb-3" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this' fontSize="3">
-                     <div id="fsb-ex-3" class="menu_text_fontsize_dd_opt_ex">Normal
+                  <div id="fsb-3" class="menu_text_fontsize_dd_opt_btn isActive_dd" onClick='SetActiveFontSize(this)' fontSize="3">
+                     <div id="fsb-ex-3" class="menu_text_fontsize_dd_opt_ex"
+                     style="font-size: small;">Normal
                      </div>
                   </div>
-                  <div id="fsb-4" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this' fontSize="4">
-                     <div id="fsb-ex-4" class="menu_text_fontsize_dd_opt_ex">Large
+                  <div id="fsb-4" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this)' fontSize="4">
+                     <div id="fsb-ex-4" class="menu_text_fontsize_dd_opt_ex"
+                     style="font-size: normal;">Large
                      </div>
                   </div>
-                  <div id="fsb-5" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this' fontSize="5">
-                     <div id="fsb-ex-5" class="menu_text_fontsize_dd_opt_ex">Extra Large
+                  <div id="fsb-5" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this)' fontSize="5">
+                     <div id="fsb-ex-5" class="menu_text_fontsize_dd_opt_ex"
+                     style="font-size: x-large;">Header
                      </div>
                   </div>
-                  <div id="fsb-6" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this' fontSize="6">
-                     <div id="fsb-ex-6" class="menu_text_fontsize_dd_opt_ex">2XL
-                     </div>
-                  </div>
-                  <div id="fsb-7" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this' fontSize="7">
-                     <div id="fsb-ex-7" class="menu_text_fontsize_dd_opt_ex">3XL
+                  <div id="fsb-6" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this)' fontSize="6">
+                     <div id="fsb-ex-6" class="menu_text_fontsize_dd_opt_ex"
+                     style="font-size: x-large;">Title
                      </div>
                   </div>
                </div>

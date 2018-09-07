@@ -115,16 +115,31 @@ function ChangeStyle (caller) {
 function SetActiveFont(caller) {
    // Set background color to show selection
    var button = $("#" + caller.id)
-   if (button.attr("isOpen") == "true") {
-      button[0].classList.remove("isActive_dark")
-      button.attr("isOpen", "false")
-   }
-   else if (button.attr("isOpen") != "true") {
-      button[0].classList.add("isActive_dark")
-      button.attr("isOpen", "true")
-      ToggleFontFamilyDD(caller)
-   }
+   var oldSelection = $("#" + $("#dd_font_fam").attr("selectedIndex"))[0]
+   oldSelection.classList.remove("isActive_dd")
+
+   button[0].classList.add("isActive_dd")
+   $("#dd_font_fam").attr("selectedIndex", caller.id)
+   $("#menu_text_font_btn")[0].innerText = button.attr("fontName")
+   ToggleFontFamilyDD(caller)
 
    // Apply font family to selected text
    document.execCommand("fontName", button.attr("fontName"))
+}
+
+
+
+function SetActiveFontSize(caller) {
+   // Set background color to show selection
+   var button = $("#" + caller.id)
+   var oldSelection = $("#" + $("#dd_font_size").attr("selectedIndex"))[0]
+   oldSelection.classList.remove("isActive_dd")
+
+   button[0].classList.add("isActive_dd")
+   $("#dd_font_size").attr("selectedIndex", caller.id)
+   $("#menu_text_size_btn")[0].innerText = button.attr("fontSize")
+   ToggleFontSizeDD(caller)
+
+   // Apply font family to selected text
+   document.execCommand("fontSize", false, button.attr("fontSize"))
 }

@@ -1,21 +1,29 @@
 :root {
+   /* Shelf structuring */
    --shelf-height: 100px;
    --shelf-top-font-size: medium;
    --shelf-top-side-padding: 16px;
    --shelf-top-vert-padding: 4px;
 
+   /* Upper shelf styling */
    --shelf-top-bg-color: #232323;
    --shelf-top-bg-color-hover: #343434;
    --shelf-top-bg-color-open: #454545;
    --shelf-top-font-color: #dddddd;
-   --shelf-top-font-color-hover: #ffffff;
-   --shelf-top-font-color-open: #ffffff;
+   --shelf-top-font-color-hover: #f1f1f1;
+   --shelf-top-font-color-open: #f1f1f1;
 
-
+   /* Lower shelf styling */
    --shelf-lower-height: 73px;
-
    --shelf-lower-bg-color: #454545;
 
+   /* Shelf buttons */
+   --button-bg-color: #5f5f5f;
+   --button-fore-color: #eeeeee;
+   --button-bg-color-hover: #6e6e6e;
+   --button-fore-color-hover: #f1f1f1;
+   --button-bg-color-active: #7d7d7d;
+   --button-fore-color-active: #f1f1f1;
    --button-group-border-width: 1px;
    --button-group-border-style: solid;
    --button-group-border-color: #434343;
@@ -24,40 +32,40 @@
    --button-group-separator-color: #525252;
    --button-group-rounding: 3px;
 
-
-
-   --font-preview-menu-bg-color: #343434;
-   --font-preview-opt-bg-color: #ffffff;
-   --font-preview-opt-bg-hovor-color: #eeeeee;
-   --font-preview-opt-bg-active-color: #dddddd;
-   --font-preview-opt-example-text-color: #000000;
+   /* Font family and size selection drop down menus */
+   --font-preview-menu-bg-color: #333333;
+   --font-preview-opt-bg-color: #232323;
+   --font-preview-opt-bg-hovor-color: #333333;
+   --font-preview-opt-bg-active-color: #444444;
+   --font-preview-opt-example-text-color: #f1f1f1;
    --font-preview-opt-standard-text-color: rgba(0, 0, 0, 0.75);
 
 
-
-   --treeview-bg-color: #cccccc;
-   --treeview-font-color: #111111;
-   --treeview-bg-color-selected: #aaaaaa;
-   --treeview-font-color-selected: #000000;
-   --treeview-item-bg-color: #cccccc;
-   --treeview-item-font-color: #111111;
-   --treeview-item-bg-color-hover: #dedede;
-   --treeview-item-font-color-hover: #121212;
-   --treeview-item-bg-color-active: #fefefe;
-   --treeview-item-font-color-active: #212121;
-
+   /* Tree view styling */
+   --treeview-bg-color: #2c2c2c;
+   --treeview-font-color: #dddddd;
+   --treeview-font-color-selected: #dedede;
+   --treeview-item-bg-color: #2c2c2c;
+   --treeview-item-font-color: #dddddd;
+   --treeview-item-bg-color-hover: #333333;
+   --treeview-item-font-color-hover: #dedede;
+   --treeview-item-bg-color-active: #3c3c3c;
+   --treeview-item-font-color-active: #dedede;
 
    --treeview-depth-indent: 12px;
    --treeview-item-height: 24px;
 
 
-   --resizebar-bg-color: #ababab;
+   /* Resize bar styling */
+   --resizebar-bg-color: #565656;
 
 
+   /* Save notification styling */
    --save-notification-bg-color: #dddddd;
    --save-notification-font-color: #777777;
 
 
-   --contentview-bg-color: #ffffff;
-   --contentview-font-color: #000000;
+   /* Content view styling */
+   --contentview-bg-color: #232323;
+   --contentview-font-color: #f1f1f1;
 }
