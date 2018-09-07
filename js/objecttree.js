@@ -115,12 +115,9 @@ class TreeNode {
    }
 }
 
-let qwerty = {}
 class Tree {
    constructor (data) {
       this.nodes = {}
-
-      qwerty = data
 
       try {
          var rawJSON = JSON.parse(data)

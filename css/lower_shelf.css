@@ -21,8 +21,8 @@
 }
 
 .isActive {
-   color: var(--button-fore-color-active);
-   background-color: var(--button-bg-color-active);
+   color: var(--button-fore-color-active) !important;
+   background-color: var(--button-bg-color-active) !important;
 }
 
 .half_width {
@@ -154,8 +154,16 @@
    position: absolute;
    display: none;
 
-   color: #eeeeee;
-   background-color: rgba(255, 255, 255, 0.15);
+   background-color: var(--font-preview-menu-bg-color);
+   color: var(--font-preview-opt-example-text-color);
+   border: 1px solid gray;
+
+   overflow-y: auto;
+   overflow-x: hidden;
+
+   cursor: pointer;
+
+   z-index: 1;
 }
 
 
@@ -203,25 +211,17 @@
 
 
 
+/* Drop down menus */
+.isActive_dd {
+   background-color: var(--font-preview-opt-bg-active-color) !important;
+}
+
+/* Font family drop down menu */
 #dd_font_fam {
-   position: absolute;
-
-   background-color: var(--font-preview-menu-bg-color);
-   color: var(--font-preview-opt-example-text-color);
-   border: 1px solid gray;
-
-   overflow-y: auto;
-   overflow-x: hidden;
-
-   cursor: pointer;
-
    min-height: 100px;
    height: 400px;
 
    min-width: 50px;
-   max-width: 300px;
-
-   z-index: 1;
 }
 
 .menu_text_fontfamily_dd_opt_btn {
@@ -256,25 +256,14 @@
    padding-left: 0px;
 }
 
+
+
+/* Font size drop down menu */
 #dd_font_size {
-   position: absolute;
-
-   background-color: var(--font-preview-menu-bg-color);
-   color: var(--font-preview-opt-example-text-color);
-   border: 1px solid gray;
-   padding: 2px;
-
-   overflow-y: auto;
-   overflow-x: hidden;
-
-   cursor: pointer;
-
    min-height: 100px;
 
    min-width: 50px;
    max-width: 300px;
-
-   z-index: 1;
 }
 
 .menu_text_fontsize_dd_opt_btn {
@@ -290,6 +279,19 @@
    background-color: var(--font-preview-opt-bg-hovor-color);
 }
 
-.isActive_dd {
-   background-color: var(--font-preview-opt-bg-active-color);
+
+
+/* Font styles drop down menu */
+.menu_text_style_dd_opt_btn {
+   background-color: var(--font-preview-opt-bg-color);
+   color: var(--font-preview-opt-example-text-color);
+
+   padding: 4px;
+   margin-bottom: 1px;
+
+   cursor: pointer;
+}
+
+.menu_text_style_dd_opt_btn:hover {
+   background-color: var(--font-preview-opt-bg-hovor-color);
 }

@@ -109,7 +109,7 @@
                      </div>
                   </button>
                   <!-- DROPDOWN -->
-                  <button type="button" class="button_light half_width bgb_right" id="menu_text_style_btn">
+                  <button type="button" class="button_light half_width bgb_right" id="menu_text_style_btn" onclick="ToggleStyleDD(this)">
                      <div style="display:inline-block">▿</div>
                   </button>
 
@@ -198,22 +198,6 @@
                </div>
 
                <!-- DROP DOWN MENUS -->
-               <div id="dd_style" class="drop_down">
-                  <div id="dd_style_super" class="button_light">
-                     <svg width="16" height="16" viewBox="0 0 16 16">
-                     <path fill="#000000" d="M12
-                     3.219v0.781h2v1h-3v-2.281l2-0.938v-0.781h-2v-1h3v2.281zM10.563 4h-2.125l-2.938 2.938-2.938-2.938h-2.125l4 4-4 4h2.125l2.938-2.938 2.938 2.938h2.125l-4-4z"></path>
-                     </svg>
-                  </div>
-
-                  <div id="dd_stype_sub" class="button_light">
-                     <svg width="16" height="16" viewBox="0 0 16 16">
-                     <path fill="#000000" d="M12 14.219v0.781h2v1h-3v-2.281l2-0.938v-0.781h-2v-1h3v2.281zM10.563 4h-2.125l-2.938 2.938-2.938-2.938h-2.125l4 4-4 4h2.125l2.938-2.938 2.938 2.938h2.125l-4-4z"></path>
-                     </svg>
-                  </div>
-               </div>
-
-
                <div id="dd_font_fam" class="drop_down" isOpen="false" selectedIndex="ffb-0" owner="menu_text_fontfamily_btn">
                </div>
 
@@ -251,9 +235,18 @@
                </div>
 
 
-               <div id="dd_style" class="drop_down" isOpen="false" selectedIndex="stb-0" owner="menu_text_style_btn">
-                  <!-- Superscript, subscript -->
-                  <div id="stb-0" class="menu_text_style_dd_opt_btn" onClick="ChangeStyle(this)"> </div>
+               <div id="dd_style" class="drop_down" isOpen="false" owner="menu_text_style_btn">
+                  <div id="menu_text_super_btn" class="menu_text_style_dd_opt_btn" onClick="ChangeStyle(this)">
+                     <svg width="16" height="16" viewBox="0 0 16 16">
+                     <path fill="currentColor" fill="#000000" d="M12
+                     3.219v0.781h2v1h-3v-2.281l2-0.938v-0.781h-2v-1h3v2.281zM10.563 4h-2.125l-2.938 2.938-2.938-2.938h-2.125l4 4-4 4h2.125l2.938-2.938 2.938 2.938h2.125l-4-4z"></path>
+                     </svg>
+                  </div>
+                  <div id="menu_text_sub_btn" class="menu_text_style_dd_opt_btn" onClick="ChangeStyle(this)">
+                     <svg width="16" height="16" viewBox="0 0 16 16">
+                     <path fill="currentColor" fill="#000000" d="M12 14.219v0.781h2v1h-3v-2.281l2-0.938v-0.781h-2v-1h3v2.281zM10.563 4h-2.125l-2.938 2.938-2.938-2.938h-2.125l4 4-4 4h2.125l2.938-2.938 2.938 2.938h2.125l-4-4z"></path>
+                     </svg>
+                  </div>
                </div>
 
                <div id="dd_list" class="drop_down">
@@ -287,7 +280,7 @@
 
          <div id="content_view_wrap">
             <div id="save_notification">Saving...</div>
-            <div id="content_view" contenteditable="true" spellcheck="true" oninput="ContentEdited()" onclick="CheckStyleAtAnchor()">
+            <div id="content_view" contenteditable="true" spellcheck="true" oninput="ContentEdited()" onclick="CheckStyleAtAnchor()" onkeyup="CheckStyleAtAnchor()">
                <!-- This displays all information about the node itself. -->
             </div>
          </div>

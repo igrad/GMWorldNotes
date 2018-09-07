@@ -73,7 +73,9 @@ function CheckStyleAtAnchor () {
       0: ["font-style", "italic", "menu_text_italic_btn"],
       1: ["font-weight", "bold", "menu_text_bold_btn"],
       2: ["text-decoration-line", "underline", "menu_text_uline_btn"],
-      3: ["text-decoration-line", "line-through", "menu_text_strike_btn"]
+      3: ["text-decoration-line", "line-through", "menu_text_strike_btn"],
+      4: ["vertical-align", "super", "menu_text_super_btn"],
+      5: ["vertical-align", "sub", "menu_text_sub_btn"]
    }
 
    for (index in triggers) {
@@ -115,9 +117,15 @@ function ApplyFontStyleToText (callerID) {
          break
       case "menu_text_super_btn":
          document.execCommand("superscript")
+         if(ButtonIsOpen("#menu_text_sub_btn")) {
+            SetStyleButtonState("menu_text_sub_btn", false)
+         }
          break
       case "menu_text_sub_btn":
          document.execCommand("subscript")
+         if(ButtonIsOpen("#menu_text_super_btn")) {
+            SetStyleButtonState("menu_text_super_btn", false)
+         }
          break
    }
 }
