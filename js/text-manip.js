@@ -88,6 +88,34 @@ function CheckStyleAtAnchor () {
       else SetStyleButtonState(button, false)
    }
 
+   if (styles["font-size"]) {
+      switch(styles["font-size"]) {
+         case "x-small":
+            SetActiveFontSizeSelection($("#fsb-1"))
+            break
+         case "small":
+            SetActiveFontSizeSelection($("#fsb-2"))
+            break
+         case "large":
+            SetActiveFontSizeSelection($("#fsb-4"))
+            break
+         case "x-large":
+            SetActiveFontSizeSelection($("#fsb-5"))
+            break
+         case "xx-large":
+            SetActiveFontSizeSelection($("#fsb-6"))
+            break
+      }
+   } else {
+      SetActiveFontSizeSelection($("#fsb-3"))
+   }
+
+   if (styles["font-family"]) {
+      SetActiveFontSelection($("[fontName=" + styles["font-family"] + "]"))
+   } else {
+      SetActiveFontSelection($("[fontName=Arial]"))
+   }
+
    // Check the non-toggled font styles and apply them every time
    SetTextColorButtonUnderlineColor(styles["color"])
    SetHighlightColorButtonUnderlineColor(styles["background-color"])
@@ -117,13 +145,13 @@ function ApplyFontStyleToText (callerID) {
          break
       case "menu_text_super_btn":
          document.execCommand("superscript")
-         if(ButtonIsOpen("#menu_text_sub_btn")) {
+         if (ButtonIsOpen("#menu_text_sub_btn")) {
             SetStyleButtonState("menu_text_sub_btn", false)
          }
          break
       case "menu_text_sub_btn":
          document.execCommand("subscript")
-         if(ButtonIsOpen("#menu_text_super_btn")) {
+         if (ButtonIsOpen("#menu_text_super_btn")) {
             SetStyleButtonState("menu_text_super_btn", false)
          }
          break
@@ -141,34 +169,44 @@ function ChangeStyle (caller) {
 
 
 
-function SetActiveFont(caller) {
-   // Set background color to show selection
-   var button = $(caller)
+function SetActiveFontSelection(button) {
+   button = $(button)
    var oldSelection = $("#" + $("#dd_font_fam").attr("selectedIndex"))[0]
    oldSelection.classList.remove("isActive_dd")
 
    button[0].classList.add("isActive_dd")
-   $("#dd_font_fam").attr("selectedIndex", caller.id)
-   $("#menu_text_font_btn")[0].innerText = button.attr("fontName")
+   $("#dd_font_fam").attr("selectedIndex", button[0].id)
+   $("#menu_text_fontfamily_btn")[0].innerText = button.attr("fontName")
+}
+
+
+
+function SetActiveFont(caller) {
    ToggleFontFamilyDD(caller)
+   SetActiveFontSelection(caller)
 
    // Apply font family to selected text
-   document.execCommand("fontName", button.attr("fontName"))
+   document.execCommand("fontName", false, $(caller).attr("fontName"))
+}
+
+
+
+function SetActiveFontSizeSelection(button) {
+   button = $(button)
+   var oldSelection = $("#" + $("#dd_font_size").attr("selectedIndex"))[0]
+   oldSelection.classList.remove("isActive_dd")
+
+   button[0].classList.add("isActive_dd")
+   $("#dd_font_size").attr("selectedIndex", button[0].id)
+   $("#menu_text_size_btn")[0].innerText = button.attr("fontSize")
 }
 
 
 
 function SetActiveFontSize(caller) {
-   // Set background color to show selection
-   var button = $(caller)
-   var oldSelection = $("#" + $("#dd_font_size").attr("selectedIndex"))[0]
-   oldSelection.classList.remove("isActive_dd")
-
-   button[0].classList.add("isActive_dd")
-   $("#dd_font_size").attr("selectedIndex", caller.id)
-   $("#menu_text_size_btn")[0].innerText = button.attr("fontSize")
    ToggleFontSizeDD(caller)
+   SetActiveFontSizeSelection(caller)
 
    // Apply font family to selected text
-   document.execCommand("fontSize", false, button.attr("fontSize"))
+   document.execCommand("fontSize", false, $(caller).attr("fontSize"))
 }

@@ -1,6 +1,6 @@
 :root {
    /* Shelf structuring */
-   --shelf-height: 100px;
+   --shelf-height: 97px;
    --shelf-top-font-size: medium;
    --shelf-top-side-padding: 16px;
    --shelf-top-vert-padding: 4px;
@@ -45,6 +45,7 @@
    --treeview-bg-color: #2c2c2c;
    --treeview-font-color: #dddddd;
    --treeview-font-color-selected: #dedede;
+   --treeview-item-padding: 4px;
    --treeview-item-bg-color: #2c2c2c;
    --treeview-item-font-color: #dddddd;
    --treeview-item-bg-color-hover: #333333;
@@ -57,6 +58,7 @@
 
 
    /* Resize bar styling */
+   --resizebar-width: 3px;
    --resizebar-bg-color: #565656;
 
 

@@ -1,5 +1,5 @@
 function ShelfHover(caller) {
-   if($(caller).attr("isOpen") == "false") {
+   if ($(caller).attr("isOpen") == "false") {
       $(caller).css({"background-color": "var(--shelf-top-bg-color-hover)",
          "color": "var(--shelf-top-font-color-hover)"})
    }
@@ -8,7 +8,7 @@ function ShelfHover(caller) {
 
 
 function ShelfLeaveHover(caller) {
-   if($(caller).attr("isOpen") == "false") {
+   if ($(caller).attr("isOpen") == "false") {
       $(caller).css({"background-color": "var(--shelf-top-bg-color)",
          "color": "var(--shelf-top-font-color)"})
    }
@@ -36,7 +36,7 @@ function ShelfSwitch(caller) {
 
 
 function TreeViewHover(caller) {
-   if($(caller).attr("isOpen") == "false") {
+   if ($(caller).attr("isOpen") == "false") {
       $(caller).css({"background-color": "var(--treeview-item-bg-color-hover)",
          "color": "var(--treeview-item-font-color-hover)"})
    }
@@ -45,7 +45,7 @@ function TreeViewHover(caller) {
 
 
 function TreeViewLeaveHover(caller) {
-   if($(caller).attr("isOpen") == "false") {
+   if ($(caller).attr("isOpen") == "false") {
       $(caller).css({"background-color": "var(--treeview-item-bg-color)",
          "color": "var(--treeview-item-font-color)"})
    }
@@ -214,7 +214,7 @@ CreateFontFamilyOptions()
 
 function CloseDropDowns() {
    $(".drop_down").each(function(i) {
-      if($(this).attr("isOpen") == "true") {
+      if ($(this).attr("isOpen") == "true") {
          let owner = $("#" + $(this).attr("owner"))
          owner.click()
       }

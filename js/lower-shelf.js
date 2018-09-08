@@ -46,7 +46,7 @@ async function CreateFontFamilyOptions(showPlainTextFontNames = false) {
    for (var i = 0; i < fontList.length; i++) {
       var fontName = fontList[i]
       var html = "<div id='ffb-" + i + "' class='menu_text_fontfamily_dd_opt_btn"
-      if(fontName == "Arial") { html += " isActive_dd" }
+      if (fontName == "Arial") { html += " isActive_dd" }
       html += "' onClick='SetActiveFont(this)' fontName='" + fontName + "'>"
       html += "<div id='ffb-ex-" + i + "' class='menu_text_fontfamily_dd_opt_ex' style='font-family:" + fontName + "; font-size: 1em;'>" + fontName + "</div>"
 
