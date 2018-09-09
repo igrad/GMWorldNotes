@@ -63,11 +63,17 @@ body {
 #content_view_wrap {
    left: 201px;
    top: var(--shelf-height);
+
+   width: 100%;
 }
 
 
 
 /* Shelf */
+#upper_shelf {
+   display: flex;
+}
+
 .upper_shelf_btn {
    /* Button on the upper shelf */
    padding-left : var(--shelf-top-side-padding);

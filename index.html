@@ -71,13 +71,13 @@
                   <div style="display:inline-block">XXXX</div>
                </button> -->
                <div id="menu_text_1">
-                  <button type="button" class="button_light text_left bgb_top" id="menu_text_cut_btn">
+                  <button type="button" class="button_light text_left bgb_top" id="menu_text_cut_btn" onclick="document.execCommand('cut')">
                      <div style="display:inline-block">Cut</div>
                   </button>
-                  <button type="button" class="button_light text_left bgb_midv" id="menu_text_copy_btn">
+                  <button type="button" class="button_light text_left bgb_midv" id="menu_text_copy_btn" onclick="document.execCommand('copy')">
                      <div style="display:inline-block">Copy</div>
                   </button>
-                  <button type="button" class="button_light text_left bgb_bottom" id="menu_text_paste_btn">
+                  <button type="button" class="button_light text_left bgb_bottom" id="menu_text_paste_btn" onclick="document.execCommand('paste')">
                      <div style="display:inline-block">Paste</div>
                   </button>
                </div>
@@ -126,22 +126,24 @@
                   <div class="grid_spacer"></div>
 
                   <!-- Lists -->
-                  <button type="button" class="button_light bgb_left" id="menu_text_list_btn">
+                  <button type="button" class="button_light bgb_left" id="menu_text_list_btn" onClick="ChangeStyle(this)">
                      <svg width="16" height="16" viewBox="0 0 16 16">
                         <path fill="currentColor" d="M6 1h10v2h-10v-2zM6 7h10v2h-10v-2zM6 13h10v2h-10v-2zM0 2c0-1.105 0.895-2 2-2s2 0.895 2 2c0 1.105-0.895 2-2 2s-2-0.895-2-2zM0 8c0-1.105 0.895-2 2-2s2 0.895 2 2c0 1.105-0.895 2-2 2s-2-0.895-2-2zM0 14c0-1.105 0.895-2 2-2s2 0.895 2 2c0 1.105-0.895 2-2 2s-2-0.895-2-2z"></path>
                      </svg>
                   </button>
-                  <button type="button" class="button_light half_width bgb_right" id="menu_text_list_drop_btn">
-                     <div style="display:inline-block">▿</div>
+                  <button type="button" class="button_light bgb_midh" id="menu_text_numlist_btn" onClick="ChangeStyle(this)">
+                     <svg width="16" height="16" viewBox="0 0 16 16">
+                     <path fill="currentColor" d="M6 13h10v2h-10zM6 7h10v2h-10zM6 1h10v2h-10zM3 0v4h-1v-3h-1v-1zM2 8.219v0.781h2v1h-3v-2.281l2-0.938v-0.781h-2v-1h3v2.281zM4 11v5h-3v-1h2v-1h-2v-1h2v-1h-2v-1z"></path>
+                     </svg>
                   </button>
 
-                  <!-- Line Spacing -->
-                  <button type="button" class="button_light bgb_left" id="menu_text_tabinc_btn">
+                  <!-- Indent/outdent -->
+                  <button type="button" class="button_light bgb_midh" id="menu_text_tabinc_btn" onclick="document.execCommand('indent')">
                      <svg width="16" height="16" viewBox="0 0 16 16">
                         <path fill="currentColor" d="M0 1h16v2h-16zM6 4h10v2h-10zM6 7h10v2h-10zM6 10h10v2h-10zM0 13h16v2h-16zM0 11v-6l4 3z"></path>
                      </svg>
                   </button>
-                  <button type="button" class="button_light bgb_right" id="menu_text_tabdec_drop_btn">
+                  <button type="button" class="button_light bgb_right" id="menu_text_tabdec_drop_btn" onclick="document.execCommand('outdent')">
                      <svg width="16" height="16" viewBox="0 0 16 16">
                      <path fill="currentColor" d="M0 1h16v2h-16zM6 4h10v2h-10zM6 7h10v2h-10zM6 10h10v2h-10zM0 13h16v2h-16zM4 5v6l-4-3z"></path>
                      </svg>
@@ -172,22 +174,22 @@
                   <div class="grid_spacer"></div>
 
                   <!-- Font alignment -->
-                  <button type="button" class="button_light bgb_left" id="menu_text_d1_btn">
+                  <button type="button" class="button_light bgb_left" id="menu_text_alignleft_btn" onclick="document.execCommand('justifyLeft')">
                      <svg width="16" height="16" viewBox="0 0 16 16">
                         <path fill="currentColor" d="M0 1h16v2h-16zM0 4h10v2h-10zM0 10h10v2h-10zM0 7h16v2h-16zM0 13h16v2h-16z"></path>
                      </svg>
                   </button>
-                  <button type="button" class="button_light bgb_midh" id="menu_text_d1_btn">
+                  <button type="button" class="button_light bgb_midh" id="menu_text_aligncenter_btn" onclick="document.execCommand('justifyCenter')">
                      <svg width="16" height="16" viewBox="0 0 16 16">
                         <path fill="currentColor" d="M0 1h16v2h-16zM3 4h10v2h-10zM3 10h10v2h-10zM0 7h16v2h-16zM0 13h16v2h-16z"></path>
                      </svg>
                   </button>
-                  <button type="button" class="button_light bgb_midh" id="menu_text_d1_btn">
+                  <button type="button" class="button_light bgb_midh" id="menu_text_alignright_btn" onclick="document.execCommand('justifyRight')">
                      <svg width="16" height="16" viewBox="0 0 16 16">
                         <path fill="currentColor" d="M0 1h16v2h-16zM6 4h10v2h-10zM6 10h10v2h-10zM0 7h16v2h-16zM0 13h16v2h-16z"></path>
                      </svg>
                   </button>
-                  <button type="button" class="button_light bgb_right" id="menu_text_d1_btn">
+                  <button type="button" class="button_light bgb_right" id="menu_text_alignjustify_btn" onclick="document.execCommand('justifyFull')">
                      <svg width="16" height="16" viewBox="0 0 16 16">
                         <path fill="currentColor" d="M0 1h16v2h-16zM0 4h16v2h-16zM0 7h16v2h-16zM0 10h16v2h-16zM0 13h16v2h-16z"></path>
                      </svg>
@@ -243,12 +245,7 @@
                      </svg>
                   </div>
                </div>
-
-               <div id="dd_list" class="drop_down" isOpen="false" owner="menu_text_list_drop_btn">
-                  <div id=""></div>
-               </div>
             </div>
-
 
             <div class="lower_shelf_menu" id="menu_insert">
                INSERT

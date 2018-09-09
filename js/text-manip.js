@@ -88,6 +88,11 @@ function CheckStyleAtAnchor () {
       else SetStyleButtonState(button, false)
    }
 
+   // Check the non-toggled font styles and apply them every time
+   SetTextColorButtonUnderlineColor(styles["color"])
+   SetHighlightColorButtonUnderlineColor(styles["background-color"])
+
+   // Get font size
    if (styles["font-size"]) {
       switch(styles["font-size"]) {
          case "x-small":
@@ -110,15 +115,21 @@ function CheckStyleAtAnchor () {
       SetActiveFontSizeSelection($("#fsb-3"))
    }
 
+   // Get font family
    if (styles["font-family"]) {
       SetActiveFontSelection($("[fontName=" + styles["font-family"] + "]"))
    } else {
       SetActiveFontSelection($("[fontName=Arial]"))
    }
 
-   // Check the non-toggled font styles and apply them every time
-   SetTextColorButtonUnderlineColor(styles["color"])
-   SetHighlightColorButtonUnderlineColor(styles["background-color"])
+   // Check for lists
+   var gp = getSelection().anchorNode.parentNode.parentNode.outerHTML.slice(0,4)
+
+   if (gp.includes("<ul>")) SetStyleButtonState("menu_text_list_btn", true)
+   else SetStyleButtonState("menu_text_list_btn", false)
+
+   if (gp.includes("<ol>")) SetStyleButtonState("menu_text_numlist_btn", true)
+   else SetStyleButtonState("menu_text_numlist_btn", false)
 }
 
 
@@ -154,6 +165,12 @@ function ApplyFontStyleToText (callerID) {
          if (ButtonIsOpen("#menu_text_super_btn")) {
             SetStyleButtonState("menu_text_super_btn", false)
          }
+         break
+      case "menu_text_list_btn":
+         document.execCommand("insertUnorderedList")
+         break
+      case "menu_text_numlist_btn":
+         document.execCommand("insertOrderedList")
          break
    }
 }
