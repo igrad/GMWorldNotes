@@ -78,18 +78,26 @@ function SaveFileData (filepath, data) {
 
 
 
-function CreateNewTreeViewItem(id, name) {
+function CreateNewTreeViewItem(id, name, type) {
    var depth = GetDepthFromID(id)
 
-   var indent = (parseInt($("body").css('--treeview-depth-indent')) * (depth - 1))
+   var indent = parseInt($("body").css('--treeview-depth-indent')) * (depth - 1)
+   var collapserWidth = parseInt($("body").css('--treeview-item-collapser-width'))
+
+   var widthFix = indent + collapserWidth
 
    var html = "<div class=\"tree_view_item\" id=\"" + id + "\" "
    html += "onmouseover=\"TreeViewHover(this)\" "
    html += "onmouseout=\"TreeViewLeaveHover(this)\" "
    html += "onclick=\"TreeViewSwitch(this)\">"
-   html += "<div class=\"tree_view_item_inner\" id=\"" + id + "\""
-   html += " style=\"left: " + indent + "px;width=calc(100% - " + indent
-   html += "px)\">" + name + "</div></div>"
+
+   if (type == "folder") {
+      html += "<div id=\"" + id + "-collapser\" class=\"tree_view_item_collapser\">"
+      html += "<svg width='16' height='16' viewBox='0 0 16 16'><path fill='currentColor' d='M5.543 11.043l1.414 1.414 4.457-4.457-4.457-4.457-1.414 1.414 3.043 3.043z'></path></svg></div>"
+   }
+   html += "<div class=\"tree_view_item_inner\" id=\"" + id + "\" "
+   html += "style=\"left:" + ((type == "folder") ? indent : widthFix)
+   html += "px; width:calc(100% - " + widthFix + "px)\">" + name + "</div></div>"
 
    return html
 }
@@ -104,7 +112,7 @@ async function AddTreeNodeToScreen(id) {
 
    // Add the node itself to the screen
    if (depth != 0) {
-      var insertHTML = CreateNewTreeViewItem(id, node.name)
+      var insertHTML = CreateNewTreeViewItem(id, node.name, node.type)
 
       treeView.innerHTML += insertHTML
    }

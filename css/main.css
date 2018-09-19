@@ -105,6 +105,7 @@ body {
 /* Items in the tree view */
 .tree_view_item {
    padding: var(--treeview-item-padding);
+   padding-left: 0px;
 
    cursor: pointer;
 
@@ -127,6 +128,13 @@ body {
    display: inline-block;
 
    cursor: pointer;
+}
+
+.tree_view_item_collapser {
+   display: inline-block;
+   cursor: pointer;
+
+   vertical-align: middle
 }
 
 
