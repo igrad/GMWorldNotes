@@ -92,14 +92,14 @@ function CreateNewTreeViewItem(id, name, type) {
    html += "onclick='TreeViewSwitch(this)'>"
 
    if (type == "folder") {
-      html += "<div id='" + id + "-collapser' class='tree_view_item_collapser' "
-      html += "onclick='ToggleFolderCollapse(this)'>"
+      html += "<div id='" + id + "_collapser' class='tree_view_item_collapser' "
+      html += "onclick='ToggleFolderCollapse(this)' isopen='true'>"
       html += "<div id='open'>"
-      html += "<svg width='16' height='16' viewBox='0 0 16 16'><path fill='currentColor' d='M5.543 11.043l1.414 1.414 4.457-4.457-4.457-4.457-1.414 1.414 3.043 3.043z'></path></svg></div>"
+      html += "<svg width='16' height='16' viewBox='0 0 16 16'><path fill='currentColor' d='M4.957 5.543l-1.414 1.414 4.457 4.457 4.457-4.457-1.414-1.414-3.043 3.043z'></path></svg></div>"
       html += "<div id='closed' style='display:none'>"
-      html += "<svg width='16' height='16' viewBox='0 0 16 16'><path fill='currentColor' d='M4.957 5.543l-1.414 1.414 4.457 4.457 4.457-4.457-1.414-1.414-3.043 3.043z'></path></svg></div></div>"
+      html += "<svg width='16' height='16' viewBox='0 0 16 16'><path fill='currentColor' d='M5.543 11.043l1.414 1.414 4.457-4.457-4.457-4.457-1.414 1.414 3.043 3.043z'></path></svg></div></div>"
    }
-   html += "<div class='tree_view_item_inner' id='" + id + "' "
+   html += "<div class='tree_view_item_inner' id='" + id + "_inner' "
    html += "style='left:" + ((type == "folder") ? indent : widthFix)
    html += "px; width:calc(100% - " + widthFix + "px)'>" + name + "</div></div>"
 
@@ -108,9 +108,9 @@ function CreateNewTreeViewItem(id, name, type) {
 
 
 
-async function AddTreeNodeToScreen(id) {
+async function AddTreeNodeToScreen(id, builder) {
    var node = notebookData.GetNode(id)
-   var treeView = $("#tree_view")[0]
+   var builder = ""
 
    var depth = GetDepthFromID(id)
 
@@ -118,13 +118,21 @@ async function AddTreeNodeToScreen(id) {
    if (depth != 0) {
       var insertHTML = CreateNewTreeViewItem(id, node.name, node.type)
 
-      treeView.innerHTML += insertHTML
+      builder += insertHTML
    }
 
    // Add the nodes children to the screen by recursively calling this function
-   for (var i = 0; i < node.children.length; i++) {
-      await AddTreeNodeToScreen(node.children[i])
+   if (node.children.length > 0) {
+      builder += "<div id='" + id + "_children'>"
+      for (var i = 0; i < node.children.length; i++) {
+         builder += await AddTreeNodeToScreen(node.children[i], builder)
+      }
+      builder += "</div>"
    }
+
+   if (id == "0-0") $("#tree_view")[0].innerHTML = builder
+
+   return builder
 }
 
 
