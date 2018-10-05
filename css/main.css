@@ -105,7 +105,6 @@ body {
 /* Items in the tree view */
 .tree_view_item {
    padding: var(--treeview-item-padding);
-   padding-left: 0px;
 
    cursor: pointer;
 
@@ -135,6 +134,10 @@ body {
    cursor: pointer;
 
    vertical-align: middle
+}
+
+.tree_view_item_collapser:hover {
+   background-color: var(--treeview-item-collapser-bg-color-hover);
 }
 
 

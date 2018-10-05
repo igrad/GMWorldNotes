@@ -2,6 +2,7 @@ function ToggleFolderCollapse(caller) {
    var collapseButton = $(caller)
    var openVal = collapseButton.attr("isopen")
    var childItemsContainer = $("#" + caller.parentNode.id + "_children")
+   var parent = $("#" + caller.parentNode.id)
 
    var openIcon = $("#" + caller.id + " #open")
    var closedIcon = $("#" + caller.id + " #closed")
@@ -12,11 +13,14 @@ function ToggleFolderCollapse(caller) {
 
       openIcon.css("display", "none")
       closedIcon.css("display", "block")
+
+      parent.css("border-bottom", "1px solid var(--treeview-item-collapser-border-closed)")
    } else {
       childItemsContainer.css("display", "block")
       collapseButton.attr("isopen", "true")
 
       openIcon.css("display", "block")
       closedIcon.css("display", "none")
+      parent.css("border-bottom", "")
    }
 }

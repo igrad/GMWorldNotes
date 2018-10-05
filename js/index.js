@@ -54,18 +54,24 @@ function TreeViewLeaveHover(caller) {
 
 
 function TreeViewSwitch(caller) {
-   var caller = $(caller)
+   var item = $(caller)
+
+   if (item.attr("type") == "folder") {
+      var collapser = $("#" + caller.id + " .tree_view_item_collapser")
+
+      if ((collapser.css("background-color")).includes("hover")) {return false}
+   }
 
    $(".tree_view_item").attr("isOpen", "false")
    $(".tree_view_item").css("background-color", "var(--treeview-item-bg-color)")
    $(".tree_view_item").css("color", "var(--treeview-item-font-color)")
 
-   $(caller).attr("isOpen", "true")
-   $(caller).css("background-color", "var(--treeview-item-bg-color-active)")
-   $(caller).css("color", "var(--treeview-item-font-color-active)")
+   $(item).attr("isOpen", "true")
+   $(item).css("background-color", "var(--treeview-item-bg-color-active)")
+   $(item).css("color", "var(--treeview-item-font-color-active)")
 
    // Call up the node that has been selected from the tree view
-   LoadPageToScreen(caller.attr("id"))
+   LoadPageToScreen(item.attr("id"))
 }
 
 
@@ -177,11 +183,7 @@ $(window).on('load', function() {
    LoadThemeToScreen()
    LoadNotebookToScreen(lastOpenNotebook)
 
-   // Select the page that was open last time this notebook was closed
-   $("#" + lastOpenPage).click()
-
    // Set HTML final touches
-   $("#upper_shelf_btn_file").click()
    $(".upper_shelf_btn").attr("isOpen", "false")
 
    $(".list_view_item").attr("isOpen", "false")
@@ -201,6 +203,9 @@ $(document).ready(function () {
    // Set the default colors for the font and background in text shelf menu
    SetTextColorButtonUnderlineColor(null)
    SetHighlightColorButtonUnderlineColor(null)
+
+   // Select the page that was open last time this notebook was closed
+   $("#" + lastOpenPage).click()
 })
 
 

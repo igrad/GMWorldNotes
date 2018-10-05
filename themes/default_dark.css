@@ -47,6 +47,8 @@
    --treeview-font-color-selected: #dedede;
    --treeview-item-padding: 4px;
    --treeview-item-collapser-width: 16px;
+   --treeview-item-collapser-bg-color-hover: #4d4d4d;
+   --treeview-item-collapser-border-closed: #1b1b1b;
    --treeview-item-bg-color: #2c2c2c;
    --treeview-item-font-color: #dddddd;
    --treeview-item-bg-color-hover: #333333;

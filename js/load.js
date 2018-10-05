@@ -86,14 +86,14 @@ function CreateNewTreeViewItem(id, name, type) {
 
    var widthFix = indent + collapserWidth
 
-   var html = "<div class='tree_view_item' id='" + id + "' "
+   var html = "<div class='tree_view_item' type='" + type + "' id='" + id + "' "
    html += "onmouseover='TreeViewHover(this)' "
    html += "onmouseout='TreeViewLeaveHover(this)' "
    html += "onclick='TreeViewSwitch(this)'>"
 
    if (type == "folder") {
       html += "<div id='" + id + "_collapser' class='tree_view_item_collapser' "
-      html += "onclick='ToggleFolderCollapse(this)' isopen='true'>"
+      html += "onclick='event.stopPropagation(); ToggleFolderCollapse(this)' isopen='true'>"
       html += "<div id='open'>"
       html += "<svg width='16' height='16' viewBox='0 0 16 16'><path fill='currentColor' d='M4.957 5.543l-1.414 1.414 4.457 4.457 4.457-4.457-1.414-1.414-3.043 3.043z'></path></svg></div>"
       html += "<div id='closed' style='display:none'>"
@@ -164,7 +164,7 @@ function LoadNotebookToScreen(id) {
    // While doing this, also add each label into the content view
    console.log("Loading tree")
 
-   AddTreeNodeToScreen("0-0").then(function (result) {
+   AddTreeNodeToScreen("0-0", "").then(function (result) {
       $(".tree_view_item").contextmenu(function(e) {
          e.preventDefault()
          console.log(e.target.id)
