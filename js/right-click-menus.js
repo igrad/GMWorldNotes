@@ -42,26 +42,41 @@ var callerID = ""
 
 // Set up the RCM for when the user right-clicks on an item in the tree view
 var treeViewItemRCMopts = {
-   "Cut": { role: 'cut' },
-   "Copy": { role: 'copy' },
-   "Paste": { role: 'paste' },
-   "div1": { type: 'separator' },
+   "Select": {
+      label: "Select",
+      click() {
+         // Mark this item as selected in its checkbox
+      }
+   },
    "Rename": {
       label: "Rename",
       click() {
          // Open prompt to rename this node
       }
    },
-   "Move": {
-      label: "Move",
+   "MoveUp": {
+      label: "Move Up",
       click() {
-         // Let the user select where they want to move this item to
+         // Move the item up one
       }
    },
+   "MoveDown": {
+      label: "Move Down",
+      click() {
+         // Move the item down one
+      }
+   },
+   "div1": { type: 'separator' },
    "Assoc": {
       label: "Edit Associations",
       click() {
          // Open up the associations editor
+      }
+   },
+   "ChangeType": {
+      label: "Change Type",
+      click() {
+         // Change from a folder to a page or vice versa
       }
    },
    "Delete": {
@@ -70,17 +85,23 @@ var treeViewItemRCMopts = {
          // Open up prompt to confirm deletion
       }
    },
+   "Details": {
+      label: "Show Details",
+      click() {
+         // Show smaller dialog window to display the item's details
+      }
+   },
    "div2": { type: 'separator' },
    "New": {
       label: "New",
       submenu: [ {
-            label: 'New Page',
+            label: 'Page',
             click() {
                // Create a new page in the notebook
                notebookData.nodeTree.AddNewNode("page", treeViewItemRCM.callerID)
             }
          }, {
-            label: 'New Folder',
+            label: 'Folder',
             click() {
                // Create a new folder in the notebook
                notebookData.nodeTree.AddNewNode("folder", treeViewItemRCM.callerID)

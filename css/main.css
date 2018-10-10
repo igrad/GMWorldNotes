@@ -146,7 +146,8 @@ body {
 #save_notification {
    width: 60px;
    height: 20px;
-   left: calc(100% - 60px);
+   right: 0px;
+   bottom: 0px;
 
    position: absolute;
    padding: 4px;
