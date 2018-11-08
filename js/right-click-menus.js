@@ -52,6 +52,7 @@ var treeViewItemRCMopts = {
       label: "Rename",
       click() {
          // Open prompt to rename this node
+         OpenTVIRenameDialog(this)
       }
    },
    "MoveUp": {

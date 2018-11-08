@@ -16,6 +16,7 @@ body, html {
 }
 
 body {
+   background-color: var(--body-bg-color);
    display: flex;
    flex-flow: column;
    overflow: hidden;

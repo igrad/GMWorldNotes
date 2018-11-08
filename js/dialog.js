@@ -1,6 +1,6 @@
 // dw_rename_TVI functions
 
-function OpenTVIRenameDialog(caller) {
+function OpenTVIRenameDialog() {
    if ($("#dw_rename_TVI").css("display").includes("none")) {
       $("#dw_rename_TVI").css("display", "inline-block")
    } else {
@@ -9,9 +9,14 @@ function OpenTVIRenameDialog(caller) {
 }
 
 function CatchKeysTVIRename(e) {
-   console.log("Pressed " + e.keycode)
-   switch (e.keycode) {
+   console.log("Pressed " + e.keyCode)
+   switch (e.keyCode) {
       case 13: // Enter pressed
-         void()
+         OpenTVIRenameDialog()
+         // Rename the TVI
+         break
+      case 27: // Escape Pressed
+         OpenTVIRenameDialog()
+         break
    }
 }

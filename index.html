@@ -8,6 +8,7 @@
       <link rel="stylesheet" href="css/main.css">
       <link rel="stylesheet" href="css/lower_shelf.css">
       <link rel="stylesheet" href="css/generated-fonts.css">
+      <link rel="stylesheet" href="css/dialog.css">
 
 
       <script>
@@ -26,6 +27,7 @@
 
       <!-- Import other javascript files -->
       <script src="js/objecttree.js"></script>
+      <script src="js/dialog.js"></script>
       <script src="js/right-click-menus.js"></script>
       <script src="js/lower-shelf.js"></script>
       <script src="js/treeview.js"></script>
@@ -278,5 +280,25 @@
             </div>
          </div>
       </div>
+
+
+      <!-- ============== -->
+      <!-- DIALOG WINDOWS -->
+      <!-- ============== -->
+      <!-- TREEVIEW ITEM INTERACTIONS -->
+      <div id="dw_rename_TVI" class="dialog_window">
+         <div class="dialog_text">
+            Enter a new name
+         </div>
+         <input type="text" placeholder="New name" class="dialog_prompt" onkeyup="CatchKeysTVIRename(event)">
+      </div>
+
+      <div id="dw_associations_TVI" class="dialog_window">
+         <input type="text" placeholder="Search notebook" class="dialog_prompt">
+         <div class="dialog_scroll">
+         </div>
+      </div>
+
+
    </body>
 </html>

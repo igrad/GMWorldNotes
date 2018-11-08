@@ -1,4 +1,6 @@
 :root {
+   /* Body */
+   --body-bg-color: #000000;
    /* Shelf structuring */
    --shelf-height: 97px;
    --shelf-top-font-size: medium;
@@ -73,4 +75,9 @@
    /* Content view styling */
    --contentview-bg-color: #232323;
    --contentview-font-color: #f1f1f1;
+
+
+   /* Dialog Window styling */
+   --dialog-bg-color: #121212;
+   --dialog-font-color: #dddddd;
 }
