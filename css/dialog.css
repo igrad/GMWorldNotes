@@ -1,0 +1,32 @@
+.dialog_window {
+   display: none;
+   position: absolute;
+
+   padding: 4px;
+
+   background-color: var(--dialog-bg-color);
+   color: var(--dialog-font-color);
+
+   box-shadow: 1px 1px 4px 0px black;
+
+   top: 50%;
+   left: 50%;
+   transform: translateX(-50%) translateY(-50%);
+}
+
+.dialog_text {
+   margin: 4px;
+
+   cursor: pointer;
+}
+
+.dialog_prompt {
+   margin: 4px;
+
+   outline: 0px;
+   border: 0px;
+   border-bottom: 1px solid #343434;
+
+   background-color: inherit;
+   color: #dedede;
+}
