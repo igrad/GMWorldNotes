@@ -1,6 +1,7 @@
 const rootNode = {
    id: "0-0",
    name: "ROOT",
+   type: "page",
    associations: null,
    parent: null,
    children: [],
@@ -26,6 +27,7 @@ class TreeNode {
       if (jsonData == 'page') {
          this.id = "1-0"
          this.name = "New Page"
+         this.type = "page"
          this.associations = null
          this.parent = "0-0"
          this.children = []
@@ -33,6 +35,7 @@ class TreeNode {
       } else if (jsonData == 'folder') {
          this.id = "1-0"
          this.name = "New Folder"
+         this.type = "folder"
          this.associations = null
          this.parent = "0-0"
          this.children = []
@@ -46,6 +49,9 @@ class TreeNode {
 
          // Name of this node
          this.name = jsonData.name
+
+         // Type of this node
+         this.type = jsonData.type
 
          /* Each page is, of course, linked to other pages, but it is not always in a
          structured way. Just as a person can be tied to other people and to locations,
@@ -106,6 +112,7 @@ class TreeNode {
       jsondata['id'] = this.id
       jsondata['name'] = this.name
       jsondata['type'] = this.type
+      jsondata['type'] = this.type
       jsondata['associations'] = this.associations
       jsondata['parent'] = this.parent
       jsondata['children'] = this.children
@@ -115,12 +122,9 @@ class TreeNode {
    }
 }
 
-let qwerty = {}
 class Tree {
    constructor (data) {
       this.nodes = {}
-
-      qwerty = data
 
       try {
          var rawJSON = JSON.parse(data)

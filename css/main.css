@@ -1,14 +1,22 @@
-/* Overview */
+/* Quick styles */
+.text_left {
+   text-align: left;
+}
+
+
+
+/* Section structuring */
 body, html {
    margin: 0px;
    height: 100%;
    width: 100%;
-   font-family: calibri;
+   font-family: Arial, sans-serif;
 
    user-select: none;
 }
 
 body {
+   background-color: var(--body-bg-color);
    display: flex;
    flex-flow: column;
    overflow: hidden;
@@ -23,8 +31,8 @@ body {
 }
 
 #shelf_view {
-   height: 100px;
-   flex: 0 1 100px;
+   height: var(--shelf-height);
+   flex: 0 1 var(--shelf-height);
 
    background-color: var(--shelf-top-bg-color);
 }
@@ -42,11 +50,11 @@ body {
 #resize_bar {
    position: absolute;
 
-   width: 3px;
+   width: var(--resizebar-width);
    height: 100%;
 
    left: 196px;
-   top: 100px;
+   top: var(--shelf-height);
 
    background-color: var(--resizebar-bg-color);
 
@@ -55,16 +63,18 @@ body {
 
 #content_view_wrap {
    left: 201px;
-   top: 100px;
+   top: var(--shelf-height);
 
-   overflow: auto;
+   width: 100%;
 }
 
 
 
-
-
 /* Shelf */
+#upper_shelf {
+   display: flex;
+}
+
 .upper_shelf_btn {
    /* Button on the upper shelf */
    padding-left : var(--shelf-top-side-padding);
@@ -72,8 +82,7 @@ body {
    padding-top: var(--shelf-top-vert-padding);
    padding-bottom: var(--shelf-top-vert-padding);
 
-   float: left;
-   text-align: center;
+   display: inline-block;
    user-select: none;
    cursor: pointer;
 
@@ -94,11 +103,9 @@ body {
 
 
 
-/* Items in the tree node */
+/* Items in the tree view */
 .tree_view_item {
-   width: calc((100%) - (4px));
-   height: var(--treeview-item-height);
-   padding: 2px;
+   padding: var(--treeview-item-padding);
 
    cursor: pointer;
 
@@ -120,15 +127,28 @@ body {
    position: relative;
    display: inline-block;
 
-   cursor:pointer;
+   cursor: pointer;
 }
+
+.tree_view_item_collapser {
+   display: inline-block;
+   cursor: pointer;
+
+   vertical-align: middle
+}
+
+.tree_view_item_collapser:hover {
+   background-color: var(--treeview-item-collapser-bg-color-hover);
+}
+
 
 
 /* Content View */
 #save_notification {
    width: 60px;
    height: 20px;
-   left: calc(100% - 60px);
+   right: 0px;
+   bottom: 0px;
 
    position: absolute;
    padding: 4px;
@@ -143,8 +163,15 @@ body {
    width: calc(100% - 8px);
    height: calc(100% - 8px);
    padding: 4px;
+   padding-left: 8px;
+   padding-right: 8px;
+   display: inline-block;
+   white-space: pre-wrap;
 
    overflow: auto;
+
+   color: var(--contentview-font-color);
+   background-color: var(--contentview-bg-color);
 }
 
 #content_view:focus {

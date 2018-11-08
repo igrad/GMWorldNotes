@@ -78,41 +78,61 @@ function SaveFileData (filepath, data) {
 
 
 
-function CreateNewTreeViewItem(id, name) {
+function CreateNewTreeViewItem(id, name, type) {
    var depth = GetDepthFromID(id)
 
-   var indent = (parseInt($("body").css('--treeview-depth-indent')) * (depth - 1))
+   var indent = parseInt($("body").css('--treeview-depth-indent')) * (depth - 1)
+   var collapserWidth = parseInt($("body").css('--treeview-item-collapser-width'))
 
-   var html = "<div class=\"tree_view_item\" id=\"" + id + "\" "
-   html += "onmouseover=\"TreeViewHover(this)\" "
-   html += "onmouseout=\"TreeViewLeaveHover(this)\" "
-   html += "onclick=\"TreeViewSwitch(this)\">"
-   html += "<div class=\"tree_view_item_inner\" id=\"" + id + "\""
-   html += " style=\"left: " + indent + "px;width=calc(100% - " + indent
-   html += "px)\">" + name + "</div></div>"
+   var widthFix = indent + collapserWidth
+
+   var html = "<div class='tree_view_item' type='" + type + "' id='" + id + "' "
+   html += "onmouseover='TreeViewHover(this)' "
+   html += "onmouseout='TreeViewLeaveHover(this)' "
+   html += "onclick='TreeViewSwitch(this)'>"
+
+   if (type == "folder") {
+      html += "<div id='" + id + "_collapser' class='tree_view_item_collapser' "
+      html += "onclick='event.stopPropagation(); ToggleFolderCollapse(this)' isopen='true'>"
+      html += "<div id='open'>"
+      html += "<svg width='16' height='16' viewBox='0 0 16 16'><path fill='currentColor' d='M4.957 5.543l-1.414 1.414 4.457 4.457 4.457-4.457-1.414-1.414-3.043 3.043z'></path></svg></div>"
+      html += "<div id='closed' style='display:none'>"
+      html += "<svg width='16' height='16' viewBox='0 0 16 16'><path fill='currentColor' d='M5.543 11.043l1.414 1.414 4.457-4.457-4.457-4.457-1.414 1.414 3.043 3.043z'></path></svg></div></div>"
+   }
+   html += "<div class='tree_view_item_inner' id='" + id + "_inner' "
+   html += "style='left:" + ((type == "folder") ? indent : widthFix)
+   html += "px; width:calc(100% - " + widthFix + "px)'>" + name + "</div></div>"
 
    return html
 }
 
 
 
-async function AddTreeNodeToScreen(id) {
+async function AddTreeNodeToScreen(id, builder) {
    var node = notebookData.GetNode(id)
-   var treeView = $("#tree_view")[0]
+   var builder = ""
 
    var depth = GetDepthFromID(id)
 
    // Add the node itself to the screen
    if (depth != 0) {
-      var insertHTML = CreateNewTreeViewItem(id, node.name)
+      var insertHTML = CreateNewTreeViewItem(id, node.name, node.type)
 
-      treeView.innerHTML += insertHTML
+      builder += insertHTML
    }
 
    // Add the nodes children to the screen by recursively calling this function
-   for (var i = 0; i < node.children.length; i++) {
-      await AddTreeNodeToScreen(node.children[i])
+   if (node.children.length > 0) {
+      builder += "<div id='" + id + "_children'>"
+      for (var i = 0; i < node.children.length; i++) {
+         builder += await AddTreeNodeToScreen(node.children[i], builder)
+      }
+      builder += "</div>"
    }
+
+   if (id == "0-0") $("#tree_view")[0].innerHTML = builder
+
+   return builder
 }
 
 
@@ -144,7 +164,7 @@ function LoadNotebookToScreen(id) {
    // While doing this, also add each label into the content view
    console.log("Loading tree")
 
-   AddTreeNodeToScreen("0-0").then(function (result) {
+   AddTreeNodeToScreen("0-0", "").then(function (result) {
       $(".tree_view_item").contextmenu(function(e) {
          e.preventDefault()
          console.log(e.target.id)

@@ -1,5 +1,5 @@
 function ShelfHover(caller) {
-   if($(caller).attr("isOpen") == "false") {
+   if ($(caller).attr("isOpen") == "false") {
       $(caller).css({"background-color": "var(--shelf-top-bg-color-hover)",
          "color": "var(--shelf-top-font-color-hover)"})
    }
@@ -8,7 +8,7 @@ function ShelfHover(caller) {
 
 
 function ShelfLeaveHover(caller) {
-   if($(caller).attr("isOpen") == "false") {
+   if ($(caller).attr("isOpen") == "false") {
       $(caller).css({"background-color": "var(--shelf-top-bg-color)",
          "color": "var(--shelf-top-font-color)"})
    }
@@ -36,7 +36,7 @@ function ShelfSwitch(caller) {
 
 
 function TreeViewHover(caller) {
-   if($(caller).attr("isOpen") == "false") {
+   if ($(caller).attr("isOpen") == "false") {
       $(caller).css({"background-color": "var(--treeview-item-bg-color-hover)",
          "color": "var(--treeview-item-font-color-hover)"})
    }
@@ -45,7 +45,7 @@ function TreeViewHover(caller) {
 
 
 function TreeViewLeaveHover(caller) {
-   if($(caller).attr("isOpen") == "false") {
+   if ($(caller).attr("isOpen") == "false") {
       $(caller).css({"background-color": "var(--treeview-item-bg-color)",
          "color": "var(--treeview-item-font-color)"})
    }
@@ -54,18 +54,24 @@ function TreeViewLeaveHover(caller) {
 
 
 function TreeViewSwitch(caller) {
-   var caller = $(caller)
+   var item = $(caller)
+
+   if (item.attr("type") == "folder") {
+      var collapser = $("#" + caller.id + " .tree_view_item_collapser")
+
+      if ((collapser.css("background-color")).includes("hover")) {return false}
+   }
 
    $(".tree_view_item").attr("isOpen", "false")
    $(".tree_view_item").css("background-color", "var(--treeview-item-bg-color)")
    $(".tree_view_item").css("color", "var(--treeview-item-font-color)")
 
-   $(caller).attr("isOpen", "true")
-   $(caller).css("background-color", "var(--treeview-item-bg-color-active)")
-   $(caller).css("color", "var(--treeview-item-font-color-active)")
+   $(item).attr("isOpen", "true")
+   $(item).css("background-color", "var(--treeview-item-bg-color-active)")
+   $(item).css("color", "var(--treeview-item-font-color-active)")
 
    // Call up the node that has been selected from the tree view
-   LoadPageToScreen(caller.attr("id"))
+   LoadPageToScreen(item.attr("id"))
 }
 
 
@@ -114,6 +120,8 @@ function StartResizingTreeView (e) {
 
    // Set the global cursor to the resize cursor so that resizing too quickly
    // doesn't make the cursor flip between different styles rapidly
+   $("#tree_view").css("pointer-events", "none")
+   $("#shelf_view").css("pointer-events", "none")
    $("body").css("cursor", "ew-resize")
 }
 
@@ -125,7 +133,10 @@ function DoneResizingTreeView () {
       resizing = false
 
       $("#content_view").attr("contenteditable", true)
-      $("body").css("cursor", "default")
+
+      $("body").css("cursor", "inherit")
+      $("#tree_view").css("pointer-events", "all")
+      $("#shelf_view").css("pointer-events", "all")
    }
 }
 
@@ -172,14 +183,45 @@ $(window).on('load', function() {
    LoadThemeToScreen()
    LoadNotebookToScreen(lastOpenNotebook)
 
-   //TODO: Verify that this works. The click behavior has already been set in
-   // LoadNotebookToScreen, so this should do the trick in loading the page and changing
-   // CSS of all of the tree_view_item elements
-   $("#" + lastOpenPage).click()
-
    // Set HTML final touches
-   $("#upper_shelf_btn_file").click()
    $(".upper_shelf_btn").attr("isOpen", "false")
 
    $(".list_view_item").attr("isOpen", "false")
+
+   $("#lower_shelf_viewport button").attr("isOpen", "false")
 })
+
+
+
+$(document).ready(function () {
+   // Set the text shelf menu to be opened by default instead of file
+   $("#upper_shelf_btn_text").click()
+
+   // Make all document style edits using CSS instead of HTML tags
+   document.execCommand("styleWithCSS", false, true)
+
+   // Set the default colors for the font and background in text shelf menu
+   SetTextColorButtonUnderlineColor(null)
+   SetHighlightColorButtonUnderlineColor(null)
+
+   // Select the page that was open last time this notebook was closed
+   $("#" + lastOpenPage).click()
+})
+
+
+
+// Call some data initialization functions
+const SystemFonts = require('system-font-families').default
+const sysFonts = new SystemFonts()
+CreateFontFamilyOptions()
+
+
+
+function CloseDropDowns() {
+   $(".drop_down").each(function(i) {
+      if ($(this).attr("isOpen") == "true") {
+         let owner = $("#" + $(this).attr("owner"))
+         owner.click()
+      }
+   })
+}

@@ -7,6 +7,9 @@
       <link id="link_theme" rel="stylesheet" href="themes/default_dark.css">
       <link rel="stylesheet" href="css/main.css">
       <link rel="stylesheet" href="css/lower_shelf.css">
+      <link rel="stylesheet" href="css/generated-fonts.css">
+      <link rel="stylesheet" href="css/dialog.css">
+
 
       <script>
          if (typeof module === 'object') {
@@ -24,17 +27,18 @@
 
       <!-- Import other javascript files -->
       <script src="js/objecttree.js"></script>
+      <script src="js/dialog.js"></script>
       <script src="js/right-click-menus.js"></script>
+      <script src="js/lower-shelf.js"></script>
+      <script src="js/treeview.js"></script>
       <script src="js/index.js"></script>
       <script src="js/DataStore.js"></script>
       <script src="js/Notebook.js"></script>
       <script src="js/load.js"></script>
+      <script src="js/text-manip.js"></script>
    </head>
    <body onmousemove="ResizingTreeView(event)" onmouseup="DoneResizingTreeView(event)">
       <div id="shelf_view">
-         <!-- This contains the binder's header, offering a bit of information to the
-         user -->
-
          <div id="upper_shelf">
             <!-- This area contains the upper portion of the shelf, including the
             buttons for each option on the shelf. -->
@@ -55,40 +59,246 @@
             onclick="ShelfSwitch(this)" frame="menu_templates">Templates</div>
          </div>
 
+
+
          <div id="lower_shelf_viewport">
             <!-- Contains the options of the selected shelf option. -->
             <div class="lower_shelf_menu" id="menu_file">
                FILE
             </div>
+
+
             <div class="lower_shelf_menu" id="menu_text">
-               TEXT
+               <!-- Button template
+               <button type="button" class="button_light" id="menu_text_XXXXX_btn">
+                  <div style="display:inline-block">XXXX</div>
+               </button> -->
+               <div id="menu_text_1">
+                  <button type="button" class="button_light text_left bgb_top" id="menu_text_cut_btn" onclick="document.execCommand('cut')">
+                     <div style="display:inline-block">Cut</div>
+                  </button>
+                  <button type="button" class="button_light text_left bgb_midv" id="menu_text_copy_btn" onclick="document.execCommand('copy')">
+                     <div style="display:inline-block">Copy</div>
+                  </button>
+                  <button type="button" class="button_light text_left bgb_bottom" id="menu_text_paste_btn" onclick="document.execCommand('paste')">
+                     <div style="display:inline-block">Paste</div>
+                  </button>
+               </div>
+
+               <div id="menu_text_2">
+                  <!-- Font styling -->
+                  <!-- BOLD -->
+                  <button type="button" class="button_light bgb_left" id="menu_text_bold_btn" onclick="ChangeStyle(this)">
+                     <div style="display:inline-block;font-weight:bold">
+                        B
+                     </div>
+                  </button>
+                  <!-- ITALIC -->
+                  <button type="button" class="button_light bgb_midh" id="menu_text_italic_btn" onclick="ChangeStyle(this)">
+                     <div style="display:inline-block;font-style:italic">
+                        I
+                     </div>
+                  </button>
+                  <!-- UNDERLINE -->
+                  <button type="button" class="button_light bgb_midh" id="menu_text_uline_btn" onclick="ChangeStyle(this)">
+                     <div style="display:inline-block;text-decoration:underline">
+                        U
+                     </div>
+                  </button>
+                  <!-- STRIKETHROUGH -->
+                  <button type="button" class="button_light bgb_right" id="menu_text_strike_btn" onclick="ChangeStyle(this)">
+                     <div style="display:inline-block;text-decoration:line-through">
+                        S
+                     </div>
+                  </button>
+                  <!-- DROPDOWN -->
+                  <button type="button" class="button_light half_width bgb_right" id="menu_text_style_btn" onclick="ToggleStyleDD(this)">
+                     <div style="display:inline-block">▿</div>
+                  </button>
+
+                  <div class="grid_spacer"></div>
+
+                  <!-- Font color & Highlight -->
+                  <button type="button" class="button_light bgb_left" id="menu_text_fcolor_btn" onclick="ChangeStyle(this)">
+                     <div id="text_color" style="display: inline-block; box-shadow: inset 0 -2px 0 black;" setColor="currentColor">A</div>
+                  </button>
+                  <button type="button" class="button_light bgb_right" id="menu_text_bcolor_btn" onclick="ChangeStyle(this)">
+                     <div id="highlight_color" style="display: inline-block; padding: 2px" setColor="currentColor">A</div>
+                  </button>
+
+                  <div class="grid_spacer"></div>
+
+                  <!-- Lists -->
+                  <button type="button" class="button_light bgb_left" id="menu_text_list_btn" onClick="ChangeStyle(this)">
+                     <svg width="16" height="16" viewBox="0 0 16 16">
+                        <path fill="currentColor" d="M6 1h10v2h-10v-2zM6 7h10v2h-10v-2zM6 13h10v2h-10v-2zM0 2c0-1.105 0.895-2 2-2s2 0.895 2 2c0 1.105-0.895 2-2 2s-2-0.895-2-2zM0 8c0-1.105 0.895-2 2-2s2 0.895 2 2c0 1.105-0.895 2-2 2s-2-0.895-2-2zM0 14c0-1.105 0.895-2 2-2s2 0.895 2 2c0 1.105-0.895 2-2 2s-2-0.895-2-2z"></path>
+                     </svg>
+                  </button>
+                  <button type="button" class="button_light bgb_midh" id="menu_text_numlist_btn" onClick="ChangeStyle(this)">
+                     <svg width="16" height="16" viewBox="0 0 16 16">
+                     <path fill="currentColor" d="M6 13h10v2h-10zM6 7h10v2h-10zM6 1h10v2h-10zM3 0v4h-1v-3h-1v-1zM2 8.219v0.781h2v1h-3v-2.281l2-0.938v-0.781h-2v-1h3v2.281zM4 11v5h-3v-1h2v-1h-2v-1h2v-1h-2v-1z"></path>
+                     </svg>
+                  </button>
+
+                  <!-- Indent/outdent -->
+                  <button type="button" class="button_light bgb_midh" id="menu_text_tabinc_btn" onclick="document.execCommand('indent')">
+                     <svg width="16" height="16" viewBox="0 0 16 16">
+                        <path fill="currentColor" d="M0 1h16v2h-16zM6 4h10v2h-10zM6 7h10v2h-10zM6 10h10v2h-10zM0 13h16v2h-16zM0 11v-6l4 3z"></path>
+                     </svg>
+                  </button>
+                  <button type="button" class="button_light bgb_right" id="menu_text_tabdec_drop_btn" onclick="document.execCommand('outdent')">
+                     <svg width="16" height="16" viewBox="0 0 16 16">
+                     <path fill="currentColor" d="M0 1h16v2h-16zM6 4h10v2h-10zM6 7h10v2h-10zM6 10h10v2h-10zM0 13h16v2h-16zM4 5v6l-4-3z"></path>
+                     </svg>
+                  </button>
+
+
+
+                  <div class="grid_spacer_h"></div>
+
+                  <!-- Font family drop-down -->
+                  <button type="button" class="button_light bgb_left" id="menu_text_fontfamily_btn" onclick="ToggleFontFamilyDD(this)">
+                     <div style="display: inline-block; word-wrap: none; padding-left: 6px; text-align: left;">Arial</div>
+                  </button>
+                  <button type="button" class="button_light half_width bgb_right" id="menu_text_fontfamily_drop_btn" onclick="ToggleFontFamilyDD(this)">
+                     <div style="display:inline-block">▿</div>
+                  </button>
+
+                  <div class="grid_spacer"></div>
+
+                  <!-- Font size -->
+                  <button type="button" class="button_light bgb_left" id="menu_text_size_btn" onclick="ToggleFontSizeDD(this)">
+                     <div style="display:inline-block">3</div>
+                  </button>
+                  <button type="button" class="button_light half_width bgb_right" id="menu_text_size_drop_btn" onclick="ToggleFontSizeDD(this)">
+                     <div style="display:inline-block">▿</div>
+                  </button>
+
+                  <div class="grid_spacer"></div>
+
+                  <!-- Font alignment -->
+                  <button type="button" class="button_light bgb_left" id="menu_text_alignleft_btn" onclick="document.execCommand('justifyLeft')">
+                     <svg width="16" height="16" viewBox="0 0 16 16">
+                        <path fill="currentColor" d="M0 1h16v2h-16zM0 4h10v2h-10zM0 10h10v2h-10zM0 7h16v2h-16zM0 13h16v2h-16z"></path>
+                     </svg>
+                  </button>
+                  <button type="button" class="button_light bgb_midh" id="menu_text_aligncenter_btn" onclick="document.execCommand('justifyCenter')">
+                     <svg width="16" height="16" viewBox="0 0 16 16">
+                        <path fill="currentColor" d="M0 1h16v2h-16zM3 4h10v2h-10zM3 10h10v2h-10zM0 7h16v2h-16zM0 13h16v2h-16z"></path>
+                     </svg>
+                  </button>
+                  <button type="button" class="button_light bgb_midh" id="menu_text_alignright_btn" onclick="document.execCommand('justifyRight')">
+                     <svg width="16" height="16" viewBox="0 0 16 16">
+                        <path fill="currentColor" d="M0 1h16v2h-16zM6 4h10v2h-10zM6 10h10v2h-10zM0 7h16v2h-16zM0 13h16v2h-16z"></path>
+                     </svg>
+                  </button>
+                  <button type="button" class="button_light bgb_right" id="menu_text_alignjustify_btn" onclick="document.execCommand('justifyFull')">
+                     <svg width="16" height="16" viewBox="0 0 16 16">
+                        <path fill="currentColor" d="M0 1h16v2h-16zM0 4h16v2h-16zM0 7h16v2h-16zM0 10h16v2h-16zM0 13h16v2h-16z"></path>
+                     </svg>
+                  </button>
+               </div>
+               <div id="menu_text_3">
+
+               </div>
+
+               <!-- DROP DOWN MENUS -->
+               <div id="dd_font_fam" class="drop_down" isOpen="false" selectedIndex="ffb-0" owner="menu_text_fontfamily_btn">
+               </div>
+
+
+               <div id="dd_font_size" class="drop_down" isOpen="false" selectedIndex="fsb-4" owner="menu_text_size_btn">
+                  <div id="fsb-1" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this)' fontSize="2">
+                     <div id="fsb-ex-1" class="menu_text_fontsize_dd_opt_ex"
+                     style="font-size: x-small;">Tiny</div>
+                  </div>
+                  <div id="fsb-2" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this)' fontSize="3">
+                     <div id="fsb-ex-2" class="menu_text_fontsize_dd_opt_ex"
+                     style="font-size: small;">Small</div>
+                  </div>
+                  <div id="fsb-3" class="menu_text_fontsize_dd_opt_btn isActive_dd" onClick='SetActiveFontSize(this)' fontSize="4">
+                     <div id="fsb-ex-3" class="menu_text_fontsize_dd_opt_ex"
+                     style="font-size: normal;">Normal</div>
+                  </div>
+                  <div id="fsb-4" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this)' fontSize="5">
+                     <div id="fsb-ex-4" class="menu_text_fontsize_dd_opt_ex"
+                     style="font-size: large;">Large</div>
+                  </div>
+                  <div id="fsb-5" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this)' fontSize="6">
+                     <div id="fsb-ex-5" class="menu_text_fontsize_dd_opt_ex"
+                     style="font-size: x-large;">Header</div>
+                  </div>
+                  <div id="fsb-6" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this)' fontSize="6">
+                     <div id="fsb-ex-6" class="menu_text_fontsize_dd_opt_ex"
+                     style="font-size: xx-large;">Title</div>
+                  </div>
+               </div>
+
+
+               <div id="dd_style" class="drop_down" isOpen="false" owner="menu_text_style_btn">
+                  <div id="menu_text_super_btn" class="menu_text_style_dd_opt_btn" onClick="ChangeStyle(this)">
+                     <svg width="16" height="16" viewBox="0 0 16 16">
+                     <path fill="currentColor" fill="#000000" d="M12
+                     3.219v0.781h2v1h-3v-2.281l2-0.938v-0.781h-2v-1h3v2.281zM10.563 4h-2.125l-2.938 2.938-2.938-2.938h-2.125l4 4-4 4h2.125l2.938-2.938 2.938 2.938h2.125l-4-4z"></path>
+                     </svg>
+                  </div>
+                  <div id="menu_text_sub_btn" class="menu_text_style_dd_opt_btn" onClick="ChangeStyle(this)">
+                     <svg width="16" height="16" viewBox="0 0 16 16">
+                     <path fill="currentColor" fill="#000000" d="M12 14.219v0.781h2v1h-3v-2.281l2-0.938v-0.781h-2v-1h3v2.281zM10.563 4h-2.125l-2.938 2.938-2.938-2.938h-2.125l4 4-4 4h2.125l2.938-2.938 2.938 2.938h2.125l-4-4z"></path>
+                     </svg>
+                  </div>
+               </div>
             </div>
+
             <div class="lower_shelf_menu" id="menu_insert">
                INSERT
             </div>
+
+
             <div class="lower_shelf_menu" id="menu_share">
                SHARE
             </div>
+
+
             <div class="lower_shelf_menu" id="menu_templates">
                TEMPLATES
             </div>
-
          </div>
       </div>
 
+
+
       <div id="lower_flex">
-         <div id="tree_view">
-            <!-- This contains the tree view of all nodes in this binder. -->
-         </div>
+         <div id="tree_view"></div>
 
          <div id="resize_bar" onmousedown="StartResizingTreeView(event)"></div>
 
          <div id="content_view_wrap">
             <div id="save_notification">Saving...</div>
-            <div id="content_view" contenteditable="true" spellcheck="true" oninput="ContentEdited()">
+            <div id="content_view" contenteditable="true" spellcheck="true" oninput="ContentEdited()" onclick="CheckStyleAtAnchor()" onkeyup="CheckStyleAtAnchor()">
                <!-- This displays all information about the node itself. -->
             </div>
          </div>
       </div>
+
+
+      <!-- ============== -->
+      <!-- DIALOG WINDOWS -->
+      <!-- ============== -->
+      <!-- TREEVIEW ITEM INTERACTIONS -->
+      <div id="dw_rename_TVI" class="dialog_window">
+         <div class="dialog_text">
+            Enter a new name
+         </div>
+         <input type="text" placeholder="New name" class="dialog_prompt" onkeyup="CatchKeysTVIRename(event)">
+      </div>
+
+      <div id="dw_associations_TVI" class="dialog_window">
+         <input type="text" placeholder="Search notebook" class="dialog_prompt">
+         <div class="dialog_scroll">
+         </div>
+      </div>
+
+
    </body>
 </html>

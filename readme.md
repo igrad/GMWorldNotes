@@ -24,4 +24,5 @@ There are two types of nodes contained within a notebook's structure: containers
 - All data of nodes within the node tree
 
 #### Dependencies:
-- [electron-spellchecker](https://www.npmjs.com/package/electron-spellchecker "Electron-Spellchecker")
+- [IcoMoon-Free icon pack by Keyamoon](https://icomoon.io/#icons "IcoMoon-Free by Keyamoon") - used SVG code for several icon images
+- [System-Font-Families by Ryan Burgett](https://www.npmjs.com/package/system-font-families) - used to read all TTF and OTF fonts installed on Mac, Windows, or Linux OS

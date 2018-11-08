@@ -3,3 +3,295 @@
    height: 100%;
    width: 100%;
 }
+
+.button_light {
+   color: var(--button-fore-color);
+   background-color: var(--button-bg-color);
+
+   cursor: pointer;
+}
+
+.button_light:hover {
+   color: var(--button-fore-color-hover);
+   background-color: var(--button-bg-color-hover);
+}
+
+.button_light:focus {
+   outline: 0px solid transparent;
+}
+
+.isActive {
+   color: var(--button-fore-color-active) !important;
+   background-color: var(--button-bg-color-active) !important;
+}
+
+.half_width {
+   margin-right: auto;
+   padding-left: 0px;
+   padding-right: 0px;
+}
+
+.bgb_left {
+   border-top-width: var(--button-group-border-width);
+   border-top-style: var(--button-group-border-style);
+   border-top-color: var(--button-group-border-color);
+   border-bottom-width: var(--button-group-border-width);
+   border-bottom-style: var(--button-group-border-style);
+   border-bottom-color: var(--button-group-border-color);
+   border-left-width: var(--button-group-border-width);
+   border-left-style: var(--button-group-border-style);
+   border-left-color: var(--button-group-border-color);
+   border-right-width: var(--button-group-separator-width);
+   border-right-style: var(--button-group-separator-style);
+   border-right-color: var(--button-group-separator-color);
+
+   border-top-left-radius: var(--button-group-rounding);
+   border-bottom-left-radius: var(--button-group-rounding);
+}
+
+.bgb_top {
+   border-top-width: var(--button-group-border-width);
+   border-top-style: var(--button-group-border-style);
+   border-top-color: var(--button-group-border-color);
+   border-bottom-width: var(--button-group-separator-width);
+   border-bottom-style: var(--button-group-separator-style);
+   border-bottom-color: var(--button-group-separator-color);
+   border-left-width: var(--button-group-border-width);
+   border-left-style: var(--button-group-border-style);
+   border-left-color: var(--button-group-border-color);
+   border-right-width: var(--button-group-border-width);
+   border-right-style: var(--button-group-border-style);
+   border-right-color: var(--button-group-border-color);
+
+   border-top-left-radius: var(--button-group-rounding);
+   border-top-right-radius: var(--button-group-rounding);
+}
+
+.bgb_midv {
+   border-top-width: var(--button-group-separator-width);
+   border-top-style: var(--button-group-separator-style);
+   border-top-color: var(--button-group-separator-color);
+   border-bottom-width: var(--button-group-separator-width);
+   border-bottom-style: var(--button-group-separator-style);
+   border-bottom-color: var(--button-group-separator-color);
+   border-left-width: var(--button-group-border-width);
+   border-left-style: var(--button-group-border-style);
+   border-left-color: var(--button-group-border-color);
+   border-right-width: var(--button-group-border-width);
+   border-right-style: var(--button-group-border-style);
+   border-right-color: var(--button-group-border-color);
+}
+
+.bgb_midh {
+   border-top-width: var(--button-group-border-width);
+   border-top-style: var(--button-group-border-style);
+   border-top-color: var(--button-group-border-color);
+   border-bottom-width: var(--button-group-border-width);
+   border-bottom-style: var(--button-group-border-style);
+   border-bottom-color: var(--button-group-border-color);
+   border-left-width: var(--button-group-separator-width);
+   border-left-style: var(--button-group-separator-style);
+   border-left-color: var(--button-group-separator-color);
+   border-right-width: var(--button-group-separator-width);
+   border-right-style: var(--button-group-separator-style);
+   border-right-color: var(--button-group-separator-color);
+}
+
+.bgb_right {
+   border-top-width: var(--button-group-border-width);
+   border-top-style: var(--button-group-border-style);
+   border-top-color: var(--button-group-border-color);
+   border-bottom-width: var(--button-group-border-width);
+   border-bottom-style: var(--button-group-border-style);
+   border-bottom-color: var(--button-group-border-color);
+   border-left-width: var(--button-group-separator-width);
+   border-left-style: var(--button-group-separator-style);
+   border-left-color: var(--button-group-separator-color);
+   border-right-width: var(--button-group-border-width);
+   border-right-style: var(--button-group-border-style);
+   border-right-color: var(--button-group-border-color);
+
+   border-top-right-radius: var(--button-group-rounding);
+   border-bottom-right-radius: var(--button-group-rounding);
+}
+
+.bgb_bottom {
+   border-top-width: var(--button-group-separator-width);
+   border-top-style: var(--button-group-separator-style);
+   border-top-color: var(--button-group-separator-color);
+   border-bottom-width: var(--button-group-border-width);
+   border-bottom-style: var(--button-group-border-style);
+   border-bottom-color: var(--button-group-border-color);
+   border-left-width: var(--button-group-border-width);
+   border-left-style: var(--button-group-border-style);
+   border-left-color: var(--button-group-border-color);
+   border-right-width: var(--button-group-border-width);
+   border-right-style: var(--button-group-border-style);
+   border-right-color: var(--button-group-border-color);
+
+   border-bottom-left-radius: var(--button-group-rounding);
+   border-bottom-right-radius: var(--button-group-rounding);
+}
+
+.btn_solo {
+   border-top-width: var(--button-group-border-width);
+   border-top-style: var(--button-group-border-style);
+   border-top-color: var(--button-group-border-color);
+   border-bottom-width: var(--button-group-border-width);
+   border-bottom-style: var(--button-group-border-style);
+   border-bottom-color: var(--button-group-border-color);
+   border-left-width: var(--button-group-border-width);
+   border-left-style: var(--button-group-border-style);
+   border-left-color: var(--button-group-border-color);
+   border-right-width: var(--button-group-border-width);
+   border-right-style: var(--button-group-border-style);
+   border-right-color: var(--button-group-border-color);
+
+   border-radius: var(--button-group-rounding);
+}
+
+.drop_down {
+   position: absolute;
+   display: none;
+
+   background-color: var(--font-preview-menu-bg-color);
+   color: var(--font-preview-opt-example-text-color);
+   border: 1px solid gray;
+
+   overflow-y: auto;
+   overflow-x: hidden;
+
+   cursor: pointer;
+
+   z-index: 1;
+}
+
+
+/* FILE MENU */
+
+
+/* TEXT MENU */
+#menu_text {
+   display: inline-grid;
+   grid-template-columns: min-content min-content auto;
+}
+
+#menu_text_1 {
+   /* 1 column 3 rows */
+   height: calc(100% - 8px);
+   padding: 4px;
+
+   display: inline-grid;
+}
+
+#menu_text_2 {
+   /* 12 columns and 3 rows */
+   height: calc(100% - 8px);
+
+   display: inline-grid;
+   padding: 4px;
+   grid-template-columns: repeat(13, 1fr);
+   grid-template-rows: 1fr 0fr 1fr;
+}
+
+#menu_text_2 .grid_spacer {
+   min-width: 8px;
+   padding: 0px;
+}
+
+#menu_text_2 .grid_spacer_h {
+   height: 2px;
+}
+
+#menu_text_fontfamily_btn {
+   grid-column: 1 / 5;
+   overflow: hidden;
+   white-space: nowrap;
+}
+
+
+
+/* Drop down menus */
+.isActive_dd {
+   background-color: var(--font-preview-opt-bg-active-color) !important;
+}
+
+/* Font family drop down menu */
+#dd_font_fam {
+   min-height: 100px;
+   height: 400px;
+
+   min-width: 50px;
+}
+
+.menu_text_fontfamily_dd_opt_btn {
+   width: 100%;
+
+   background-color: var(--font-preview-opt-bg-color);
+
+   padding: 2px;
+   margin-bottom: 1px;
+
+   cursor: pointer;
+}
+
+.menu_text_fontfamily_dd_opt_btn:hover {
+   background-color: var(--font-preview-opt-bg-hovor-color);
+}
+
+.menu_text_fontfamily_dd_opt_ex {
+   display: inline-block;
+
+   color: var(--font-preview-opt-example-text-color);
+
+   padding-left: 0px;
+}
+
+.menu_text_fontfamily_dd_opt_st {
+   display: inline-block;
+
+   font-size: 0.6em;
+   color: var(--font-preview-opt-standard-text-color);
+
+   padding-left: 0px;
+}
+
+
+
+/* Font size drop down menu */
+#dd_font_size {
+   min-height: 100px;
+
+   min-width: 50px;
+   max-width: 300px;
+}
+
+.menu_text_fontsize_dd_opt_btn {
+   background-color: var(--font-preview-opt-bg-color);
+
+   padding: 2px;
+   margin-bottom: 1px;
+
+   cursor: pointer;
+}
+
+.menu_text_fontsize_dd_opt_btn:hover {
+   background-color: var(--font-preview-opt-bg-hovor-color);
+}
+
+
+
+/* Font styles drop down menu */
+.menu_text_style_dd_opt_btn {
+   background-color: var(--font-preview-opt-bg-color);
+   color: var(--font-preview-opt-example-text-color);
+
+   padding: 4px;
+   margin-bottom: 1px;
+
+   cursor: pointer;
+}
+
+.menu_text_style_dd_opt_btn:hover {
+   background-color: var(--font-preview-opt-bg-hovor-color);
+}

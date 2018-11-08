@@ -14,7 +14,10 @@ function createWindow () {
       minWidth: 800,
       minHeight: 600,
       x: 1980,
-      y: 240})
+      y: 240,
+      webPreferences: {
+         defaultFontSize: 14
+      }})
 
       // and load the index.html of the app.
       win.loadURL(url.format({

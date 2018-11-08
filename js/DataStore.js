@@ -43,14 +43,16 @@ function GetFilePath(type, identifier) {
          // Find a suitable id for this new notebook
          if (identifier == null) { identifier = CreateNewNotebookID() }
 
-         console.log("Notebook identifier: " + identifier)
-
          // Update the session data so that this notebook loads next time the app opens
          lastOpenNotebook = identifier
          SetLastOpenNoteBook(identifier)
-
-         return path.join((electron.app || electron.remote.app).getPath('userData'),
+         var pathToFile = path.join((electron.app ||
+         electron.remote.app).getPath('userData'),
          "notebooks/" + identifier + ".json")
+
+         console.log("Notebook identifier: " + identifier + ", path: " + pathToFile)
+
+         return pathToFile
       }
    }
 }
