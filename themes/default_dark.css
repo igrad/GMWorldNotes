@@ -78,6 +78,8 @@
 
 
    /* Dialog Window styling */
-   --dialog-bg-color: #121212;
+   --dialog-bg-color: #323232;
    --dialog-font-color: #dddddd;
+   --dialog-input-color: #767676;
+   --dialog-red-color: #f04747;
 }

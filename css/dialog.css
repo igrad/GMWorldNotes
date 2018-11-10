@@ -7,26 +7,82 @@
    background-color: var(--dialog-bg-color);
    color: var(--dialog-font-color);
 
-   box-shadow: 1px 1px 4px 0px black;
+   box-shadow: 1px 1px 4px 0px #040404;
 
    top: 50%;
    left: 50%;
    transform: translateX(-50%) translateY(-50%);
+   max-height: 95%;
+   max-width: 95%;
 }
+
+
 
 .dialog_text {
    margin: 4px;
 
-   cursor: pointer;
+   cursor: default;
 }
+
+
 
 .dialog_prompt {
    margin: 4px;
 
    outline: 0px;
    border: 0px;
-   border-bottom: 1px solid #343434;
+   border-bottom: 1px solid var(--dialog-input-color);
 
    background-color: inherit;
-   color: #dedede;
+   color: inherit;
+}
+
+.dialog_prompt::placeholder {
+   color: var(--dialog-input-color);
+}
+
+
+
+.dialog_scroll {
+   margin: 4px;
+
+   background-color: rgba(0, 0, 0, 0.15);
+}
+
+
+
+.dialog_confirmation_wrapper {
+   margin: 4px;
+
+   float: right;
+}
+
+.dialog_cancel {
+   display: inline-block;
+
+   color: var(--dialog-red-color);
+
+   border-width: 1px;
+   border-radius: 3px;
+   border-style: solid;
+   border-color: var(--dialog-red-color);
+
+   padding: 4px;
+
+   cursor: pointer;
+}
+
+.dialog_confirm {
+   display: inline-block;
+
+   color: var(--dialog-font-color);
+
+   border-width: 1px;
+   border-radius: 3px;
+   border-style: solid;
+   border-color: var(--dialog-input-color);
+
+   padding: 4px;
+
+   cursor: pointer;
 }

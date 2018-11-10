@@ -287,15 +287,20 @@
       <!-- ============== -->
       <!-- TREEVIEW ITEM INTERACTIONS -->
       <div id="dw_rename_TVI" class="dialog_window">
-         <div class="dialog_text">
-            Enter a new name
-         </div>
-         <input type="text" placeholder="New name" class="dialog_prompt" onkeyup="CatchKeysTVIRename(event)">
+         <div class="dialog_text">Enter a new name</div>
+
+         <input type="text" placeholder="New name" class="dialog_prompt" onkeyup="CatchKeysTVIRename(event)" onblur="this.focus()">
       </div>
 
       <div id="dw_associations_TVI" class="dialog_window">
-         <input type="text" placeholder="Search notebook" class="dialog_prompt">
-         <div class="dialog_scroll">
+         <input type="text" placeholder="Search notebook" class="dialog_prompt" onblur="this.focus()">
+
+         <div id="dw_associations_scroll" class="dialog_scroll">
+         </div>
+
+         <div class="dialog_confirmation_wrapper">
+            <div id="dw_associations_cancel" class="dialog_cancel" onclick="OpenTVIAssociationsDialog(false)">Cancel</div>
+            <div id="dw_associations_confirm" class="dialog_confirm" onclick="OpenTVIAssociationsDialog(true)">Confirm</div>
          </div>
       </div>
 

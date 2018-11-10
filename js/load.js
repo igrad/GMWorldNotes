@@ -31,7 +31,7 @@ function LoadSession() {
    lastOpenPage = sessionData.get("LASTOPENPAGE")
 
    console.log("=====SESSION DATA=====")
-   console.log("Last run time: " + lastRunTime)
+   console.log("Last run time: " + (new Date(lastRunTime)).toString())
    console.log("Last run version: " + lastRunVersion)
    console.log("Last open notebook: " + lastOpenNotebook)
    console.log("Last open page: " + lastOpenPage)

@@ -72,6 +72,7 @@ var treeViewItemRCMopts = {
       label: "Edit Associations",
       click() {
          // Open up the associations editor
+         OpenTVIAssociationsDialog(this)
       }
    },
    "ChangeType": {
