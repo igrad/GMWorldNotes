@@ -1,4 +1,5 @@
 var openDialogWindow = null
+var activeTVI = null
 
 function OpenDialog(dialogID) {
    if ($(dialogID).css("display") == "none") {
@@ -19,19 +20,29 @@ function OpenDialog(dialogID) {
 }
 
 // dw_rename_TVI functions
-function OpenTVIRenameDialog() {
+function OpenTVIRenameDialog(tvi = null) {
    if (OpenDialog("#dw_rename_TVI")) {
       // Automatically clear and focus the input
       $("#dw_rename_TVI input")[0].value = ""
       $("#dw_rename_TVI input").focus()
    }
+
+   // Does not include #
+   activeTVI = tvi
 }
 
-function CatchKeysTVIRename(e) {
+function CatchKeysTVIRename(caller, e) {
    switch (e.keyCode) {
       case 13: // Enter pressed
+         var itemID = activeTVI.attr("id")
+         var node = notebookData.GetNode(itemID)
+         var newName = $("#dw_rename_TVI input")[0].value
+
+         node.name = newName
+         notebookData.UpdateDS()
+         LoadNotebookToScreen(lastOpenNotebook)
+
          OpenTVIRenameDialog()
-         // Rename the TVI
          break
       case 27: // Escape Pressed
          OpenTVIRenameDialog()

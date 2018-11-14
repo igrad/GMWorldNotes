@@ -94,10 +94,10 @@ function CreateNewTreeViewItem(id, name, type) {
    if (type == "folder") {
       html += "<div id='" + id + "_collapser' class='tree_view_item_collapser' "
       html += "onclick='event.stopPropagation(); ToggleFolderCollapse(this)' isopen='true'>"
-      html += "<div id='open'>"
-      html += "<svg width='16' height='16' viewBox='0 0 16 16'><path fill='currentColor' d='M4.957 5.543l-1.414 1.414 4.457 4.457 4.457-4.457-1.414-1.414-3.043 3.043z'></path></svg></div>"
-      html += "<div id='closed' style='display:none'>"
-      html += "<svg width='16' height='16' viewBox='0 0 16 16'><path fill='currentColor' d='M5.543 11.043l1.414 1.414 4.457-4.457-4.457-4.457-1.414 1.414 3.043 3.043z'></path></svg></div></div>"
+      html += "<div id='" + id + "_open' class='tree_view_item_open'>"
+      html += "<svg id='" + id + "_open_img' class='tree_view_item_open_img' width='16' height='16' viewBox='0 0 16 16'><path fill='currentColor' d='M4.957 5.543l-1.414 1.414 4.457 4.457 4.457-4.457-1.414-1.414-3.043 3.043z'></path></svg></div>"
+      html += "<div id='" + id + "_closed' class='tree_view_item_closed' style='display:none'>"
+      html += "<svg id='" + id + "_closed_img' class='tree_view_item_closed_img' width='16' height='16' viewBox='0 0 16 16'><path fill='currentColor' d='M5.543 11.043l1.414 1.414 4.457-4.457-4.457-4.457-1.414 1.414 3.043 3.043z'></path></svg></div></div>"
    }
    html += "<div class='tree_view_item_inner' id='" + id + "_inner' "
    html += "style='left:" + ((type == "folder") ? indent : widthFix)

@@ -51,8 +51,12 @@ var treeViewItemRCMopts = {
    "Rename": {
       label: "Rename",
       click() {
-         // Open prompt to rename this node
-         OpenTVIRenameDialog(this)
+         var item = $("#" + treeViewItemRCM.callerID)
+         while (item.attr("class") != "tree_view_item") {
+            item = item.parent()
+         }
+
+         OpenTVIRenameDialog(item)
       }
    },
    "MoveUp": {
@@ -72,7 +76,7 @@ var treeViewItemRCMopts = {
       label: "Edit Associations",
       click() {
          // Open up the associations editor
-         OpenTVIAssociationsDialog(this)
+         OpenTVIAssociationsDialog($("#" + treeViewItemRCM.callerID).parent()[0])
       }
    },
    "ChangeType": {
