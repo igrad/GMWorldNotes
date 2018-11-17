@@ -76,7 +76,12 @@ var treeViewItemRCMopts = {
       label: "Edit Associations",
       click() {
          // Open up the associations editor
-         OpenTVIAssociationsDialog($("#" + treeViewItemRCM.callerID).parent()[0])
+         var item = $("#" + treeViewItemRCM.callerID)
+         while (item.attr("class") != "tree_view_item") {
+            item = item.parent()
+         }
+
+         OpenTVIAssociationsDialog(item, null)
       }
    },
    "ChangeType": {

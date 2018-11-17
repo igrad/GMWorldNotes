@@ -3,6 +3,17 @@
    text-align: left;
 }
 
+.custom_scroll::-webkit-scrollbar {
+   width: 3px;
+}
+.custom_scroll::-webkit-scrollbar-track {
+   background: var(--scrollbar-background);
+   height: 100%;
+}
+.custom_scroll::-webkit-scrollbar-thumb {
+   background: var(--scrollbar-foreground);
+}
+
 
 
 /* Section structuring */
@@ -41,8 +52,8 @@ body {
    min-width: 196px;
    top: 100px;
 
-   overflow: auto;
-   resize: horizontal;
+   overflow-y: auto;
+   overflow-x: hidden;
 
    background-color: var(--treeview-bg-color);
 }
@@ -160,7 +171,6 @@ body {
 }
 
 #content_view {
-   width: calc(100% - 8px);
    height: calc(100% - 8px);
    padding: 4px;
    padding-left: 8px;

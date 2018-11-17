@@ -1,6 +1,11 @@
 :root {
+   /* Global */
+   --scrollbar-foreground: #eeeeee;
+   --scrollbar-background: rgba(0, 0, 0, 0.15);
+
    /* Body */
    --body-bg-color: #000000;
+
    /* Shelf structuring */
    --shelf-height: 97px;
    --shelf-top-font-size: medium;

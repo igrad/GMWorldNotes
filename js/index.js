@@ -152,7 +152,7 @@ function ResizingTreeView (e) {
       // Copy-paste the width of tree_view to the X position of the resize_bar
       // so that we don't have to do any math for the tree_view's min and max
       // boundaries - they will address themselves during the above operation
-      $("#resize_bar").css("left", $("#tree_view").css("width"))
+      $("#resize_bar").css("left", $("#tree_view").outerWidth() + "px")
    }
 }
 
@@ -182,6 +182,7 @@ $(window).on('load', function() {
    notebookData.UpdateDS()
    LoadThemeToScreen()
    LoadNotebookToScreen(lastOpenNotebook)
+   LoadNotebookToAssociations(lastOpenNotebook)
 
    // Set HTML final touches
    $(".upper_shelf_btn").attr("isOpen", "false")

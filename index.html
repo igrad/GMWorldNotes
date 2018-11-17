@@ -269,13 +269,13 @@
 
 
       <div id="lower_flex">
-         <div id="tree_view"></div>
+         <div id="tree_view" class="custom_scroll"></div>
 
          <div id="resize_bar" onmousedown="StartResizingTreeView(event)"></div>
 
          <div id="content_view_wrap">
             <div id="save_notification">Saving...</div>
-            <div id="content_view" contenteditable="true" spellcheck="true" oninput="ContentEdited()" onclick="CheckStyleAtAnchor()" onkeyup="CheckStyleAtAnchor()">
+            <div id="content_view" class="custom_scroll" contenteditable="true" spellcheck="true" oninput="ContentEdited()" onclick="CheckStyleAtAnchor()" onkeyup="CheckStyleAtAnchor()">
                <!-- This displays all information about the node itself. -->
             </div>
          </div>
@@ -290,20 +290,23 @@
          <div class="dialog_text">Enter a new name</div>
 
          <input type="text" placeholder="New name" class="dialog_prompt" onkeyup="CatchKeysTVIRename(this, event)" onblur="this.focus()">
+         <br/>
+         <div class="dialog_confirmation_wrapper">
+            <div id="dw_rename_cancel" class="dialog_cancel" onclick="OpenTVIRenameDialog(null)">Cancel</div>
+            <div id="dw_rename_confirm" class="dialog_confirm" onclick="RenameActiveNode();OpenTVIRenameDialog(null)">Confirm</div>
+         </div>
       </div>
 
       <div id="dw_associations_TVI" class="dialog_window">
          <input type="text" placeholder="Search notebook" class="dialog_prompt" onblur="this.focus()">
 
-         <div id="dw_associations_scroll" class="dialog_scroll">
+         <div id="dw_associations_scroll" class="dialog_scroll custom_scroll">
          </div>
 
          <div class="dialog_confirmation_wrapper">
-            <div id="dw_associations_cancel" class="dialog_cancel" onclick="OpenTVIAssociationsDialog(false)">Cancel</div>
-            <div id="dw_associations_confirm" class="dialog_confirm" onclick="OpenTVIAssociationsDialog(true)">Confirm</div>
+            <div id="dw_associations_cancel" class="dialog_cancel" onclick="OpenTVIAssociationsDialog(activeTVI, false)">Cancel</div>
+            <div id="dw_associations_confirm" class="dialog_confirm" onclick="OpenTVIAssociationsDialog(activeTVI, true)">Confirm</div>
          </div>
       </div>
-
-
    </body>
 </html>

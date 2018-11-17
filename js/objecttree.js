@@ -28,7 +28,7 @@ class TreeNode {
          this.id = "1-0"
          this.name = "New Page"
          this.type = "page"
-         this.associations = null
+         this.associations = []
          this.parent = "0-0"
          this.children = []
          this.data = "blank"
@@ -36,7 +36,7 @@ class TreeNode {
          this.id = "1-0"
          this.name = "New Folder"
          this.type = "folder"
-         this.associations = null
+         this.associations = []
          this.parent = "0-0"
          this.children = []
          this.data = null

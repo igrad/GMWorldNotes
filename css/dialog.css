@@ -27,7 +27,9 @@
 
 
 .dialog_prompt {
-   margin: 4px;
+   margin-top: 4px;
+   margin-left: 4px;
+   margin-bottom: 4px;
 
    outline: 0px;
    border: 0px;
@@ -47,6 +49,9 @@
    margin: 4px;
 
    background-color: rgba(0, 0, 0, 0.15);
+
+   overflow-y: scroll;
+   overflow-x: hidden;
 }
 
 
@@ -85,4 +90,25 @@
    padding: 4px;
 
    cursor: pointer;
+}
+
+
+
+.associative_tree_view_item {
+   padding: var(--treeview-item-padding);
+
+   cursor: pointer;
+
+   background-color: var(--treeview-item-bg-color);
+   color: var(--treeview-item-font-color);
+}
+
+.associative_tree_view_item:hover {
+   background-color: var(--treeview-item-bg-color-hover);
+   color: var(--treeview-item-font-color-hover);
+}
+
+.associative_tree_view_item:active {
+   background-color: var(--treeview-item-bg-color-active);
+   color: var(--treeview-item-font-color-active);
 }
