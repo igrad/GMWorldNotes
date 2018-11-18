@@ -9,7 +9,8 @@ function OpenDialog(tvi, dialogID) {
          OpenDialog(null, openDialogWindow)
       }
 
-      $(dialogID).css("display", "inline-block")
+      $(dialogID + " .dialog_header")[0].innerText = tvi[0].innerText
+      $(dialogID).css("display", "flex")
       openDialogWindow = dialogID
       activeTVI = tvi
       activeTVIAssocs = notebookData.GetNode(activeTVI.attr("id")).associations

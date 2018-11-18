@@ -287,10 +287,11 @@
       <!-- ============== -->
       <!-- TREEVIEW ITEM INTERACTIONS -->
       <div id="dw_rename_TVI" class="dialog_window">
+         <div class="dialog_header"></div>
          <div class="dialog_text">Enter a new name</div>
 
          <input type="text" placeholder="New name" class="dialog_prompt" onkeyup="CatchKeysTVIRename(this, event)" onblur="this.focus()">
-         <br/>
+
          <div class="dialog_confirmation_wrapper">
             <div id="dw_rename_cancel" class="dialog_cancel" onclick="OpenTVIRenameDialog(null)">Cancel</div>
             <div id="dw_rename_confirm" class="dialog_confirm" onclick="RenameActiveNode();OpenTVIRenameDialog(null)">Confirm</div>
@@ -298,6 +299,7 @@
       </div>
 
       <div id="dw_associations_TVI" class="dialog_window">
+         <div class="dialog_header"></div>
          <input type="text" placeholder="Search notebook" class="dialog_prompt" onblur="this.focus()">
 
          <div id="dw_associations_scroll" class="dialog_scroll custom_scroll">
