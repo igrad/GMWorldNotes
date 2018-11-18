@@ -200,5 +200,7 @@ class Tree {
       notebookData.UpdateDS()
 
       LoadNotebookToScreen(notebookData.id)
+
+      return newID
    }
 }

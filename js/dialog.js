@@ -1,19 +1,30 @@
 var openDialogWindow = null
 var activeTVI = null
 var activeTVIAssocs = []
+var activeID = null
 
-function OpenDialog(tvi, dialogID) {
+function OpenDialog(tvi, dialogID, header = null) {
    if ($(dialogID).css("display") == "none") {
       // Check if another dialog is already open
       if (openDialogWindow != null) {
          OpenDialog(null, openDialogWindow)
       }
 
-      $(dialogID + " .dialog_header")[0].innerText = tvi[0].innerText
+      if (header) {
+         $(dialogID + " .dialog_header")[0].innerText = header
+      } else {
+         $(dialogID + " .dialog_header")[0].innerText = tvi[0].innerText
+      }
+
       $(dialogID).css("display", "flex")
       openDialogWindow = dialogID
       activeTVI = tvi
-      activeTVIAssocs = notebookData.GetNode(activeTVI.attr("id")).associations
+
+      if (tvi) {
+         activeTVIAssocs = notebookData.GetNode(activeTVI.attr("id")).associations
+      } else {
+         activeTVIAssocs = notebookData.GetNode(activeID).associations
+      }
    } else {
       $(dialogID).css("display", "none")
       openDialogWindow = null
@@ -24,6 +35,41 @@ function OpenDialog(tvi, dialogID) {
    // If the dialog mentioned is now the open dialog window, return true
    return openDialogWindow == dialogID
 }
+
+// dw_name_new_TVI functions
+function OpenTVINewNameDialog(newNodeID) {
+   activeID = newNodeID
+   if (OpenDialog(null, "#dw_name_new_TVI", "New Page")) {
+      // Automatically clear and focus the input
+      $("#dw_name_new_TVI input")[0].value = ""
+      $("#dw_name_new_TVI input").focus()
+   } else {
+      activeID = null
+   }
+}
+
+function CatchKeysTVINewName(caller, e) {
+   switch (e.keyCode) {
+      case 13: // Enter pressed
+         NameNewNode()
+         OpenTVINewNameDialog(activeID)
+         break
+      case 27: // Escape Pressed
+         OpenTVINewNameDialog(activeID)
+         break
+   }
+}
+
+function NameNewNode() {
+   var node = notebookData.GetNode(activeID)
+   var newName = $("#dw_name_new_TVI input")[0].value
+
+   node.name = newName
+   notebookData.UpdateDS()
+   LoadNotebookToScreen(lastOpenNotebook)
+}
+
+
 
 // dw_rename_TVI functions
 function OpenTVIRenameDialog(tvi = null) {
@@ -127,14 +173,13 @@ function CreateNewATVI(id, name, type) {
    var html = "<div class='associative_tree_view_item' type='" + type + "' id='a_" + id + "' "
    html += "onmouseover='TreeViewHover(this)' "
    html += "onmouseout='TreeViewLeaveHover(this)' "
-   html += "onclick='ToggleATVI(this)' state='unchecked'>"
+   html += "onclick='ToggleATVI(this)' "
+   if (activeTVIAssocs.includes(id)) { html += "state='checked'>" }
+   else { html += "state='unchecked'>" }
    html += "<div id='a_" + id + "_check' style='display:inline-block;vertical-align:middle'>"
 
-   if (activeTVIAssocs.includes(id)) {
-      html += checkedSVG + "</div>"
-   } else {
-      html += uncheckedSVG + "</div>"
-   }
+   if (activeTVIAssocs.includes(id)) { html += checkedSVG + "</div>" }
+   else { html += uncheckedSVG + "</div>" }
 
    if (type == "folder") {
       html += "<div id='a_" + id + "_collapser' class='tree_view_item_collapser' "

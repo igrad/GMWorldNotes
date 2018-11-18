@@ -286,6 +286,18 @@
       <!-- DIALOG WINDOWS -->
       <!-- ============== -->
       <!-- TREEVIEW ITEM INTERACTIONS -->
+      <div id="dw_name_new_TVI" class="dialog_window">
+         <div class="dialog_header"></div>
+         <div class="dialog_text">Enter a name for this page</div>
+
+         <input type="text" placeholder="New name" class="dialog_prompt" onkeyup="CatchKeysTVINewName(this, event)" onblur="this.focus()">
+
+         <div class="dialog_confirmation_wrapper">
+            <div id="dw_new_name_cancel" class="dialog_cancel" onclick="OpenTVINewNameDialog()">Cancel</div>
+            <div id="dw_new_name_confirm" class="dialog_confirm" onclick="NameNewNode();OpenTVINewNameDialog()">Confirm</div>
+         </div>
+      </div>
+
       <div id="dw_rename_TVI" class="dialog_window">
          <div class="dialog_header"></div>
          <div class="dialog_text">Enter a new name</div>
@@ -293,8 +305,8 @@
          <input type="text" placeholder="New name" class="dialog_prompt" onkeyup="CatchKeysTVIRename(this, event)" onblur="this.focus()">
 
          <div class="dialog_confirmation_wrapper">
-            <div id="dw_rename_cancel" class="dialog_cancel" onclick="OpenTVIRenameDialog(null)">Cancel</div>
-            <div id="dw_rename_confirm" class="dialog_confirm" onclick="RenameActiveNode();OpenTVIRenameDialog(null)">Confirm</div>
+            <div id="dw_rename_cancel" class="dialog_cancel" onclick="OpenTVIRenameDialog()">Cancel</div>
+            <div id="dw_rename_confirm" class="dialog_confirm" onclick="RenameActiveNode();OpenTVIRenameDialog()">Confirm</div>
          </div>
       </div>
 

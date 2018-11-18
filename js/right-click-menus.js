@@ -109,13 +109,29 @@ var treeViewItemRCMopts = {
             label: 'Page',
             click() {
                // Create a new page in the notebook
-               notebookData.nodeTree.AddNewNode("page", treeViewItemRCM.callerID)
+               var item = $("#" + treeViewItemRCM.callerID)
+
+               while (item.attr("class") != "tree_view_item") {
+                  item = item.parent()
+               }
+
+               var newTVI = notebookData.nodeTree.AddNewNode("page", item.attr("id"))
+
+               OpenTVINewNameDialog(newTVI)
             }
          }, {
             label: 'Folder',
             click() {
                // Create a new folder in the notebook
-               notebookData.nodeTree.AddNewNode("folder", treeViewItemRCM.callerID)
+               var item = $("#" + treeViewItemRCM.callerID)
+
+               while (item.attr("class") != "tree_view_item") {
+                  item = item.parent()
+               }
+
+               var newTVI = notebookData.nodeTree.AddNewNode("folder", item.attr("id"))
+
+               OpenTVINewNameDialog(newTVI)
             }
          }
       ]
