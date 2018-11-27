@@ -39,7 +39,7 @@ function OpenDialog(tvi, dialogID, header = null) {
 // dw_name_new_TVI functions
 function OpenTVINewNameDialog(newNodeID) {
    activeID = newNodeID
-   if (OpenDialog(null, "#dw_name_new_TVI", "New Page")) {
+   if (OpenDialog(null, "#dw_name_new_TVI", "New Item")) {
       // Automatically clear and focus the input
       $("#dw_name_new_TVI input")[0].value = ""
       $("#dw_name_new_TVI input").focus()
@@ -113,6 +113,7 @@ function OpenTVIAssociationsDialog(tvi, inputConfirmed) {
       // Make changes based on edited content
       var itemID = activeTVI.attr("id")
       var node = notebookData.GetNode(itemID)
+      var oldAssocs = node.associations
 
       var checked = $("#dw_associations_scroll [state='checked']")
       var newAssocs = []
@@ -120,7 +121,22 @@ function OpenTVIAssociationsDialog(tvi, inputConfirmed) {
          newAssocs.push(checked[i].id.substring(2))
       }
 
-      node.associations = newAssocs
+      for (var i = 0; i < oldAssocs.length; i++) {
+         // If an old association is not included in the list of new associations, remove that old association
+         if (!newAssocs.includes(oldAssocs[i])) {
+            node.RemoveAssociation(oldAssocs[i])
+            (notebookData.getNode(oldAssocs[i])).RemoveAssociation(node.id)
+         }
+      }
+
+      // If one of the new associations does not exist in the prior list, add it in
+      for (var j = 0; j < newAssocs.length; j++) {
+         if (!oldAssocs.includes(newAssocs[j])) {
+            node.AddAssociation(newAssocs[j])
+            (notebookData.getNode(newAssocs[j])).AddAssociation(node.id)
+         }
+      }
+
       notebookData.UpdateDS()
       LoadNotebookToScreen(lastOpenNotebook)
    }
@@ -164,7 +180,7 @@ function ToggleATVI(caller, forceNewState = null) {
 }
 
 function CreateNewATVI(id, name, type) {
-   var depth = GetDepthFromID(id)
+   var depth = notebookData.GetNodeDepth(id)
    var indent = parseInt($("body").css('--treeview-depth-indent')) * (depth - 1)
    var collapserWidth = parseInt($("body").css('--treeview-item-collapser-width'))
 
@@ -203,7 +219,7 @@ async function AddATVIToScreen(id, builder) {
    var node = notebookData.GetNode(id)
    var builder = ""
 
-   var depth = GetDepthFromID(id)
+   var depth = notebookData.GetNodeDepth(id)
 
    // Add the node itself to the screen
    if (depth != 0) {
@@ -221,7 +237,7 @@ async function AddATVIToScreen(id, builder) {
       builder += "</div>"
    }
 
-   if (id == "0-0") $("#dw_associations_scroll")[0].innerHTML = builder
+   if (id == "00000000") $("#dw_associations_scroll")[0].innerHTML = builder
 
    return builder
 }
@@ -238,5 +254,16 @@ function LoadNotebookToAssociations() {
    // While doing this, also add each label into the content view
    console.log("Loading tree")
 
-   AddATVIToScreen("0-0", "")
+   AddATVIToScreen("00000000", "")
+}
+
+
+
+// dw_delete_TVI functions
+function OpenTVIDeleteDialog(tvi, inputConfirmed) {
+   if (inputConfirmed) {
+      notebookData.DeleteNode(tvi.attr("id"))
+   }
+
+   OpenDialog(tvi, "#dw_delete_TVI")
 }

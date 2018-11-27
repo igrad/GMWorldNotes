@@ -79,7 +79,7 @@ function SaveFileData (filepath, data) {
 
 
 function CreateNewTreeViewItem(id, name, type) {
-   var depth = GetDepthFromID(id)
+   var depth = notebookData.GetNodeDepth(id)
 
    var indent = parseInt($("body").css('--treeview-depth-indent')) * (depth - 1)
    var collapserWidth = parseInt($("body").css('--treeview-item-collapser-width'))
@@ -115,7 +115,7 @@ async function AddTreeNodeToScreen(id, builder) {
    var node = notebookData.GetNode(id)
    var builder = ""
 
-   var depth = GetDepthFromID(id)
+   var depth = notebookData.GetNodeDepth(id)
 
    // Add the node itself to the screen
    if (depth != 0) {
@@ -133,7 +133,7 @@ async function AddTreeNodeToScreen(id, builder) {
       builder += "</div>"
    }
 
-   if (id == "0-0") $("#tree_view")[0].innerHTML = builder
+   if (id == "00000000") $("#tree_view")[0].innerHTML = builder
 
    return builder
 }
@@ -167,7 +167,7 @@ function LoadNotebookToScreen(id) {
    // While doing this, also add each label into the content view
    console.log("Loading tree")
 
-   AddTreeNodeToScreen("0-0", "").then(function (result) {
+   AddTreeNodeToScreen("00000000", "").then(function (result) {
       $(".tree_view_item").contextmenu(function(e) {
          e.preventDefault()
          console.log(e.target.id)

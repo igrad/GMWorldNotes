@@ -55,4 +55,12 @@ class Notebook {
    GetNode (id) {
       return this.nodeTree.GetNodeObject(id)
    }
+
+   GetNodeDepth (id) {
+      return this.nodeTree.GetNodeDepth(id)
+   }
+
+   DeleteNode (id) {
+      return this.nodeTree.DeleteNode(id)
+   }
 }

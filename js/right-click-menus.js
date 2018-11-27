@@ -20,13 +20,13 @@ var treeViewRCMopts = {
                // If this has been called, it means that the user didn't click on an
                // existing item, and this should be added to the first layer under root
                // Create a new page in the notebook
-               notebookData.nodeTree.AddNewNode("page", "0-0")
+               notebookData.nodeTree.AddNewNode("page", "00000000")
             }
          }, {
             label: 'New Folder',
             click() {
                // Create a new folder in the notebook
-               notebookData.nodeTree.AddNewNode("folder", "0-0")
+               notebookData.nodeTree.AddNewNode("folder", "00000000")
             }
          }
       ]
@@ -94,6 +94,12 @@ var treeViewItemRCMopts = {
       label: "Delete",
       click() {
          // Open up prompt to confirm deletion
+         var item = $("#" + treeViewItemRCM.callerID)
+         while (item.attr("class") != "tree_view_item") {
+            item = item.parent()
+         }
+
+         OpenTVIDeleteDialog(item, null)
       }
    },
    "Details": {

@@ -286,8 +286,10 @@
       <!-- DIALOG WINDOWS -->
       <!-- ============== -->
       <!-- TREEVIEW ITEM INTERACTIONS -->
+      <!-- Set name of new item -->
       <div id="dw_name_new_TVI" class="dialog_window">
          <div class="dialog_header"></div>
+
          <div class="dialog_text">Enter a name for this page</div>
 
          <input type="text" placeholder="New name" class="dialog_prompt" onkeyup="CatchKeysTVINewName(this, event)" onblur="this.focus()">
@@ -298,8 +300,10 @@
          </div>
       </div>
 
+      <!-- Rename existing item -->
       <div id="dw_rename_TVI" class="dialog_window">
          <div class="dialog_header"></div>
+
          <div class="dialog_text">Enter a new name</div>
 
          <input type="text" placeholder="New name" class="dialog_prompt" onkeyup="CatchKeysTVIRename(this, event)" onblur="this.focus()">
@@ -310,8 +314,10 @@
          </div>
       </div>
 
+      <!-- Edit associations -->
       <div id="dw_associations_TVI" class="dialog_window">
          <div class="dialog_header"></div>
+
          <input type="text" placeholder="Search notebook" class="dialog_prompt" onblur="this.focus()">
 
          <div id="dw_associations_scroll" class="dialog_scroll custom_scroll">
@@ -322,5 +328,16 @@
             <div id="dw_associations_confirm" class="dialog_confirm" onclick="OpenTVIAssociationsDialog(activeTVI, true)">Confirm</div>
          </div>
       </div>
+
+      <!-- Delete item -->
+      <div id="dw_delete_TVI" class="dialog_window">
+         <div class="dialog_header"></div>
+
+         <div class="dialog_text">Delete this item?</div>
+
+         <div class="dialog_confirmation_wrapper">
+            <div id="dw_delete_cancel" class="dialog_cancel" onclick="OpenTVIDeleteDialog(activeTVI, false)">Cancel</div>
+            <div id="dw_delete_confirm" class="dialog_confirm" onclick="OpenTVIDeleteDialog(activeTVI, true)">Confirm</div>
+         </div>
    </body>
 </html>

@@ -1,5 +1,5 @@
 const rootNode = {
-   id: "0-0",
+   id: "00000000",
    name: "ROOT",
    type: "page",
    associations: null,
@@ -10,34 +10,24 @@ const rootNode = {
 
 
 
-function GetDepthFromID (id) {
-   return parseInt(id.split('-')[0], 10)
-}
-
-function GetPositionFromID (id) {
-   return parseInt(id.split('-')[1], 10)
-}
-
-
-
 /* Each "page" in the application is tied to a Node object. This contains all data
 about the page. */
 class TreeNode {
    constructor(jsonData) {
       if (jsonData == 'page') {
-         this.id = "1-0"
+         this.id = "00000001"
          this.name = "New Page"
          this.type = "page"
          this.associations = []
-         this.parent = "0-0"
+         this.parent = "00000000"
          this.children = []
          this.data = "blank"
       } else if (jsonData == 'folder') {
-         this.id = "1-0"
+         this.id = "00000001"
          this.name = "New Folder"
          this.type = "folder"
          this.associations = []
-         this.parent = "0-0"
+         this.parent = "00000000"
          this.children = []
          this.data = null
       } else {
@@ -71,21 +61,29 @@ class TreeNode {
       }
    }
 
-   AddLink(otherNode) {
-      if (this.links.includes(otherNode.id)) {
+   AddAssociation(otherNode) {
+      if (this.associations.includes(otherNode.id)) {
          return false
       }
 
-      this.links.push(otherNode.id)
+      this.associations.push(otherNode.id)
       return true
    }
 
-   RemoveLink(otherNode) {
-      if (this.links.includes(otherNode.id)) {
-         this.links.remove(otherNode.id)
+   RemoveAssociation(otherNode) {
+      if (this.associations.includes(otherNode.id)) {
+         this.associations.remove(otherNode.id)
          return true
       }
       return false
+   }
+
+   RemoveAllAssociations() {
+      for (var i = 0; i < associations.length; i++) {
+         (notebookData.GetNode(associations[i])).RemoveAssociation(this.id)
+      }
+
+      this.associations = []
    }
 
    AddChild(otherNodeID) {
@@ -112,7 +110,6 @@ class TreeNode {
       jsondata['id'] = this.id
       jsondata['name'] = this.name
       jsondata['type'] = this.type
-      jsondata['type'] = this.type
       jsondata['associations'] = this.associations
       jsondata['parent'] = this.parent
       jsondata['children'] = this.children
@@ -131,13 +128,10 @@ class Tree {
          var nodeIDs = Object.keys(rawJSON.nodes)
 
          for (var i = 0; i < nodeIDs.length; i++) {
-            var nodeJSON = rawJSON.nodes[nodeIDs[i]]
-            var nodeObject = new TreeNode(rawJSON.nodes[nodeIDs[i]])
-
-            this.nodes[nodeIDs[i]] = nodeObject
+            this.nodes[nodeIDs[i]] = new TreeNode(rawJSON.nodes[nodeIDs[i]])
          }
       } catch (error) {
-         this.nodes["0-0"] = new TreeNode(rootNode)
+         this.nodes["00000000"] = new TreeNode(rootNode)
       }
    }
 
@@ -145,40 +139,34 @@ class Tree {
       return this.nodes[id]
    }
 
-   GetBreadth (depth) {
-      depth = depth.toString()
-      var keys = Object.keys(this.nodes)
-      var depthKeys = []
+   GetNodeDepth (id) {
+      if (id == "00000000") { return 0 }
+      else {
+         var counter = 1
+         var node = this.nodes[id]
+         var iterNode = node
 
-      for (var i = 0; i < keys.length; i++) {
-         var key = keys[i]
-         var keyDepth = GetDepthFromID(key)
-         if (keyDepth == depth) {
-            depthKeys.push(key)
+         while (iterNode.parent != "00000000") {
+            counter++
+            iterNode = this.nodes[iterNode.parent]
          }
-      }
 
-      return depthKeys
+         return counter
+      }
    }
 
-   CreateID (depth) {
-      var hNeighbors = this.GetBreadth(depth)
-      var hNeighborPos = []
-      for (var i = 0; i < hNeighbors.length; i++) {
-         hNeighborPos.push(GetPositionFromID(hNeighbors[i]))
-      }
+   CreateID () {
+      // Generate an 8-digit hex number as the id
+      while (true) {
+         var randInt = Math.floor(Math.random() * 4294967294) + 1
 
-      hNeighborPos.sort()
-
-      var newPos = 0
-      if ((hNeighborPos != null) && (hNeighborPos.length >= 1)) {
-         while(1) {
-            newPos += 1
-            if (!(hNeighborPos.includes(newPos))) { break }
+         // Verify that the ID is not already in use
+         if ((Object.keys(this.nodes)).includes(randInt)) {
+            continue
+         } else {
+            return randInt.toString(16)
          }
       }
-
-      return depth + "-" + newPos
    }
 
    AddNode (newnode) {
@@ -190,7 +178,7 @@ class Tree {
    AddNewNode (type, parent) {
       var node = new TreeNode(type)
 
-      var newID = this.CreateID(GetDepthFromID(parent) + 1)
+      var newID = this.CreateID()
       node.parent = parent
       node.id = newID
 
@@ -202,5 +190,20 @@ class Tree {
       LoadNotebookToScreen(notebookData.id)
 
       return newID
+   }
+
+   DeleteNode (id) {
+      // Remove from parent's children
+      this.nodes[id].parent.RemoveChild(id)
+
+      // Properly remove all 2-way associations
+      this.nodes[id].RemoveAllAssociations()
+
+      delete this.nodes[id]
+
+      notebookData.UpdateDS()
+      LoadNotebookToScreen(notebookData.id)
+
+      return true
    }
 }
