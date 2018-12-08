@@ -4,8 +4,8 @@ function ToggleFolderCollapse(caller) {
    var childItemsContainer = $("#" + caller.parentNode.id + "_children")
    var parent = $("#" + caller.parentNode.id)
 
-   var openIcon = $("#" + caller.id + " #open")
-   var closedIcon = $("#" + caller.id + " #closed")
+   var openIcon = $("#" + caller.id + " .tree_view_item_open")
+   var closedIcon = $("#" + caller.id + " .tree_view_item_closed")
 
    if (openVal == "true") {
       childItemsContainer.css("display", "none")

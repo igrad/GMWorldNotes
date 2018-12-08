@@ -339,5 +339,30 @@
             <div id="dw_delete_cancel" class="dialog_cancel" onclick="OpenTVIDeleteDialog(activeTVI, false)">Cancel</div>
             <div id="dw_delete_confirm" class="dialog_confirm" onclick="OpenTVIDeleteDialog(activeTVI, true)">Confirm</div>
          </div>
+      </div>
+
+      <!-- Change item type -->
+      <div id="dw_flip_TVI" class="dialog_window">
+         <div class="dialog_header"></div>
+
+         <div class="dialog_text">Change the type of this item?</div>
+
+         <div class="dialog_confirmation_wrapper">
+            <div id="dw_flip_cancel" class="dialog_cancel" onclick="OpenTVIFlipDialog(activeTVI, false)">Cancel</div>
+            <div id="dw_flip_confirm" class="dialog_confirm" onclick="OpenTVIFlipDialog(activeTVI, true)">Confirm</div>
+         </div>
+      </div>
+
+      <!-- Show item details -->
+      <div id="dw_details_TVI" class="dialog_window">
+         <div class="dialog_header"></div>
+
+         <div id="dw_details_scroll" class="dialog_scroll custom_scroll">
+         </div>
+
+         <div class="dialog_confirmation_wrapper">
+            <div id="dw_flip_confirm" class="dialog_confirm" onclick="OpenTVIDetailsDialog(activeTVI)">Confirm</div>
+         </div>
+      </div>
    </body>
 </html>

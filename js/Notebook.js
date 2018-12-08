@@ -56,6 +56,10 @@ class Notebook {
       return this.nodeTree.GetNodeObject(id)
    }
 
+   GetNodeName (id) {
+      return (this.nodeTree.GetNodeObject(id)).name
+   }
+
    GetNodeDepth (id) {
       return this.nodeTree.GetNodeDepth(id)
    }

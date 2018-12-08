@@ -79,7 +79,7 @@ class TreeNode {
    }
 
    RemoveAllAssociations() {
-      for (var i = 0; i < associations.length; i++) {
+      for (var i = 0; i < this.associations.length; i++) {
          (notebookData.GetNode(associations[i])).RemoveAssociation(this.id)
       }
 
@@ -97,7 +97,7 @@ class TreeNode {
 
    RemoveChild(otherNodeID) {
       if (this.children.includes(otherNodeID)) {
-         this.children.remove(otherNodeID)
+         this.children.splice(this.children.indexOf(otherNodeID), 1)
          return true
       }
 
@@ -193,17 +193,32 @@ class Tree {
    }
 
    DeleteNode (id) {
-      // Remove from parent's children
-      this.nodes[id].parent.RemoveChild(id)
+      try {
+         var node = this.nodes[id]
+         var parentID = node.parent
+         var parent = this.nodes[node.parent]
+         var children = this.nodes[id].children
 
-      // Properly remove all 2-way associations
-      this.nodes[id].RemoveAllAssociations()
+         // Go through list of children and set their parent to be this node's parent
+         for (var i = 0; i < children.length; i++) {
+            this.nodes[children[i]].parent = parentID
+         }
 
-      delete this.nodes[id]
+         // Go to the parent and add the new children to its list of children
+         parent.children = parent.children.concat(children)
 
-      notebookData.UpdateDS()
-      LoadNotebookToScreen(notebookData.id)
+         // Remove from this node's parent's list of children
+         this.nodes[parentID].RemoveChild(id)
 
-      return true
+         // Properly remove all 2-way associations
+         node.RemoveAllAssociations()
+
+         delete this.nodes[id]
+
+         return true
+      } catch (error) {
+         console.log("Could not delete " + id + ": " + error)
+         return false
+      }
    }
 }

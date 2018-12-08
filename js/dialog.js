@@ -64,7 +64,7 @@ function NameNewNode() {
    var node = notebookData.GetNode(activeID)
    var newName = $("#dw_name_new_TVI input")[0].value
 
-   node.name = newName
+   if (newName.trim().length > 0) { node.name = newName.trim() }
    notebookData.UpdateDS()
    LoadNotebookToScreen(lastOpenNotebook)
 }
@@ -199,13 +199,13 @@ function CreateNewATVI(id, name, type) {
 
    if (type == "folder") {
       html += "<div id='a_" + id + "_collapser' class='tree_view_item_collapser' "
-      html += "onclick='event.stopPropagation(); ToggleFolderCollapse(this)' isopen='true' style='position:relative;left:" + (indent - 4) + "px'>"
+      html += "onclick='ToggleFolderCollapse(this); event.stopPropagation();' isopen='true' style='position:relative;left:" + (indent + 4) + "px'>"
       html += "<div id='a_" + id + "_open' class='tree_view_item_open'>"
       html += "<svg id='a_" + id + "_open_img' class='tree_view_item_open_img' width='16' height='16' viewBox='0 0 16 16'><path fill='currentColor' d='M4.957 5.543l-1.414 1.414 4.457 4.457 4.457-4.457-1.414-1.414-3.043 3.043z'></path></svg></div>"
       html += "<div id='a_" + id + "_closed' class='tree_view_item_closed' style='display:none'>"
       html += "<svg id='a_" + id + "_closed_img' class='tree_view_item_closed_img' width='16' height='16' viewBox='0 0 16 16'><path fill='currentColor' d='M5.543 11.043l1.414 1.414 4.457-4.457-4.457-4.457-1.414 1.414 3.043 3.043z'></path></svg></div></div>"
       html += "<div class='tree_view_item_inner' id='a_" + id + "_inner' "
-      html += "style='position:relative;left:" + indent + "px;width:calc(100% - " + widthFix + "px)'>" + name + "</div></div>"
+      html += "style='position:relative;left:" + (indent + 4) + "px;'>" + name + "</div></div>"
    } else {
       html += "<div class='tree_view_item_inner' id='a_" + id + "_inner' "
       html += "style='left:" + widthFix
@@ -255,6 +255,24 @@ function LoadNotebookToAssociations() {
    console.log("Loading tree")
 
    AddATVIToScreen("00000000", "")
+}
+
+
+
+// dw_flip_TVI functions
+function OpenTVIFlipDialog(tvi, inputConfirmed) {
+   if (inputConfirmed) {
+      if (notebookData.GetNode(tvi.attr("id")).type == "folder") {
+         notebookData.GetNode(tvi.attr("id")).type = "page"
+      } else {
+         notebookData.GetNode(tvi.attr("id")).type = "folder"
+      }
+
+      notebookData.UpdateDS()
+      LoadNotebookToScreen(lastOpenNotebook)
+   }
+
+   OpenDialog(tvi, "#dw_flip_TVI")
 }
 
 

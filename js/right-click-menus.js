@@ -88,6 +88,12 @@ var treeViewItemRCMopts = {
       label: "Change Type",
       click() {
          // Change from a folder to a page or vice versa
+         var item = $("#" + treeViewItemRCM.callerID)
+         while (item.attr("class") != "tree_view_item") {
+            item = item.parent()
+         }
+
+         OpenTVIFlipDialog(item, null)
       }
    },
    "Delete": {
