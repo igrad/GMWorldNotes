@@ -281,6 +281,9 @@ function OpenTVIFlipDialog(tvi, inputConfirmed) {
 function OpenTVIDeleteDialog(tvi, inputConfirmed) {
    if (inputConfirmed) {
       notebookData.DeleteNode(tvi.attr("id"))
+
+      notebookData.UpdateDS()
+      LoadNotebookToScreen(lastOpenNotebook)
    }
 
    OpenDialog(tvi, "#dw_delete_TVI")
