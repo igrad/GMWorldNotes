@@ -57,6 +57,18 @@
             <div id="upper_shelf_btn_templates" class="upper_shelf_btn"
             onmouseover="ShelfHover(this)" onmouseout="ShelfLeaveHover(this)"
             onclick="ShelfSwitch(this)" frame="menu_templates">Templates</div>
+
+            <div id="upper_shelf_move_bar"></div>
+
+            <div id="upper_shelf_btn_min" class="upper_shelf_btn window_btn" onclick="MinimizeWindow()">
+               <svg id="UpperShelfMinimizeIcon" width="16" height="16" viewBox="0 0 16 16"><rect fill="currentColor" width="12" height="2" x="2" y="8"></rect></svg></div>
+            <div id="upper_shelf_btn_max" class="upper_shelf_btn window_btn" onclick="MaximizeWindow()">
+               <svg id="UpperShelfMaximizeIcon" width="16" height="16" viewBox="0 0 16 16"><rect fill="none" stroke="currentColor" width="12" height="12" x="2" y="2" stroke-width="2"></rect></svg></div>
+            <div id="upper_shelf_btn_exit" class="upper_shelf_btn window_btn" onclick="ExitApplication()">
+               <svg id="UpperShelfExitIcon" width="16" height="16" viewBox="0 0 16 16">
+                  <line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="2"></line>
+                  <line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="2"></line>
+               </svg></div>
          </div>
 
 

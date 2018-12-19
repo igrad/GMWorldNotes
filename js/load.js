@@ -48,6 +48,7 @@ function SetLastOpenNoteBook (notebookID) {
 
 function SetLastOpenPage (pageID) {
    lastOpenPage = pageID
+   AddToPageHistory(pageID)
    sessionData.set("LASTOPENPAGE", pageID)
 }
 
@@ -186,21 +187,19 @@ function LoadNotebookToScreen(id) {
 function LoadPageToScreen(id) {
    console.log("Loading page " + id)
 
-   var pathtopage = "./pages/" + id + ".html"
-
    SetLastOpenPage(id)
 
-   var pageData = LoadFileData(pathtopage)
-
+   var pageData = LoadFileData("./pages/" + id + ".html")
    $("#content_view")[0].innerHTML = pageData
+
+   pageIndex++
 }
 
 
 
 function SavePageToFile(id) {
    console.log("Saving page " + id + " to file")
-   var pathtopage = "./pages/" + id + ".html"
-   var pageData = $("#content_view")[0].innerHTML
 
-   SaveFileData(pathtopage, pageData)
+   var pageData = $("#content_view")[0].innerHTML
+   SaveFileData("./pages/" + id + ".html", pageData)
 }

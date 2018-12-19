@@ -1,77 +1,67 @@
-function ShelfHover(caller) {
-   if ($(caller).attr("isOpen") == "false") {
-      $(caller).css({"background-color": "var(--shelf-top-bg-color-hover)",
-         "color": "var(--shelf-top-font-color-hover)"})
+const {ipcRenderer} = require('electron')
+
+let pageHistory = []
+let pageIndex = -1
+
+
+
+function AddToPageHistory(pageID) {
+   // If we're currently back a few pages, then overwrite the "forward" history
+   if (pageIndex != (pageHistory.length - 1)) {
+      pageHistory.splice(pageIndex + 1, pageHistory.length - (pageIndex + 1))
    }
+
+   if (pageHistory.length >= 20) {
+      // Remove the oldest item
+      pageHistory.splice(0, 1)
+   }
+
+   pageHistory.push(pageID)
 }
 
 
 
-function ShelfLeaveHover(caller) {
-   if ($(caller).attr("isOpen") == "false") {
-      $(caller).css({"background-color": "var(--shelf-top-bg-color)",
-         "color": "var(--shelf-top-font-color)"})
+function FlipPage(increment) {
+   var oldPageIndex = pageIndex
+   pageIndex += increment
+   if (pageIndex < 0) {
+      pageIndex = 0
+      return false
    }
+
+   if (pageIndex > 19) {
+      pageIndex = 19
+      return false
+   } else if (pageIndex > (pageHistory.length - 1)) {
+      pageIndex = (pageHistory.length - 1)
+   }
+
+   if (pageIndex != oldPageIndex) {
+      $("#" + pageHistory[pageIndex]).click()
+      return true
+   }
+
+   return false
 }
 
 
 
-function ShelfSwitch(caller) {
-   var caller = $(caller)
-
-   $(".upper_shelf_btn").attr("isOpen", "false")
-
-   $(caller).attr("isOpen", "true")
-
-   $(".upper_shelf_btn").css("background-color", "var(--shelf-top-bg-color)")
-   $(".upper_shelf_btn").css("color", "var(--shelf-top-font-color)")
-
-   $(caller).css("background-color", "var(--shelf-top-bg-color-open)")
-   $(caller).css("color", "var(--shelf-top-font-color-hover)")
-
-   $(".lower_shelf_menu").hide()
-   $("#" + caller.attr("frame")).show()
+// Window functions
+function MinimizeWindow() {
+   (remote.getCurrentWindow()).minimize()
 }
 
-
-
-function TreeViewHover(caller) {
-   if ($(caller).attr("isOpen") == "false") {
-      $(caller).css({"background-color": "var(--treeview-item-bg-color-hover)",
-         "color": "var(--treeview-item-font-color-hover)"})
+function MaximizeWindow() {
+   var window = (remote.getCurrentWindow())
+   if (window.isMaximized()) {
+      window.unmaximize()
+   } else {
+      window.maximize()
    }
 }
 
-
-
-function TreeViewLeaveHover(caller) {
-   if ($(caller).attr("isOpen") == "false") {
-      $(caller).css({"background-color": "var(--treeview-item-bg-color)",
-         "color": "var(--treeview-item-font-color)"})
-   }
-}
-
-
-
-function TreeViewSwitch(caller) {
-   var item = $(caller)
-
-   if (item.attr("type") == "folder") {
-      var collapser = $("#" + caller.id + " .tree_view_item_collapser")
-
-      if ((collapser.css("background-color")).includes("hover")) {return false}
-   }
-
-   $(".tree_view_item").attr("isOpen", "false")
-   $(".tree_view_item").css("background-color", "var(--treeview-item-bg-color)")
-   $(".tree_view_item").css("color", "var(--treeview-item-font-color)")
-
-   $(item).attr("isOpen", "true")
-   $(item).css("background-color", "var(--treeview-item-bg-color-active)")
-   $(item).css("color", "var(--treeview-item-font-color-active)")
-
-   // Call up the node that has been selected from the tree view
-   LoadPageToScreen(item.attr("id"))
+function ExitApplication() {
+   (remote.getCurrentWindow()).close()
 }
 
 
@@ -104,55 +94,6 @@ async function ContentEdited() {
    if (lastEditTime == tEdit) {
       SavePageToFile(lastOpenPage)
       ShowSaveNotification()
-   }
-}
-
-
-
-let resizing = false
-function StartResizingTreeView (e) {
-   // Allow the other resize functions to operate
-   resizing = true
-
-   // Set the content_view to disallow edits so that resizing the tree_view
-   // too quickly doesn't accidentally highlight the content
-   $("#content_view").attr("contenteditable", false)
-
-   // Set the global cursor to the resize cursor so that resizing too quickly
-   // doesn't make the cursor flip between different styles rapidly
-   $("#tree_view").css("pointer-events", "none")
-   $("#shelf_view").css("pointer-events", "none")
-   $("body").css("cursor", "ew-resize")
-}
-
-
-
-function DoneResizingTreeView () {
-   if (resizing) {
-      // Revert everything set in StartResizingTreeView
-      resizing = false
-
-      $("#content_view").attr("contenteditable", true)
-
-      $("body").css("cursor", "inherit")
-      $("#tree_view").css("pointer-events", "all")
-      $("#shelf_view").css("pointer-events", "all")
-   }
-}
-
-
-
-function ResizingTreeView (e) {
-   if (resizing) {
-      // Get the current X position of the mouse and assign it to the width of
-      // the tree view
-      $("#content_view_wrap").css("width", (parseInt($("body").css("width")) - e.clientX) + "px")
-      $("#tree_view").css("width", e.clientX + "px")
-
-      // Copy-paste the width of tree_view to the X position of the resize_bar
-      // so that we don't have to do any math for the tree_view's min and max
-      // boundaries - they will address themselves during the above operation
-      $("#resize_bar").css("left", $("#tree_view").outerWidth() + "px")
    }
 }
 
@@ -207,6 +148,10 @@ $(document).ready(function () {
 
    // Select the page that was open last time this notebook was closed
    $("#" + lastOpenPage).click()
+
+   // Configure shortcut events
+   ipcRenderer.on('FlipPageForward', () => { FlipPage(1) })
+   ipcRenderer.on('FlipPageBack', () => { FlipPage(-1) })
 })
 
 
@@ -215,6 +160,69 @@ $(document).ready(function () {
 const SystemFonts = require('system-font-families').default
 const sysFonts = new SystemFonts()
 CreateFontFamilyOptions()
+
+
+
+// Create application menu
+const appMenuTemplate = [
+  {
+    label: 'Edit',
+    submenu: [
+      { role: 'undo' },
+      { role: 'redo' },
+      { type: 'separator' },
+      { role: 'cut' },
+      { role: 'copy' },
+      { role: 'paste' },
+      { role: 'pasteandmatchstyle' },
+      { role: 'delete' },
+      { role: 'selectall' }
+    ]
+  },
+  {
+    label: 'View',
+    submenu: [
+      {
+        label: 'Reload',
+        accelerator: 'CmdOrCtrl+R',
+        click (item, focusedWindow) {
+          if (focusedWindow) focusedWindow.reload()
+        }
+      },
+      {
+        label: 'Toggle Developer Tools',
+        accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
+        click (item, focusedWindow) {
+          if (focusedWindow) focusedWindow.webContents.toggleDevTools()
+        }
+      },
+      { type: 'separator' },
+      { role: 'resetzoom' },
+      { role: 'zoomin' },
+      { role: 'zoomout' },
+      { type: 'separator' },
+      { role: 'togglefullscreen' }
+    ]
+   },
+   {
+      label: 'Shortcuts',
+      submenu: [
+         {
+            label: "Flip page forward",
+            accelerator: "Alt+Right",
+            click() { FlipPage(1) }
+         },
+         {
+            label: "Flip page back",
+            accelerator: "Alt+Left",
+            click() { FlipPage(-1) }
+         }
+      ]
+   }
+]
+
+const appMenu = Menu.buildFromTemplate(appMenuTemplate)
+Menu.setApplicationMenu(appMenu)
 
 
 

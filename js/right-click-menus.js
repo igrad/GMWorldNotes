@@ -20,13 +20,17 @@ var treeViewRCMopts = {
                // If this has been called, it means that the user didn't click on an
                // existing item, and this should be added to the first layer under root
                // Create a new page in the notebook
-               notebookData.nodeTree.AddNewNode("page", "00000000")
+               var newTVI = notebookData.nodeTree.AddNewNode("page", "00000000")
+
+               OpenTVINewNameDialog(newTVI)
             }
          }, {
             label: 'New Folder',
             click() {
                // Create a new folder in the notebook
-               notebookData.nodeTree.AddNewNode("folder", "00000000")
+               var newTVI = notebookData.nodeTree.AddNewNode("folder", "00000000")
+
+               OpenTVINewNameDialog(newTVI)
             }
          }
       ]
@@ -171,3 +175,13 @@ const contentViewRCM = new Menu()
 for (var item in contentViewRCMopts) {
    contentViewRCM.append( new MenuItem(contentViewRCMopts[item]) )
 }
+
+
+
+var m = new Menu()
+
+m.append(new MenuItem({
+   label: "fwdPage",
+   accelerator: "CmdOrCtrl+P",
+   click: () => {console.log('fwdPage triggered')}
+}))

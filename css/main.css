@@ -112,6 +112,27 @@ body {
    flex: 0 1 var(--shelf-lower-height)
 }
 
+#upper_shelf_move_bar {
+   flex-grow: 99;
+
+   cursor: default;
+}
+
+.window_btn {
+   width: 16px;
+   padding-top: var(--shelf-top-vert-padding);
+   padding-bottom: var(--shelf-top-vert-padding);
+}
+
+#upper_shelf_btn_min:hover, #upper_shelf_btn_max:hover {
+   background-color: var(--shelf-top-bg-color-hover) !important;
+}
+
+#upper_shelf_btn_exit:hover {
+   background-color: red !important;
+}
+
+
 
 
 /* Items in the tree view */
