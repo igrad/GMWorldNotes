@@ -48,7 +48,6 @@ function SetLastOpenNoteBook (notebookID) {
 
 function SetLastOpenPage (pageID) {
    lastOpenPage = pageID
-   AddToPageHistory(pageID)
    sessionData.set("LASTOPENPAGE", pageID)
 }
 
@@ -184,15 +183,25 @@ function LoadNotebookToScreen(id) {
 
 
 
-function LoadPageToScreen(id) {
+function LoadPageToScreen(id, keepIndex) {
    console.log("Loading page " + id)
+
+   // If we already have a page open and we're switching to a different page, save the current page before the switch occurs
+   if (lastOpenPage != null) {
+      SavePageToFile(lastOpenPage)
+      ShowSaveNotification(lastOpenPage)
+   }
 
    SetLastOpenPage(id)
 
    var pageData = LoadFileData(__dirname + "/pages/" + id + ".html")
    $("#content_view")[0].innerHTML = pageData
 
-   pageIndex++
+   if (!keepIndex) {
+      pageIndex++
+      ClearPageHistoryAfterIndex()
+      AddToPageHistory(id)
+   }
 }
 
 

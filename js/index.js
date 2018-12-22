@@ -37,11 +37,20 @@ function FlipPage(increment) {
    }
 
    if (pageIndex != oldPageIndex) {
-      $("#" + pageHistory[pageIndex]).click()
+      TreeViewSwitch($("#" + pageHistory[pageIndex])[0], true)
       return true
    }
 
    return false
+}
+
+
+
+function ClearPageHistoryAfterIndex() {
+   var length = pageHistory.length
+
+   if (pageIndex == length - 1) { return false }
+   else { pageHistory.splice(pageIndex, length - pageIndex) }
 }
 
 

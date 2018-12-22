@@ -45,7 +45,7 @@ function TreeViewLeaveHover(caller) {
 
 
 
-function TreeViewSwitch(caller) {
+function TreeViewSwitch(caller, keepIndex = false) {
    var item = $(caller)
 
    if (item.attr("type") == "folder") {
@@ -63,7 +63,7 @@ function TreeViewSwitch(caller) {
    $(item).css("color", "var(--treeview-item-font-color-active)")
 
    // Call up the node that has been selected from the tree view
-   LoadPageToScreen(item.attr("id"))
+   LoadPageToScreen(item.attr("id"), keepIndex)
 }
 
 
