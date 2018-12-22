@@ -73,7 +73,7 @@ function SaveFileData (filepath, data) {
    try {
       fs.writeFileSync(filepath, data)
    } catch (error) {
-      console.log("Could not save data to file " + filepath)
+      console.log("Could not save data to file " + filepath + "\n" + error)
    }
 }
 
@@ -201,5 +201,5 @@ function SavePageToFile(id) {
    console.log("Saving page " + id + " to file")
 
    var pageData = $("#content_view")[0].innerHTML
-   SaveFileData("./pages/" + id + ".html", pageData)
+   SaveFileData(__dirname + "/pages/" + id + ".html", pageData)
 }
