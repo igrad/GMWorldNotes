@@ -189,7 +189,7 @@ function LoadPageToScreen(id) {
 
    SetLastOpenPage(id)
 
-   var pageData = LoadFileData("./pages/" + id + ".html")
+   var pageData = LoadFileData(__dirname + "/pages/" + id + ".html")
    $("#content_view")[0].innerHTML = pageData
 
    pageIndex++
