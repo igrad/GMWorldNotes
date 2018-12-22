@@ -73,8 +73,10 @@ async function sleep (ms) {
 
 
 
-async function ShowSaveNotification() {
+async function ShowSaveNotification(pageID) {
    var savenote = $("#save_notification")
+
+   savenote[0].innerText = "Saving \"" + (notebookData.GetNodeName(pageID)) + "\""
    savenote.fadeOut(0)
    savenote.fadeIn(200)
 
@@ -93,7 +95,7 @@ async function ContentEdited() {
    // then this edit was the last edit made before the user paused. Save data to file.
    if (lastEditTime == tEdit) {
       SavePageToFile(lastOpenPage)
-      ShowSaveNotification()
+      ShowSaveNotification(lastOpenPage)
    }
 }
 
