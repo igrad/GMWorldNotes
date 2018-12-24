@@ -187,7 +187,8 @@ function LoadPageToScreen(id, keepIndex) {
    console.log("Loading page " + id)
 
    // If we already have a page open and we're switching to a different page, save the current page before the switch occurs
-   if ((lastOpenPage != null) && (($("#content_view")[0].innerHTML).trim() != "" )) {
+   if ((lastOpenPage != null) && (($("#content_view")[0].innerHTML).trim() != "" ) && saveQueued) {
+      saveQueued = false
       SavePageToFile(lastOpenPage)
       ShowSaveNotification(lastOpenPage)
    }

@@ -3,6 +3,8 @@ const {ipcRenderer} = require('electron')
 let pageHistory = []
 let pageIndex = -1
 
+var saveQueued = false
+
 
 
 function AddToPageHistory(pageID) {
@@ -97,12 +99,14 @@ async function ShowSaveNotification(pageID) {
 
 async function ContentEdited() {
    var tEdit = Date.now()
+   saveQueued = true
    lastEditTime  = tEdit
    await sleep(1000)
 
    // If the last edit time is still the same time as when this function was called,
    // then this edit was the last edit made before the user paused. Save data to file.
-   if (lastEditTime == tEdit) {
+   if ((lastEditTime == tEdit) && saveQueued) {
+      saveQueued = false
       SavePageToFile(lastOpenPage)
       ShowSaveNotification(lastOpenPage)
    }
