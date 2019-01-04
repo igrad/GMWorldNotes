@@ -67,4 +67,14 @@ class Notebook {
    DeleteNode (id) {
       return this.nodeTree.DeleteNode(id)
    }
+
+   UpdateEditTime (id) {
+      try {
+         var node = this.GetNode(id)
+         node.editDate = Date.now()
+         this.UpdateDS()
+      } catch (error) {
+         throw ("Could not update editDate property on " + id + " item. " + error)
+      }
+   }
 }

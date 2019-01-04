@@ -299,11 +299,14 @@ function OpenTVIDeleteDialog(tvi, inputConfirmed) {
 function OpenTVIDetailsDialog(tvi = null) {
    var item = notebookData.GetNode(tvi.attr("id"))
 
+   var createDate = new Date(item.createDate)
+   var editDate = new Date(item.editDate)
+
    var html = "<b>ID:</b> " + item.id + "<br/>"
    html += "<b>Name:</b> " + item.name + "<br/>"
    html += "<b>Type:</b> " + item.type + "<br/><br/>"
-   html += "<b>Creation Date:</b> " + item.createDate + "<br/>"
-   html += "<b>Last Edit Date:</b> " + item.editDate + "<br/><br/>"
+   html += "<b>Creation Date:</b> " + createDate + "<br/>"
+   html += "<b>Last Edit Date:</b> " + editDate + "<br/><br/>"
    html += "<b>Associations:</b> " + ((item.associations.toString()).split(",")).join(", ") + "<br/>"
    html += "<b>Parent:</b> " + item.parent + "<br/>"
    html += "<b>Children:</b> " + ((item.children.toString()).split(",")).join(", ")

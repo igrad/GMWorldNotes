@@ -3,6 +3,8 @@ const rootNode = {
    name: "ROOT",
    type: "page",
    associations: [],
+   createDate: Date.now(),
+   editDate: Date.now(),
    parent: null,
    children: [],
    data: "blank"
@@ -18,6 +20,8 @@ class TreeNode {
          this.id = "00000001"
          this.name = "New Page"
          this.type = "page"
+         this.createDate = Date.now()
+         this.editDate = Date.now()
          this.associations = []
          this.parent = "00000000"
          this.children = []
@@ -26,6 +30,8 @@ class TreeNode {
          this.id = "00000001"
          this.name = "New Folder"
          this.type = "folder"
+         this.createDate = Date.now()
+         this.editDate = Date.now()
          this.associations = []
          this.parent = "00000000"
          this.children = []
@@ -49,6 +55,12 @@ class TreeNode {
          too difficult to track this in a single, structured tree. Thus, the links of a
          node detail these connections in a way that can be tracked. */
          this.associations = jsonData.associations
+
+         // Creation date
+         this.createDate = jsonData.createDate
+
+         // Last edit date
+         this.editDate = jsonData.editDate
 
          // Index of this node's parent, for navigation purposes.
          this.parent = jsonData.parent
@@ -111,6 +123,8 @@ class TreeNode {
       jsondata['name'] = this.name
       jsondata['type'] = this.type
       jsondata['associations'] = this.associations
+      jsondata['createDate'] = this.createDate
+      jsondata['editDate'] = this.editDate
       jsondata['parent'] = this.parent
       jsondata['children'] = this.children
       jsondata['data'] = this.data

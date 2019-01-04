@@ -210,6 +210,7 @@ function LoadPageToScreen(id, keepIndex) {
 function SavePageToFile(id) {
    console.log("Saving page " + id + " to file")
 
+   notebookData.UpdateEditTime(id)
    var pageData = $("#content_view")[0].innerHTML
    SaveFileData(__dirname + "/pages/" + id + ".html", pageData)
 }
