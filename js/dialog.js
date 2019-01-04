@@ -299,14 +299,14 @@ function OpenTVIDeleteDialog(tvi, inputConfirmed) {
 function OpenTVIDetailsDialog(tvi = null) {
    var item = notebookData.GetNode(tvi.attr("id"))
 
-   var html = "ID: " + item.id + "<br/>"
-   html += "Name: " + item.name + "<br/>"
-   html += "Type: " + item.type + "<br/><br/>"
-   html += "Creation Date: " + item.createDate + "<br/>"
-   html += "Last Edit Date: " + item.editDate + "<br/><br/>"
-   html += "Associations: " + item.associations + "<br/>"
-   html += "Parent: " + item.parent + "<br/>"
-   html += "Children: " + item.children
+   var html = "<b>ID:</b> " + item.id + "<br/>"
+   html += "<b>Name:</b> " + item.name + "<br/>"
+   html += "<b>Type:</b> " + item.type + "<br/><br/>"
+   html += "<b>Creation Date:</b> " + item.createDate + "<br/>"
+   html += "<b>Last Edit Date:</b> " + item.editDate + "<br/><br/>"
+   html += "<b>Associations:</b> " + ((item.associations.toString()).split(",")).join(", ") + "<br/>"
+   html += "<b>Parent:</b> " + item.parent + "<br/>"
+   html += "<b>Children:</b> " + ((item.children.toString()).split(",")).join(", ")
 
    $("#dw_details_scroll")[0].innerHTML = html
 

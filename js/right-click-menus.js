@@ -116,6 +116,10 @@ var treeViewItemRCMopts = {
       label: "Show Details",
       click() {
          // Show smaller dialog window to display the item's details
+         var tvi = $("#" + treeViewItemRCM.callerID)
+         while (tvi.attr("class") != "tree_view_item") { tvi = tvi.parent() }
+
+         OpenTVIDetailsDialog(tvi)
       }
    },
    "div2": { type: 'separator' },
@@ -125,13 +129,11 @@ var treeViewItemRCMopts = {
             label: 'Page',
             click() {
                // Create a new page in the notebook
-               var item = $("#" + treeViewItemRCM.callerID)
+               var tvi = $("#" + treeViewItemRCM.callerID)
 
-               while (item.attr("class") != "tree_view_item") {
-                  item = item.parent()
-               }
+               while (tvi.attr("class") != "tree_view_item") { tvi = tvi.parent() }
 
-               var newTVI = notebookData.nodeTree.AddNewNode("page", item.attr("id"))
+               var newTVI = notebookData.nodeTree.AddNewNode("page", tvi.attr("id"))
 
                OpenTVINewNameDialog(newTVI)
             }
@@ -139,13 +141,11 @@ var treeViewItemRCMopts = {
             label: 'Folder',
             click() {
                // Create a new folder in the notebook
-               var item = $("#" + treeViewItemRCM.callerID)
+               var tvi = $("#" + treeViewItemRCM.callerID)
 
-               while (item.attr("class") != "tree_view_item") {
-                  item = item.parent()
-               }
+               while (tvi.attr("class") != "tree_view_item") { tvi = item.parent() }
 
-               var newTVI = notebookData.nodeTree.AddNewNode("folder", item.attr("id"))
+               var newTVI = notebookData.nodeTree.AddNewNode("folder", tvi.attr("id"))
 
                OpenTVINewNameDialog(newTVI)
             }
