@@ -124,16 +124,20 @@ function OpenTVIAssociationsDialog(tvi, inputConfirmed) {
       for (var i = 0; i < oldAssocs.length; i++) {
          // If an old association is not included in the list of new associations, remove that old association
          if (!newAssocs.includes(oldAssocs[i])) {
+            var otherNode = notebookData.GetNode(oldAssocs[i])
+            otherNode.RemoveAssociation(node.id)
+
             node.RemoveAssociation(oldAssocs[i])
-            (notebookData.getNode(oldAssocs[i])).RemoveAssociation(node.id)
          }
       }
 
       // If one of the new associations does not exist in the prior list, add it in
       for (var j = 0; j < newAssocs.length; j++) {
          if (!oldAssocs.includes(newAssocs[j])) {
+            var otherNode = notebookData.GetNode(newAssocs[j])
+            otherNode.AddAssociation(node.id)
+
             node.AddAssociation(newAssocs[j])
-            (notebookData.getNode(newAssocs[j])).AddAssociation(node.id)
          }
       }
 
@@ -287,4 +291,24 @@ function OpenTVIDeleteDialog(tvi, inputConfirmed) {
    }
 
    OpenDialog(tvi, "#dw_delete_TVI")
+}
+
+
+
+// dw_details_TVI functions
+function OpenTVIDetailsDialog(tvi = null) {
+   var item = notebookData.GetNode(tvi.attr("id"))
+
+   var html = "ID: " + item.id + "<br/>"
+   html += "Name: " + item.name + "<br/>"
+   html += "Type: " + item.type + "<br/><br/>"
+   html += "Creation Date: " + item.createDate + "<br/>"
+   html += "Last Edit Date: " + item.editDate + "<br/><br/>"
+   html += "Associations: " + item.associations + "<br/>"
+   html += "Parent: " + item.parent + "<br/>"
+   html += "Children: " + item.children
+
+   $("#dw_details_scroll")[0].innerHTML = html
+
+   OpenDialog(tvi, "#dw_details_TVI")
 }

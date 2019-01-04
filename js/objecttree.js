@@ -2,7 +2,7 @@ const rootNode = {
    id: "00000000",
    name: "ROOT",
    type: "page",
-   associations: null,
+   associations: [],
    parent: null,
    children: [],
    data: "blank"
@@ -62,17 +62,17 @@ class TreeNode {
    }
 
    AddAssociation(otherNode) {
-      if (this.associations.includes(otherNode.id)) {
+      if (this.associations.includes(otherNode)) {
          return false
       }
 
-      this.associations.push(otherNode.id)
+      this.associations.push(otherNode)
       return true
    }
 
    RemoveAssociation(otherNode) {
-      if (this.associations.includes(otherNode.id)) {
-         this.associations.remove(otherNode.id)
+      if (this.associations.includes(otherNode)) {
+         this.associations.splice(this.associations.indexOf(otherNode), 1)
          return true
       }
       return false
