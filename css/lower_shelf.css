@@ -168,7 +168,10 @@
 
 
 /* FILE MENU */
-
+#menu_file {
+   display: inline-grid;
+   grid-template-columns: min-content min-content auto;
+}
 
 /* TEXT MENU */
 #menu_text {
@@ -216,6 +219,20 @@
    background-color: var(--font-preview-opt-bg-active-color) !important;
 }
 
+/* Notebook drop down menu */
+.menu_file_notebook_dd_opt_btn {
+   width: 100%;
+
+   padding: 4px;
+   margin-bottom: 1px;
+
+   cursor: pointer;
+}
+
+.menu_file_notebook_dd_opt_btn:hover {
+   background-color: var(--notebook-opt-bg-hover-color) !important;
+}
+
 /* Font family drop down menu */
 #dd_font_fam {
    min-height: 100px;
@@ -229,7 +246,7 @@
 
    background-color: var(--font-preview-opt-bg-color);
 
-   padding: 2px;
+   padding: 4px;
    margin-bottom: 1px;
 
    cursor: pointer;

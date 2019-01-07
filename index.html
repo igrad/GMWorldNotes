@@ -76,7 +76,33 @@
          <div id="lower_shelf_viewport">
             <!-- Contains the options of the selected shelf option. -->
             <div class="lower_shelf_menu" id="menu_file">
-               FILE
+               <!-- Notebook Button -->
+               <button type="button" class="button_light bgb_left" id="menu_file_notebook_btn" onclick="ToggleDD(this)">
+                  <div style="display: inline-block; word-wrap: none; text-align: center;">Notebook</div>
+               </button>
+
+               <div id="dd_notebook" class="drop_down" isOpen="false" selectedIndex="fsb-1" owner="menu_file_notebook_btn">
+                  <div id="fsb-1" class="menu_file_notebook_dd_opt_btn" onClick='CreateNewNotebook(this)'>
+                     <div id="fsb-ex-1" class="menu_file_notebook_dd_opt_ex">New</div>
+                  </div>
+                  <div id="fsb-2" class="menu_file_notebook_dd_opt_btn" onClick='ShowNotebookDetails(this)'>
+                     <div id="fsb-ex-2" class="menu_file_notebook_dd_opt_ex">Details</div>
+                  </div>
+                  <div id="fsb-3" class="menu_file_notebook_dd_opt_btn" onClick='RenameNotebook(this)'>
+                     <div id="fsb-ex-3" class="menu_file_notebook_dd_opt_ex">Rename</div>
+                  </div>
+                  <div id="fsb-4" class="menu_file_notebook_dd_opt_btn" onClick='DeleteNotebook(this)'>
+                     <div id="fsb-ex-4" class="menu_file_notebook_dd_opt_ex">Delete</div>
+                  </div>
+               </div>
+
+               <!-- Print Button -->
+
+
+               <!-- Settings Button -->
+
+
+               <!-- About Button -->
             </div>
 
 
@@ -124,7 +150,7 @@
                      </div>
                   </button>
                   <!-- DROPDOWN -->
-                  <button type="button" class="button_light half_width bgb_right" id="menu_text_style_btn" onclick="ToggleStyleDD(this)">
+                  <button type="button" class="button_light half_width bgb_right" id="menu_text_style_btn" onclick="ToggleDD(this)" dropmenu="dd_style">
                      <div style="display:inline-block">▿</div>
                   </button>
 
@@ -169,20 +195,20 @@
                   <div class="grid_spacer_h"></div>
 
                   <!-- Font family drop-down -->
-                  <button type="button" class="button_light bgb_left" id="menu_text_fontfamily_btn" onclick="ToggleFontFamilyDD(this)">
+                  <button type="button" class="button_light bgb_left" id="menu_text_fontfamily_btn" onclick="ToggleDD(this)" dropmenu="dd_font_fam">
                      <div style="display: inline-block; word-wrap: none; padding-left: 6px; text-align: left;">Arial</div>
                   </button>
-                  <button type="button" class="button_light half_width bgb_right" id="menu_text_fontfamily_drop_btn" onclick="ToggleFontFamilyDD(this)">
+                  <button type="button" class="button_light half_width bgb_right" id="menu_text_fontfamily_drop_btn" onclick="ToggleDD(this)" dropmenu="dd_font_fam">
                      <div style="display:inline-block">▿</div>
                   </button>
 
                   <div class="grid_spacer"></div>
 
                   <!-- Font size -->
-                  <button type="button" class="button_light bgb_left" id="menu_text_size_btn" onclick="ToggleFontSizeDD(this)">
+                  <button type="button" class="button_light bgb_left" id="menu_text_size_btn" onclick="ToggleDD(this)" dropmenu="dd_font_size">
                      <div style="display:inline-block">3</div>
                   </button>
-                  <button type="button" class="button_light half_width bgb_right" id="menu_text_size_drop_btn" onclick="ToggleFontSizeDD(this)">
+                  <button type="button" class="button_light half_width bgb_right" id="menu_text_size_drop_btn" onclick="ToggleDD(this)" dropmenu="dd_font_size">
                      <div style="display:inline-block">▿</div>
                   </button>
 

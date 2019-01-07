@@ -244,8 +244,11 @@ Menu.setApplicationMenu(appMenu)
 function CloseDropDowns() {
    $(".drop_down").each(function(i) {
       if ($(this).attr("isOpen") == "true") {
-         let owner = $("#" + $(this).attr("owner"))
-         owner.click()
+         $("[dropmenu='" + this.id + "']").each(function (i) {
+            if (this.classList.contains("isActive")) {
+               ToggleDD(this)
+            }
+         })
       }
    })
 }

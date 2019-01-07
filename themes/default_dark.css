@@ -39,6 +39,9 @@
    --button-group-separator-color: #525252;
    --button-group-rounding: 3px;
 
+   /* Notebook drop down menu */
+   --notebook-opt-bg-hover-color: #444444;
+
    /* Font family and size selection drop down menus */
    --font-preview-menu-bg-color: #333333;
    --font-preview-opt-bg-color: #232323;

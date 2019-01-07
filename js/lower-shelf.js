@@ -1,3 +1,28 @@
+function ToggleDD(caller) {
+   var dropBtn = $(caller)
+   var dropMenu = $("#" + ($(caller).attr("dropmenu")))
+
+   if (dropMenu.attr("isOpen") == "true") {
+      dropMenu.css("display", "none")
+      dropMenu.attr("isOpen", "false")
+      dropBtn[0].classList.remove("isActive")
+
+      $("[onclick='ToggleDD(this)']").each(function (i) {
+         this.classList.remove("isActive")
+      })
+   } else {
+      CloseDropDowns()
+
+      dropMenu.css("display", "inline-block")
+      dropMenu.css("top", dropBtn.position().top + dropBtn.outerHeight())
+      dropMenu.css("left", dropBtn.position().left)
+      dropMenu.attr("isOpen", "true")
+      dropBtn[0].classList.add("isActive")
+   }
+}
+
+
+
 async function CreateFontFamilyOptions(showPlainTextFontNames = false) {
    var fontList = await sysFonts.getFonts().then(
       function(res) {
@@ -62,42 +87,6 @@ async function CreateFontFamilyOptions(showPlainTextFontNames = false) {
 
 
 
-function ToggleDD(dropBtn, dropMenu) {
-   if (dropMenu.attr("isOpen") == "true") {
-      dropMenu.css("display", "none")
-      dropMenu.attr("isOpen", "false")
-      dropBtn[0].classList.remove("isActive")
-   } else {
-      CloseDropDowns()
-
-      dropMenu.css("display", "inline-block")
-      dropMenu.css("top", dropBtn.position().top + dropBtn.outerHeight())
-      dropMenu.css("left", dropBtn.position().left)
-      dropMenu.attr("isOpen", "true")
-      dropBtn[0].classList.add("isActive")
-   }
-}
-
-
-
-function ToggleFontFamilyDD(caller) {
-   ToggleDD($("#menu_text_fontfamily_btn"), $("#dd_font_fam"))
-}
-
-
-
-function ToggleFontSizeDD(caller) {
-   ToggleDD($("#menu_text_size_btn"), $("#dd_font_size"))
-}
-
-
-
-function ToggleStyleDD(caller) {
-   ToggleDD($("#menu_text_style_btn"), $("#dd_style"))
-}
-
-
-
 function ShelfHover(caller) {
    if ($(caller).attr("isOpen") == "false") {
       $(caller).css({"background-color": "var(--shelf-top-bg-color-hover)",
@@ -129,6 +118,7 @@ function ShelfSwitch(caller) {
    $(caller).css("background-color", "var(--shelf-top-bg-color-open)")
    $(caller).css("color", "var(--shelf-top-font-color-hover)")
 
+   CloseDropDowns()
    $(".lower_shelf_menu").hide()
    $("#" + caller.attr("frame")).show()
 }
