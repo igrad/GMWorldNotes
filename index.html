@@ -77,32 +77,45 @@
             <!-- Contains the options of the selected shelf option. -->
             <div class="lower_shelf_menu" id="menu_file">
                <!-- Notebook Button -->
-               <button type="button" class="button_light bgb_left" id="menu_file_notebook_btn" onclick="ToggleDD(this)">
+               <button type="button" class="button_light btn_solo" id="menu_file_notebook_btn" onclick="ToggleDD(this)" dropmenu="dd_notebook">
                   <div style="display: inline-block; word-wrap: none; text-align: center;">Notebook</div>
                </button>
 
-               <div id="dd_notebook" class="drop_down" isOpen="false" selectedIndex="fsb-1" owner="menu_file_notebook_btn">
-                  <div id="fsb-1" class="menu_file_notebook_dd_opt_btn" onClick='CreateNewNotebook(this)'>
+               <div></div>
+
+               <button type="button" class="button_light btn_solo" id="menu_file_print_btn" onclick="ToggleDD(this)">
+                  <div style="display: inline-block; word-wrap: none; text-align: center;">Print</div>
+               </button>
+
+               <div></div>
+
+               <button type="button" class="button_light btn_solo" id="menu_file_settings_btn" onclick="ToggleDD(this)">
+                  <div style="display: inline-block; word-wrap: none; text-align: center;">Settings</div>
+               </button>
+
+               <div></div>
+
+               <button type="button" class="button_light btn_solo" id="menu_file_about_btn" onclick="ToggleDD(this)">
+                  <div style="display: inline-block; word-wrap: none; text-align: center;">About</div>
+               </button>
+
+
+
+
+               <div id="dd_notebook" class="drop_down" isOpen="false" selectedIndex="nbb-1" owner="menu_file_notebook_btn">
+                  <div id="nbb-1" class="menu_file_notebook_dd_opt_btn" onClick='CreateNewNotebook(this)'>
                      <div id="fsb-ex-1" class="menu_file_notebook_dd_opt_ex">New</div>
                   </div>
-                  <div id="fsb-2" class="menu_file_notebook_dd_opt_btn" onClick='ShowNotebookDetails(this)'>
-                     <div id="fsb-ex-2" class="menu_file_notebook_dd_opt_ex">Details</div>
+                  <div id="nbb-2" class="menu_file_notebook_dd_opt_btn" onClick='ShowNotebookDetails(this)'>
+                     <div id="nbb-ex-2" class="menu_file_notebook_dd_opt_ex">Details</div>
                   </div>
-                  <div id="fsb-3" class="menu_file_notebook_dd_opt_btn" onClick='RenameNotebook(this)'>
-                     <div id="fsb-ex-3" class="menu_file_notebook_dd_opt_ex">Rename</div>
+                  <div id="nbb-3" class="menu_file_notebook_dd_opt_btn" onClick='RenameNotebook(this)'>
+                     <div id="nbb-ex-3" class="menu_file_notebook_dd_opt_ex">Rename</div>
                   </div>
-                  <div id="fsb-4" class="menu_file_notebook_dd_opt_btn" onClick='DeleteNotebook(this)'>
-                     <div id="fsb-ex-4" class="menu_file_notebook_dd_opt_ex">Delete</div>
+                  <div id="nbb-4" class="menu_file_notebook_dd_opt_btn" onClick='DeleteNotebook(this)'>
+                     <div id="nbb-ex-4" class="menu_file_notebook_dd_opt_ex">Delete</div>
                   </div>
                </div>
-
-               <!-- Print Button -->
-
-
-               <!-- Settings Button -->
-
-
-               <!-- About Button -->
             </div>
 
 
@@ -246,23 +259,23 @@
 
 
                <div id="dd_font_size" class="drop_down" isOpen="false" selectedIndex="fsb-4" owner="menu_text_size_btn">
-                  <div id="fsb-1" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this)' fontSize="2">
+                  <div id="fsb-1" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this)' fontSize="1">
                      <div id="fsb-ex-1" class="menu_text_fontsize_dd_opt_ex"
                      style="font-size: x-small;">Tiny</div>
                   </div>
-                  <div id="fsb-2" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this)' fontSize="3">
+                  <div id="fsb-2" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this)' fontSize="2">
                      <div id="fsb-ex-2" class="menu_text_fontsize_dd_opt_ex"
                      style="font-size: small;">Small</div>
                   </div>
-                  <div id="fsb-3" class="menu_text_fontsize_dd_opt_btn isActive_dd" onClick='SetActiveFontSize(this)' fontSize="4">
+                  <div id="fsb-3" class="menu_text_fontsize_dd_opt_btn isActive_dd" onClick='SetActiveFontSize(this)' fontSize="3">
                      <div id="fsb-ex-3" class="menu_text_fontsize_dd_opt_ex"
                      style="font-size: normal;">Normal</div>
                   </div>
-                  <div id="fsb-4" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this)' fontSize="5">
+                  <div id="fsb-4" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this)' fontSize="4">
                      <div id="fsb-ex-4" class="menu_text_fontsize_dd_opt_ex"
                      style="font-size: large;">Large</div>
                   </div>
-                  <div id="fsb-5" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this)' fontSize="6">
+                  <div id="fsb-5" class="menu_text_fontsize_dd_opt_btn" onClick='SetActiveFontSize(this)' fontSize="5">
                      <div id="fsb-ex-5" class="menu_text_fontsize_dd_opt_ex"
                      style="font-size: x-large;">Header</div>
                   </div>

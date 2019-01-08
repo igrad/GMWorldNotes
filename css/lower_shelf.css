@@ -170,7 +170,10 @@
 /* FILE MENU */
 #menu_file {
    display: inline-grid;
-   grid-template-columns: min-content min-content auto;
+   grid-template-columns: 70px 4px 70px 4px 70px 4px 70px;
+   grid-template-rows: calc(100% - 8px);
+   column-gap: 4px;
+   padding: 4px;
 }
 
 /* TEXT MENU */

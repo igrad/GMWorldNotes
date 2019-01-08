@@ -199,7 +199,7 @@ function SetActiveFontSelection(button) {
 
 
 function SetActiveFont(caller) {
-   ToggleFontFamilyDD(caller)
+   ToggleDD($("#menu_text_fontfamily_btn")[0])
    SetActiveFontSelection(caller)
 
    // Apply font family to selected text
@@ -221,7 +221,7 @@ function SetActiveFontSizeSelection(button) {
 
 
 function SetActiveFontSize(caller) {
-   ToggleFontSizeDD(caller)
+   ToggleDD($("#menu_text_size_btn")[0])
    SetActiveFontSizeSelection(caller)
 
    // Apply font family to selected text
