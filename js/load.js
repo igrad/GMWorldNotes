@@ -183,6 +183,52 @@ function LoadNotebookToScreen(id) {
 
 
 
+function LoadNotebookToAssociations() {
+   // Load the nodes into the tree view
+   // Get the tree view object
+   var treeView = $("#dw_associations_scroll")[0]
+
+   // Clear out the existing contents
+   treeView.innerHTML = ""
+
+   // Traverse the linked list/binary tree in order and build each node in memory
+   // While doing this, also add each label into the content view
+   console.log("Loading tree")
+
+   AddATVIToScreen("00000000", "")
+}
+
+
+
+async function AddATVIToScreen(id, builder) {
+   var node = notebookData.GetNode(id)
+   var builder = ""
+
+   var depth = notebookData.GetNodeDepth(id)
+
+   // Add the node itself to the screen
+   if (depth != 0) {
+      var insertHTML = CreateNewATVI(id, node.name, node.type)
+
+      builder += insertHTML
+   }
+
+   // Add the nodes children to the screen by recursively calling this function
+   if (node.children.length > 0) {
+      builder += "<div id='a_" + id + "_children'>"
+      for (var i = 0; i < node.children.length; i++) {
+         builder += await AddATVIToScreen(node.children[i], builder)
+      }
+      builder += "</div>"
+   }
+
+   if (id == "00000000") $("#dw_associations_scroll")[0].innerHTML = builder
+
+   return builder
+}
+
+
+
 function LoadPageToScreen(id, keepIndex) {
    console.log("Loading page " + id)
 

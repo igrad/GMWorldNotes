@@ -23,7 +23,11 @@ function OpenDialog(tvi, dialogID, header = null) {
       if (tvi) {
          activeTVIAssocs = notebookData.GetNode(activeTVI.attr("id")).associations
       } else {
-         activeTVIAssocs = notebookData.GetNode(activeID).associations
+         try {
+            activeTVIAssocs = notebookData.GetNode(activeID).associations
+         } catch (error) {
+            // TVI has no associations or cannot be found (probably a new notebook)
+         }
       }
    } else {
       $(dialogID).css("display", "none")
@@ -35,6 +39,59 @@ function OpenDialog(tvi, dialogID, header = null) {
    // If the dialog mentioned is now the open dialog window, return true
    return openDialogWindow == dialogID
 }
+
+
+
+// FILE MENU FUNCTIONS
+// dw_new_name_nb functions
+function OpenNBNewNameDialog() {
+   OpenDialog(null, "#dw_name_new_nb", "New Notebook")
+
+   // Automatically clear and focus the input
+   $("#dw_name_new_nb input")[0].value = ""
+   $("#dw_name_new_nb input").focus()
+}
+
+function NameNewNotebook() {
+   var newName = $("#dw_name_new_nb input")[0].value
+
+   if (newName.trim().length > 0) { newName.name = newName.trim() }
+   notebookData.name = newName
+
+   notebookData.UpdateDS()
+   LoadNotebookToScreen(lastOpenNotebook)
+}
+
+var e1 = null
+function CatchKeysNBNewName(caller, e) {
+   e1 = e
+   switch (e.keyCode) {
+      case 13: // Enter pressed
+         NameNewNotebook()
+         OpenNBNewNameDialog(activeID)
+         break
+      case 27: // Escape Pressed
+         OpenNBNewNameDialog(activeID)
+         break
+   }
+}
+
+function BuildNewNotebook() {
+   var newNBID = CreateNewNotebookID()
+   var newName = "Notebook"
+
+   lastOpenNotebook = newNBID
+   notebookData = new Notebook(newNBID)
+
+   SetLastOpenNoteBook(newNBID)
+   SetLastOpenPage("0000")
+
+   LoadNotebookToScreen(lastOpenNotebook)
+
+   OpenNBNewNameDialog()
+}
+
+
 
 // dw_name_new_TVI functions
 function OpenTVINewNameDialog(newNodeID) {
@@ -217,48 +274,6 @@ function CreateNewATVI(id, name, type) {
    }
 
    return html
-}
-
-async function AddATVIToScreen(id, builder) {
-   var node = notebookData.GetNode(id)
-   var builder = ""
-
-   var depth = notebookData.GetNodeDepth(id)
-
-   // Add the node itself to the screen
-   if (depth != 0) {
-      var insertHTML = CreateNewATVI(id, node.name, node.type)
-
-      builder += insertHTML
-   }
-
-   // Add the nodes children to the screen by recursively calling this function
-   if (node.children.length > 0) {
-      builder += "<div id='a_" + id + "_children'>"
-      for (var i = 0; i < node.children.length; i++) {
-         builder += await AddATVIToScreen(node.children[i], builder)
-      }
-      builder += "</div>"
-   }
-
-   if (id == "00000000") $("#dw_associations_scroll")[0].innerHTML = builder
-
-   return builder
-}
-
-function LoadNotebookToAssociations() {
-   // Load the nodes into the tree view
-   // Get the tree view object
-   var treeView = $("#dw_associations_scroll")[0]
-
-   // Clear out the existing contents
-   treeView.innerHTML = ""
-
-   // Traverse the linked list/binary tree in order and build each node in memory
-   // While doing this, also add each label into the content view
-   console.log("Loading tree")
-
-   AddATVIToScreen("00000000", "")
 }
 
 

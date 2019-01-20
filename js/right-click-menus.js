@@ -23,6 +23,8 @@ var treeViewRCMopts = {
                var newTVI = notebookData.nodeTree.AddNewNode("page", "00000000")
 
                OpenTVINewNameDialog(newTVI)
+
+               LoadPageToScreen(newTVI, true)
             }
          }, {
             label: 'New Folder',
@@ -31,6 +33,8 @@ var treeViewRCMopts = {
                var newTVI = notebookData.nodeTree.AddNewNode("folder", "00000000")
 
                OpenTVINewNameDialog(newTVI)
+
+               LoadPageToScreen(newTVI, true)
             }
          }
       ]

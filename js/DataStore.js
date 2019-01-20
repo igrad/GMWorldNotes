@@ -21,7 +21,7 @@ function CreateNewNotebookID() {
       dir.reverse()
 
       // Find the largest number and add one to it, then return it as a string
-      var largestNum = parseInt(dir[0].substring(0, 4))
+      var largestNum = parseInt(dir[0].split(".")[0])
       var newNum = (largestNum += 1).toString().padStart(4, 0)
 
       console.log("Found existing notebook " + largestNum + ", creating " + newNum)

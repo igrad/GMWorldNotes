@@ -10,7 +10,6 @@
       <link rel="stylesheet" href="css/generated-fonts.css">
       <link rel="stylesheet" href="css/dialog.css">
 
-
       <script>
          if (typeof module === 'object') {
             window.module = module;
@@ -101,22 +100,25 @@
 
 
 
-
                <div id="dd_notebook" class="drop_down" isOpen="false" selectedIndex="nbb-1" owner="menu_file_notebook_btn">
-                  <div id="nbb-1" class="menu_file_notebook_dd_opt_btn" onClick='CreateNewNotebook(this)'>
-                     <div id="fsb-ex-1" class="menu_file_notebook_dd_opt_ex">New</div>
+                  <div id="nbb-1" class="menu_file_notebook_dd_opt_btn" onClick='BuildNewNotebook()'>
+                     <div id="nbb-ex-1" class="menu_file_notebook_dd_opt_ex">New</div>
                   </div>
-                  <div id="nbb-2" class="menu_file_notebook_dd_opt_btn" onClick='ShowNotebookDetails(this)'>
-                     <div id="nbb-ex-2" class="menu_file_notebook_dd_opt_ex">Details</div>
+                  <div id="nbb-2" class="menu_file_notebook_dd_opt_btn" onClick="OpenNBSelection()">
+                     <div id="nbb-ex-1" class="menu_file_notebook_dd_opt_ex">Load</div>
                   </div>
-                  <div id="nbb-3" class="menu_file_notebook_dd_opt_btn" onClick='RenameNotebook(this)'>
-                     <div id="nbb-ex-3" class="menu_file_notebook_dd_opt_ex">Rename</div>
+                  <div id="nbb-3" class="menu_file_notebook_dd_opt_btn" onClick='ShowNotebookDetails(this)'>
+                     <div id="nbb-ex-3" class="menu_file_notebook_dd_opt_ex">Details</div>
                   </div>
-                  <div id="nbb-4" class="menu_file_notebook_dd_opt_btn" onClick='DeleteNotebook(this)'>
-                     <div id="nbb-ex-4" class="menu_file_notebook_dd_opt_ex">Delete</div>
+                  <div id="nbb-4" class="menu_file_notebook_dd_opt_btn" onClick='RenameNotebook(this)'>
+                     <div id="nbb-ex-4" class="menu_file_notebook_dd_opt_ex">Rename</div>
+                  </div>
+                  <div id="nbb-5" class="menu_file_notebook_dd_opt_btn" onClick='DeleteNotebook(this)'>
+                     <div id="nbb-ex-5" class="menu_file_notebook_dd_opt_ex">Delete</div>
                   </div>
                </div>
             </div>
+
 
 
             <div class="lower_shelf_menu" id="menu_text">
@@ -301,14 +303,18 @@
                </div>
             </div>
 
+
+
             <div class="lower_shelf_menu" id="menu_insert">
                INSERT
             </div>
 
 
+
             <div class="lower_shelf_menu" id="menu_share">
                SHARE
             </div>
+
 
 
             <div class="lower_shelf_menu" id="menu_templates">
@@ -322,7 +328,11 @@
       <div id="lower_flex">
          <div id="tree_view" class="custom_scroll"></div>
 
+
+
          <div id="resize_bar" onmousedown="StartResizingTreeView(event)"></div>
+
+
 
          <div id="content_view_wrap">
             <div id="save_notification">Saving...</div>
@@ -334,6 +344,25 @@
       <!-- ============== -->
       <!-- DIALOG WINDOWS -->
       <!-- ============== -->
+      <div id="dw_name_new_nb" class="dialog_window">
+         <div class="dialog_header"></div>
+
+
+
+         <div class="dialog_text">Enter a name for this notebook</div>
+
+
+
+         <input type="text" placeholder="New name" class="dialog_prompt" onkeyup="CatchKeysTVINewName(this, event)" onblur="this.focus()">
+
+
+
+         <div class="dialog_confirmation_wrapper">
+            <div id="dw_new_name_cancel" class="dialog_cancel" onclick="CatchKeysNBNewName()">Cancel</div>
+            <div id="dw_new_name_confirm" class="dialog_confirm" onclick="NameNewNode();CatchKeysNBNewName()">Confirm</div>
+         </div>
+      </div>
+
       <!-- TREEVIEW ITEM INTERACTIONS -->
       <!-- Set name of new item -->
       <div id="dw_name_new_TVI" class="dialog_window">
@@ -349,6 +378,8 @@
          </div>
       </div>
 
+
+
       <!-- Rename existing item -->
       <div id="dw_rename_TVI" class="dialog_window">
          <div class="dialog_header"></div>
@@ -362,6 +393,8 @@
             <div id="dw_rename_confirm" class="dialog_confirm" onclick="RenameActiveNode();OpenTVIRenameDialog()">Confirm</div>
          </div>
       </div>
+
+
 
       <!-- Edit associations -->
       <div id="dw_associations_TVI" class="dialog_window">
@@ -378,6 +411,8 @@
          </div>
       </div>
 
+
+
       <!-- Delete item -->
       <div id="dw_delete_TVI" class="dialog_window">
          <div class="dialog_header"></div>
@@ -390,6 +425,8 @@
          </div>
       </div>
 
+
+
       <!-- Change item type -->
       <div id="dw_flip_TVI" class="dialog_window">
          <div class="dialog_header"></div>
@@ -401,6 +438,8 @@
             <div id="dw_flip_confirm" class="dialog_confirm" onclick="OpenTVIFlipDialog(activeTVI, true)">Confirm</div>
          </div>
       </div>
+
+
 
       <!-- Show item details -->
       <div id="dw_details_TVI" class="dialog_window">
