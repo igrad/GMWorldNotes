@@ -73,6 +73,7 @@ function MaximizeWindow() {
 
 function ExitApplication() {
    (remote.getCurrentWindow()).close()
+   window.close()
 }
 
 

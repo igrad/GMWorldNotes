@@ -1,5 +1,4 @@
-const {remote} = require('electron')
-const {Menu, MenuItem} = remote
+const {Menu, MenuItem} = require('electron').remote
 
 // https://electronjs.org/docs/api/menu
 // https://www.tutorialspoint.com/electron/electron_menus.htm

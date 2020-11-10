@@ -9,22 +9,24 @@ let win
 function createWindow () {
    // Create the browser window.
    win = new BrowserWindow({
-      width: 800,
-      height: 600,
-      minWidth: 800,
-      minHeight: 600,
+      width: 1600,
+      height: 720,
+      minWidth: 1600,
+      minHeight: 720,
       x: 1980,
       y: 240,
       frame: false,
       webPreferences: {
-         defaultFontSize: 14
+         defaultFontSize: 14,
+         nodeIntegration: true,
+         enableRemoteModule: true
       }})
 
-      // and load the index.html of the app.
-      win.loadURL(url.format({
-         pathname: path.join(__dirname, '../index.html'),
-         protocol: 'file:',
-         slashes: true
+   // and load the index.html of the app.
+   win.loadURL(url.format({
+      pathname: path.join(__dirname, '../index.html'),
+      protocol: 'file:',
+      slashes: true
       })
    );
 

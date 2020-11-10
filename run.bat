@@ -1,0 +1,1 @@
+C:\Users\ian\AppData\Roaming\npm\node_modules\electron\dist\electron.exe .\js\main.js

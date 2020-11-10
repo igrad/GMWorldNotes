@@ -1,5 +1,25 @@
 {
   "name": "GMWorldNotes",
   "version": "0.0.1",
-  "main": "main.js"
+  "main": "main.js",
+  "dependencies": {
+    "system-font-families": "^0.4.1"
+  },
+  "description": "A tool for GMs to efficiently keep note of their world, including its locations, denizens, items, and more.",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "electron .\\js\\main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igrad/GMWorldNotes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/igrad/GMWorldNotes/issues"
+  },
+  "homepage": "https://github.com/igrad/GMWorldNotes#readme"
 }
