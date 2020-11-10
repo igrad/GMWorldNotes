@@ -1,4 +1,5 @@
 const {ipcRenderer} = require('electron')
+const remote = require('electron').remote
 
 let pageHistory = []
 let pageIndex = -1
